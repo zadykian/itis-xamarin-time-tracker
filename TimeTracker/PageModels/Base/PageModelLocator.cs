@@ -37,7 +37,7 @@ namespace TimeTrackerTutorial.PageModels.Base
 
             // Register Services (registered as Singletons by default)
             _container.Register<INavigationService, NavigationService>();
-            _container.Register<IAccountService>(DependencyService.Get<IAccountService>());
+            _container.Register<IAccountService, MockAccountService>();
             _container.Register<IStatementService, MockStatementService>();
             _container.Register<IWorkService, MockWorkService>();
             //_container.Register(DependencyService.Get<IRepository<WorkItem>>());
