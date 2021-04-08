@@ -22,11 +22,10 @@ namespace TimeTracker.PageModels.Base
 			_container = new TinyIoCContainer();
 			_lookupTable = new Dictionary<Type, Type>();
 
-			Register<DashboardPageModel, DashboardPage>();
 			Register<LoginPageModel, LoginPage>();
-			Register<LoginEmailPageModel, LoginEmailPage>();
+
+			Register<MainPageModel, MainPage>();
 			Register<ProfilePageModel, ProfilePage>();
-			Register<SettingsPageModel, SettingsPage>();
 			Register<SummaryPageModel, SummaryPage>();
 			Register<TimeClockPageModel, TimeClockPage>();
 			Register<RecentActivityPageModel, RecentActivityPage>();
@@ -49,7 +48,7 @@ namespace TimeTracker.PageModels.Base
 
 		public static T Resolve<T>() where T : class => _container.Resolve<T>();
 
-		public static Page CreatePageFor<TPageModelType>() where TPageModelType : PageModelBase
+		internal static Page CreatePageFor<TPageModelType>() where TPageModelType : PageModelBase
 		{
 			var pageType = _lookupTable[typeof(TPageModelType)];
 			var page = (Page) Activator.CreateInstance(pageType);

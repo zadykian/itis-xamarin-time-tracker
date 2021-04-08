@@ -8,10 +8,7 @@ namespace TimeTracker.Models
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
 
-        public TimeSpan Total
-        {
-            get => End - Start;
-        }
+        public TimeSpan Total => End - Start;
 
         public string Id { get; set; }
     }

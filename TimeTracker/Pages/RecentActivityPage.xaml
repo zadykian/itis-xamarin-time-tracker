@@ -8,19 +8,16 @@
     NavigationPage.HasNavigationBar="False"
     x:Class="TimeTracker.Pages.RecentActivityPage">
     <ContentPage.Content>
-        <Grid RowDefinitions="280,*" BackgroundColor="{StaticResource BackgroundColorLight}">
-
-            <StackLayout>
-                <!-- Header layout -->
-            </StackLayout>
+        <Grid RowDefinitions="280,*">
 
             <StackLayout Grid.Row="1" Margin="20">
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Recent Activity" VerticalOptions="Center" />
-                    <buttons:BindableButton BackgroundColor="Transparent"
-                                            BindingContext="{Binding ViewAllModel}"
+                    <buttons:BindableButton 
+                                            BindingContext="{Binding ViewAllButtonModel}"
                                             FontAttributes="None" HorizontalOptions="EndAndExpand" />
                 </StackLayout>
+
                 <layouts:ExtendedFrame BackgroundColor="White" CornerRadius="20" HasShadow="True"
                                        Padding="10" VerticalOptions="FillAndExpand" ShadowOpacity="0.25"
                                        ShadowOffset="0,3" ShadowRadius="3">
@@ -30,7 +27,7 @@
                 </layouts:ExtendedFrame>
             </StackLayout>
 
-            <buttons:BindableButton BindingContext="{Binding ClockInModel}"
+            <buttons:BindableButton BindingContext="{Binding StartTimerButtonModel}"
                                     Grid.Row="1" Margin="0,-30,0,0"
                                     VerticalOptions="Start" />
         </Grid>

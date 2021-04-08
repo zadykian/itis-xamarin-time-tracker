@@ -3,7 +3,7 @@ using TimeTracker.PageModels.Base;
 
 namespace TimeTracker.ViewModels
 {
-    public class PayStatementViewModel : ExtendedBindableObject
+    internal class PayStatementViewModel : ExtendedBindableObject
     {
         private double _earnings;
         public double Earnings

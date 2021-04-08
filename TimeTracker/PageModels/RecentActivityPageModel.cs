@@ -3,27 +3,27 @@ using TimeTracker.ViewModels.Buttons;
 
 namespace TimeTracker.PageModels
 {
-    public class RecentActivityPageModel : PageModelBase
+    internal class RecentActivityPageModel : PageModelBase
     {
 
-        private ButtonModel _viewAllModel;
-        public ButtonModel ViewAllModel
+        private ButtonModel viewAllButtonModel;
+        public ButtonModel ViewAllButtonModel
         {
-            get => _viewAllModel;
-            set => SetProperty(ref _viewAllModel, value);
+            get => viewAllButtonModel;
+            set => SetProperty(ref viewAllButtonModel, value);
         }
 
-        private ButtonModel _clockInModel;
-        public ButtonModel ClockInModel
+        private ButtonModel startTimerButtonModel;
+        public ButtonModel StartTimerButtonModel
         {
-            get => _clockInModel;
-            set => SetProperty(ref _clockInModel, value);
+            get => startTimerButtonModel;
+            set => SetProperty(ref startTimerButtonModel, value);
         }
+
         public RecentActivityPageModel()
         {
-
-            ViewAllModel = new ButtonModel("View All", OnViewAll);
-            ClockInModel = new ButtonModel("CLOCK IN", OnClockIn);
+            ViewAllButtonModel = new ButtonModel("view all", OnViewAll);
+            StartTimerButtonModel = new ButtonModel("start timer", OnClockIn);
         }
 
         private void OnClockIn()

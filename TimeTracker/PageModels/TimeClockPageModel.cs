@@ -10,7 +10,7 @@ using TimeTracker.ViewModels.Buttons;
 
 namespace TimeTracker.PageModels
 {
-    public class TimeClockPageModel : PageModelBase
+    internal class TimeClockPageModel : PageModelBase
     {
         bool _isClockedIn;
         public bool IsClockedIn

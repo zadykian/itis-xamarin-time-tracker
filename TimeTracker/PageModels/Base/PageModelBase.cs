@@ -2,7 +2,7 @@
 
 namespace TimeTracker.PageModels.Base
 {
-    public class PageModelBase : ExtendedBindableObject
+    internal class PageModelBase : ExtendedBindableObject
     {
         string _title;
         /// <summary>

@@ -3,10 +3,10 @@ using TimeTracker.PageModels.Base;
 
 namespace TimeTracker.Services.Navigation
 {
-	public interface INavigationService
+	internal interface INavigationService
 	{
 		/// <summary>
-		/// Navigation method to asynchonously navigate between Page Models,
+		/// Navigation method to asynchronously navigate between Page Models,
 		/// and optionally pass navigation Data.
 		/// </summary>
 		Task NavigateToAsync<TPageModel>(object navigationData = null, bool setRoot = false)

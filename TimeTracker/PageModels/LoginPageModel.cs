@@ -6,7 +6,7 @@ using TimeTracker.ViewModels.Buttons;
 
 namespace TimeTracker.PageModels
 {
-	public class LoginPageModel : PageModelBase
+	internal class LoginPageModel : PageModelBase
 	{
 		private readonly IAccountService accountService;
 		private readonly INavigationService navigationService;
@@ -18,7 +18,6 @@ namespace TimeTracker.PageModels
 		public ButtonModel CreateAccountModel { get; }
 
 		public ButtonModel LogInModel { get; }
-		
 
 		public LoginPageModel(INavigationService navigationService,
 			IAccountService accountService)

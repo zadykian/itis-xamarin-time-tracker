@@ -11,23 +11,28 @@
         <StackLayout>
             <StackLayout BackgroundColor="{StaticResource PrimaryHeaderColor}"
                          Padding="20,50,20,5">
+
                 <Label Text="{Binding RunningTotal, StringFormat='{}{0:h\\:mm\\:ss}'}"
                        FontSize="50" HorizontalTextAlignment="Center"
-                       TextColor="White" />
+                       TextColor="Black" />
+
                 <Label Text="{Binding CurrentStartTime, StringFormat='You clocked in at {0:h:mm tt}'}"
-                       HorizontalTextAlignment="Center" TextColor="White"
+                       HorizontalTextAlignment="Center" TextColor="Black"
                        IsVisible="{Binding IsClockedIn}" />
+
                 <buttons:BindableButton BindingContext="{Binding ClockInOutButtonModel}"
                                         HorizontalOptions="Center" WidthRequest="200"
-                                        BackgroundColor="White" />
+                                        BackgroundColor="Black" />
+
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Start" HorizontalOptions="CenterAndExpand"
-                           TextColor="White" />
+                           TextColor="Black" />
                     <Label Text="End" HorizontalOptions="CenterAndExpand"
-                           TextColor="White" />
+                           TextColor="Black" />
                     <Label Text="Total" HorizontalOptions="CenterAndExpand"
-                           TextColor="White" />
+                           TextColor="Black" />
                 </StackLayout>
+
             </StackLayout>
 
             <ListView ItemsSource="{Binding WorkItems}">
@@ -50,11 +55,11 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <StackLayout BackgroundColor="{StaticResource PrimaryHeaderColor}"
-                         Padding="10">
-                <Label Text="{Binding TodaysEarnings, StringFormat='Earnings Today: {0:C}'}"
-                       HorizontalOptions="Center" TextColor="White" />
-            </StackLayout>
+            <!-- <StackLayout BackgroundColor="{StaticResource PrimaryHeaderColor}" -->
+            <!--              Padding="10"> -->
+            <!--     <Label Text="{Binding TodaysEarnings, StringFormat='Earnings Today: {0:C}'}" -->
+            <!--            HorizontalOptions="Center" TextColor="White" /> -->
+            <!-- </StackLayout> -->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

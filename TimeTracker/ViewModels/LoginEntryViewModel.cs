@@ -2,7 +2,7 @@
 
 namespace TimeTracker.ViewModels
 {
-    public class LoginEntryViewModel : ExtendedBindableObject
+    internal class LoginEntryViewModel : ExtendedBindableObject
     {
         private string _placeholder;
         public string Placeholder

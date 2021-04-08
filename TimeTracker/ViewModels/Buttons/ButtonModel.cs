@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace TimeTracker.ViewModels.Buttons
 {
-	public class ButtonModel : ExtendedBindableObject
+	internal class ButtonModel : ExtendedBindableObject
 	{
 		string _text;
 

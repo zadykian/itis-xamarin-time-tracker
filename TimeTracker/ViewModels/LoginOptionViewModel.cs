@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace TimeTracker.ViewModels
 {
-    public class LoginOptionViewModel : ExtendedBindableObject
+    internal class LoginOptionViewModel : ExtendedBindableObject
     {
         private Color _backgroundColor;
         public Color BackgroundColor

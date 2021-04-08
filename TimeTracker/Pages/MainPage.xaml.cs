@@ -3,8 +3,8 @@
 namespace TimeTracker.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class DashboardPage
+    public partial class MainPage
     {
-        public DashboardPage() => InitializeComponent();
+        public MainPage() => InitializeComponent();
     }
 }

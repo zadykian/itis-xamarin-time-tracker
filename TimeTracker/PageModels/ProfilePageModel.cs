@@ -2,7 +2,7 @@
 
 namespace TimeTracker.PageModels
 {
-    public class ProfilePageModel : PageModelBase
+    internal class ProfilePageModel : PageModelBase
     {
     }
 }
