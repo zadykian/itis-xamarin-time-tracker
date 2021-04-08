@@ -16,14 +16,14 @@ namespace TimeTracker.Views
 
 		private static void OnEarningsPropertyChanged(BindableObject bindable, object oldValue, object newValue)
 		{
-			if (newValue is not double earnings)
+			if (!(newValue is double earnings))
 			{
 				return;
 			}
 
 			var formattedString = earnings.ToString("C");
 
-			if (bindable is not StatementEarningsView view)
+			if (!(bindable is StatementEarningsView view))
 			{
 				return;
 			}

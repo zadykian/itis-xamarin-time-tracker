@@ -9,7 +9,7 @@ namespace TimeTracker
     {
         public App() => InitializeComponent();
 
-        private Task InitNavigation()
+        private static Task InitNavigation()
         {
             var navigationService = PageModelLocator.Resolve<INavigationService>();
             return navigationService.NavigateToAsync<LoginPageModel>(null, true);

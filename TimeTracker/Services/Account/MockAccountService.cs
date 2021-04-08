@@ -22,7 +22,7 @@ namespace TimeTracker.Services.Account
             {
                 return Task.FromResult(false);
             }
-            return Task.Delay(1000).ContinueWith((task) => true);
+            return Task.Delay(1000).ContinueWith(_ => true);
         }
 
         public Task<bool> SendOtpCodeAsync(string phoneNumber)
