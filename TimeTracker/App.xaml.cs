@@ -2,16 +2,12 @@
 using TimeTracker.PageModels;
 using TimeTracker.PageModels.Base;
 using TimeTracker.Services.Navigation;
-using Xamarin.Forms;
 
 namespace TimeTracker
 {
-    public partial class App : Application
+    public partial class App
     {
-        public App()
-        {
-            InitializeComponent();
-        }
+        public App() => InitializeComponent();
 
         private Task InitNavigation()
         {

@@ -1,14 +1,10 @@
-﻿using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿using Xamarin.Forms.Xaml;
 
 namespace TimeTracker.Pages
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class TimeClockPage : ContentPage
-    {
-        public TimeClockPage()
-        {
-            InitializeComponent();
-        }
-    }
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class TimeClockPage
+	{
+		public TimeClockPage() => InitializeComponent();
+	}
 }

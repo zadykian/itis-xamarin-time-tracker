@@ -1,12 +1,7 @@
-﻿using Xamarin.Forms;
-
-namespace TimeTracker.Views.Labels
+﻿namespace TimeTracker.Views.Labels
 {
-    public partial class TitleLabel : Label
+    public partial class TitleLabel
     {
-        public TitleLabel()
-        {
-            InitializeComponent();
-        }
+        public TitleLabel() => InitializeComponent();
     }
 }

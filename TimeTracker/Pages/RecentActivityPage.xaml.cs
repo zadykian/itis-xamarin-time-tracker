@@ -1,12 +1,7 @@
-﻿using Xamarin.Forms;
-
-namespace TimeTracker.Pages
+﻿namespace TimeTracker.Pages
 {
-    public partial class RecentActivityPage : ContentPage
+    public partial class RecentActivityPage
     {
-        public RecentActivityPage()
-        {
-            InitializeComponent();
-        }
+        public RecentActivityPage() => InitializeComponent();
     }
 }

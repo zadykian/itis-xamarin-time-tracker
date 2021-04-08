@@ -1,12 +1,7 @@
-﻿using Xamarin.Forms;
-
-namespace TimeTracker.Views
+﻿namespace TimeTracker.Views
 {
-    public partial class LoginOptionView : ContentView
+    public partial class LoginOptionView
     {
-        public LoginOptionView()
-        {
-            InitializeComponent();
-        }
+        public LoginOptionView() => InitializeComponent();
     }
 }

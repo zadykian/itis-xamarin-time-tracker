@@ -1,12 +1,7 @@
-﻿using Xamarin.Forms;
-
-namespace TimeTracker.Views
+﻿namespace TimeTracker.Views
 {
-    public partial class PayStatementView : ContentView
+    public partial class PayStatementView
     {
-        public PayStatementView()
-        {
-            InitializeComponent();
-        }
+        public PayStatementView() => InitializeComponent();
     }
 }

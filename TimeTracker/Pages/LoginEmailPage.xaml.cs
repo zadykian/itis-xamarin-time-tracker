@@ -1,12 +1,7 @@
-﻿using Xamarin.Forms;
-
-namespace TimeTracker.Pages
+﻿namespace TimeTracker.Pages
 {
-    public partial class LoginEmailPage : ContentPage
+    public partial class LoginEmailPage
     {
-        public LoginEmailPage()
-        {
-            InitializeComponent();
-        }
+        public LoginEmailPage() => InitializeComponent();
     }
 }
