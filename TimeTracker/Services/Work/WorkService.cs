@@ -6,7 +6,7 @@ using TimeTracker.Models;
 
 namespace TimeTracker.Services.Work
 {
-    public class WorkService : IWorkService
+    internal class WorkService : IWorkService
     {
         private IRepository<WorkItem> _repo;
 

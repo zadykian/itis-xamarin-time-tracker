@@ -5,37 +5,38 @@ namespace TimeTracker.PageModels
 {
 	internal class MainPageModel : PageModelBase
 	{
-		public MainPageModel(ProfilePageModel profilePM,
-			SummaryPageModel summaryPM,
-			TimeClockPageModel timePM)
+		public MainPageModel(
+			TimeClockPageModel timeClockPageModel,
+			ProfilePageModel profilePM,
+			SummaryPageModel summaryPM)
 		{
 			ProfilePageModel = profilePM;
 			SummaryPageModel = summaryPM;
-			TimeClockPageModel = timePM;
+			TimeClockPageModel = timeClockPageModel;
 		}
 
-		private ProfilePageModel _profilePM;
-
-		public ProfilePageModel ProfilePageModel
-		{
-			get => _profilePM;
-			set => SetProperty(ref _profilePM, value);
-		}
-
-		private SummaryPageModel _summaryPM;
-
-		public SummaryPageModel SummaryPageModel
-		{
-			get => _summaryPM;
-			set => SetProperty(ref _summaryPM, value);
-		}
-
-		private TimeClockPageModel _timePM;
+		private TimeClockPageModel timeClockPageModel;
 
 		public TimeClockPageModel TimeClockPageModel
 		{
-			get => _timePM;
-			set => SetProperty(ref _timePM, value);
+			get => timeClockPageModel;
+			set => SetProperty(ref timeClockPageModel, value);
+		}
+
+		private ProfilePageModel profilePageModel;
+
+		public ProfilePageModel ProfilePageModel
+		{
+			get => profilePageModel;
+			set => SetProperty(ref profilePageModel, value);
+		}
+
+		private SummaryPageModel summaryPageModel;
+
+		public SummaryPageModel SummaryPageModel
+		{
+			get => summaryPageModel;
+			set => SetProperty(ref summaryPageModel, value);
 		}
 
 		public override Task InitializeAsync(object navigationData)

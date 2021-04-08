@@ -5,10 +5,12 @@ using TimeTracker.Models;
 
 namespace TimeTracker.Services.Work
 {
-    public interface IWorkService
-    {
-        Task<bool> LogWorkAsync(WorkItem item);
-        Task<ObservableCollection<WorkItem>> GetTodaysWorkAsync();
-        Task<List<WorkItem>> GetWorkForThisPeriodAsync();
-    }
+	internal interface IWorkService
+	{
+		Task<bool> LogWorkAsync(WorkItem item);
+
+		Task<ObservableCollection<WorkItem>> GetTodaysWorkAsync();
+
+		Task<List<WorkItem>> GetWorkForThisPeriodAsync();
+	}
 }

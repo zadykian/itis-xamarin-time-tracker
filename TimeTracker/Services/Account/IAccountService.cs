@@ -3,13 +3,12 @@ using TimeTracker.Models;
 
 namespace TimeTracker.Services.Account
 {
-    public interface IAccountService
-    {
-        Task<bool> LoginAsync(string username, string password);
-        Task<double> GetCurrentPayRateAsync();
-        Task<bool> SendOtpCodeAsync(string phoneNumber);
-        Task<bool> VerifyOtpCodeAsync(string code);
+	internal interface IAccountService
+	{
+		Task<bool> LoginAsync(string username, string password);
 
-        Task<AuthenticatedUser> GetUserAsync();
-    }
+		Task<double> GetCurrentPayRateAsync();
+
+		Task<AuthenticatedUser> GetUserAsync();
+	}
 }

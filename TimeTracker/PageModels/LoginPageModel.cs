@@ -11,14 +11,6 @@ namespace TimeTracker.PageModels
 		private readonly IAccountService accountService;
 		private readonly INavigationService navigationService;
 
-		public LoginEntryViewModel EmailEntryViewModel { get; }
-
-		public LoginEntryViewModel PasswordEntryViewModel { get; }
-
-		public ButtonModel CreateAccountModel { get; }
-
-		public ButtonModel LogInModel { get; }
-
 		public LoginPageModel(INavigationService navigationService,
 			IAccountService accountService)
 		{
@@ -30,6 +22,14 @@ namespace TimeTracker.PageModels
 			LogInModel = new ButtonModel("log in", OnLogin);
 			CreateAccountModel = new ButtonModel("create account", OnCreateAccount);
 		}
+
+		public LoginEntryViewModel EmailEntryViewModel { get; }
+
+		public LoginEntryViewModel PasswordEntryViewModel { get; }
+
+		public ButtonModel CreateAccountModel { get; }
+
+		public ButtonModel LogInModel { get; }
 
 		private async void OnLogin()
 		{
