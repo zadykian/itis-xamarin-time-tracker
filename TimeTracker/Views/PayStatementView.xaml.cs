@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Xamarin.Forms;
 
-namespace TimeTrackerTutorial.Views
+namespace TimeTracker.Views
 {
     public partial class PayStatementView : ContentView
     {

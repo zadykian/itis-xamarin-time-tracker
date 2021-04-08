@@ -10,4 +10,4 @@
         IsVisible="{Binding IsVisible}" IsEnabled="{Binding IsEnabled}"
         Command="{Binding Command}" WidthRequest="250"
         HorizontalOptions="CenterAndExpand"
-        x:Class="TimeTrackerTutorial.Views.Buttons.BindableButton" />
+        x:Class="TimeTracker.Views.Buttons.BindableButton" />

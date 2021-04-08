@@ -1,7 +1,7 @@
 ﻿using System;
-using TimeTrackerTutorial.Services;
+using TimeTracker.Services;
 
-namespace TimeTrackerTutorial.Models
+namespace TimeTracker.Models
 {
     public class TestData : IIdentifiable
     {

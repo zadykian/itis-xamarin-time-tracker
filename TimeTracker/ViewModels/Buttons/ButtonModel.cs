@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Input;
-using TimeTrackerTutorial.PageModels.Base;
+using TimeTracker.PageModels.Base;
 using Xamarin.Forms;
 
-namespace TimeTrackerTutorial.ViewModels.Buttons
+namespace TimeTracker.ViewModels.Buttons
 {
 	public class ButtonModel : ExtendedBindableObject
 	{

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 using Xamarin.Forms;
 
-namespace TimeTrackerTutorial.Pages
+namespace TimeTracker.Pages
 {
     public partial class LoginEmailPage : ContentPage
     {

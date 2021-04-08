@@ -4,14 +4,14 @@ using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
-using TimeTrackerTutorial.Models;
-using TimeTrackerTutorial.PageModels.Base;
-using TimeTrackerTutorial.Services;
-using TimeTrackerTutorial.Services.Account;
-using TimeTrackerTutorial.Services.Work;
-using TimeTrackerTutorial.ViewModels.Buttons;
+using TimeTracker.Models;
+using TimeTracker.PageModels.Base;
+using TimeTracker.Services;
+using TimeTracker.Services.Account;
+using TimeTracker.Services.Work;
+using TimeTracker.ViewModels.Buttons;
 
-namespace TimeTrackerTutorial.PageModels
+namespace TimeTracker.PageModels
 {
     public class TimeClockPageModel : PageModelBase
     {

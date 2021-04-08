@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using TimeTrackerTutorial.Models;
+using TimeTracker.Models;
 
-namespace TimeTrackerTutorial.Services.Work
+namespace TimeTracker.Services.Work
 {
     public class MockWorkService : IWorkService
     {

@@ -4,8 +4,8 @@
         xmlns:d="http://xamarin.com/schemas/2014/forms/design"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" NavigationPage.HasNavigationBar="False"
-        xmlns:buttons="clr-namespace:TimeTrackerTutorial.Views.Buttons"
-        x:Class="TimeTrackerTutorial.Pages.TimeClockPage">
+        xmlns:buttons="clr-namespace:TimeTracker.Views.Buttons"
+        x:Class="TimeTracker.Pages.TimeClockPage">
     <ContentPage.Content>
         <StackLayout>
             <StackLayout BackgroundColor="{StaticResource PrimaryHeaderColor}"

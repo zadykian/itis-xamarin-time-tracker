@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using TimeTrackerTutorial.Models;
+using TimeTracker.Models;
 
-namespace TimeTrackerTutorial.Services.Account
+namespace TimeTracker.Services.Account
 {
     public interface IAccountService
     {

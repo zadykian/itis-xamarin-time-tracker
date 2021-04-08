@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace TimeTrackerTutorial.Models
+namespace TimeTracker.Models
 {
     public class PayStatement
     {

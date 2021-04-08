@@ -4,10 +4,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:views="clr-namespace:TimeTrackerTutorial.Views" mc:Ignorable="d"
+             xmlns:views="clr-namespace:TimeTracker.Views" mc:Ignorable="d"
              NavigationPage.HasNavigationBar="False"
-             xmlns:buttons="clr-namespace:TimeTrackerTutorial.Views.Buttons"
-             x:Class="TimeTrackerTutorial.Pages.LoginPage">
+             xmlns:buttons="clr-namespace:TimeTracker.Views.Buttons"
+             x:Class="TimeTracker.Pages.LoginPage">
     <ContentPage.Content>
         <StackLayout WidthRequest="220" HorizontalOptions="Center">
 

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using TimeTrackerTutorial.Services;
+using TimeTracker.Services;
 
-namespace TimeTrackerTutorial.Models
+namespace TimeTracker.Models
 {
     public class WorkItem : IIdentifiable
     {

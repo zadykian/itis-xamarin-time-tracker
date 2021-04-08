@@ -1,10 +1,10 @@
 ﻿using System.Threading.Tasks;
-using TimeTrackerTutorial.PageModels;
-using TimeTrackerTutorial.PageModels.Base;
-using TimeTrackerTutorial.Services.Navigation;
+using TimeTracker.PageModels;
+using TimeTracker.PageModels.Base;
+using TimeTracker.Services.Navigation;
 using Xamarin.Forms;
 
-namespace TimeTrackerTutorial
+namespace TimeTracker
 {
     public partial class App : Application
     {

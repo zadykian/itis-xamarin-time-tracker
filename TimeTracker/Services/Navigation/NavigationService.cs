@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
-using TimeTrackerTutorial.PageModels.Base;
+using TimeTracker.PageModels.Base;
 using Xamarin.Forms;
 
-namespace TimeTrackerTutorial.Services.Navigation
+namespace TimeTracker.Services.Navigation
 {
     public class NavigationService : INavigationService
     {

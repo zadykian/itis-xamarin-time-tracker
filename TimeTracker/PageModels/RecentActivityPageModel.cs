@@ -1,8 +1,8 @@
 ﻿using System;
-using TimeTrackerTutorial.PageModels.Base;
-using TimeTrackerTutorial.ViewModels.Buttons;
+using TimeTracker.PageModels.Base;
+using TimeTracker.ViewModels.Buttons;
 
-namespace TimeTrackerTutorial.PageModels
+namespace TimeTracker.PageModels
 {
     public class RecentActivityPageModel : PageModelBase
     {

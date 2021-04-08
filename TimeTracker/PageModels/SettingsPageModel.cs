@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using TimeTrackerTutorial.PageModels.Base;
+using TimeTracker.PageModels.Base;
 
-namespace TimeTrackerTutorial.PageModels
+namespace TimeTracker.PageModels
 {
     public class SettingsPageModel : PageModelBase
     {

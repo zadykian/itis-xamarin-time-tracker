@@ -1,7 +1,7 @@
 ﻿using System;
-using TimeTrackerTutorial.PageModels.Base;
+using TimeTracker.PageModels.Base;
 
-namespace TimeTrackerTutorial.ViewModels
+namespace TimeTracker.ViewModels
 {
     public class LoginEntryViewModel : ExtendedBindableObject
     {

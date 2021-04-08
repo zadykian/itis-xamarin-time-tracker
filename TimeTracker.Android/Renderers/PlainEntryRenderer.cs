@@ -1,12 +1,12 @@
 ﻿using System;
 using Android.Content;
-using TimeTrackerTutorial.Droid.Renderers;
-using TimeTrackerTutorial.Views.Entries;
+using TimeTracker.Droid.Renderers;
+using TimeTracker.Views.Entries;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
 [assembly: ExportRenderer(typeof(PlainEntry), typeof(PlainEntryRenderer))]
-namespace TimeTrackerTutorial.Droid.Renderers
+namespace TimeTracker.Droid.Renderers
 {
     public class PlainEntryRenderer : EntryRenderer
     {

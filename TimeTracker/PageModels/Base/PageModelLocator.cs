@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using TimeTrackerTutorial.Models;
-using TimeTrackerTutorial.Pages;
-using TimeTrackerTutorial.Services;
-using TimeTrackerTutorial.Services.Account;
-using TimeTrackerTutorial.Services.Navigation;
-using TimeTrackerTutorial.Services.Statement;
-using TimeTrackerTutorial.Services.Work;
+using TimeTracker.Models;
+using TimeTracker.Pages;
+using TimeTracker.Services;
+using TimeTracker.Services.Account;
+using TimeTracker.Services.Navigation;
+using TimeTracker.Services.Statement;
+using TimeTracker.Services.Work;
 using TinyIoC;
 using Xamarin.Forms;
 
-namespace TimeTrackerTutorial.PageModels.Base
+namespace TimeTracker.PageModels.Base
 {
     public class PageModelLocator
     {

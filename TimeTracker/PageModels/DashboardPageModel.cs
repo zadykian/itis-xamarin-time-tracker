@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using TimeTrackerTutorial.PageModels.Base;
+using TimeTracker.PageModels.Base;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
-namespace TimeTrackerTutorial.PageModels
+namespace TimeTracker.PageModels
 {
     public class DashboardPageModel : PageModelBase
     {

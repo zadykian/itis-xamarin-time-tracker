@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace TimeTrackerTutorial.PageModels.Base
+namespace TimeTracker.PageModels.Base
 {
     public class PageModelBase : ExtendedBindableObject
     {

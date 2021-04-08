@@ -1,6 +1,6 @@
 ﻿using Xamarin.Forms.Xaml;
 
-namespace TimeTrackerTutorial.Views.Buttons
+namespace TimeTracker.Views.Buttons
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class BindableButton

@@ -1,7 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 
-namespace TimeTrackerTutorial.Views.Layouts
+namespace TimeTracker.Views.Layouts
 {
     public class ExtendedFrame : Frame
     {

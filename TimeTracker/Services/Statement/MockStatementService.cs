@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TimeTrackerTutorial.Models;
+using TimeTracker.Models;
 
-namespace TimeTrackerTutorial.Services.Statement
+namespace TimeTracker.Services.Statement
 {
     public class MockStatementService : IStatementService
     {

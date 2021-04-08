@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using TimeTrackerTutorial.Models;
+using TimeTracker.Models;
 
-namespace TimeTrackerTutorial.Services.Statement
+namespace TimeTracker.Services.Statement
 {
     public interface IStatementService
     {

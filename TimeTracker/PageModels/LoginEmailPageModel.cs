@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Windows.Input;
-using TimeTrackerTutorial.PageModels.Base;
-using TimeTrackerTutorial.Services.Account;
-using TimeTrackerTutorial.Services.Navigation;
+using TimeTracker.PageModels.Base;
+using TimeTracker.Services.Account;
+using TimeTracker.Services.Navigation;
 using Xamarin.Forms;
 
-namespace TimeTrackerTutorial.PageModels
+namespace TimeTracker.PageModels
 {
     public class LoginEmailPageModel : PageModelBase
     {

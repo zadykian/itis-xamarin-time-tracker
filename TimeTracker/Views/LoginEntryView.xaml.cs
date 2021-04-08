@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace TimeTrackerTutorial.Views
+namespace TimeTracker.Views
 {
 	public partial class LoginEntryView
 	{

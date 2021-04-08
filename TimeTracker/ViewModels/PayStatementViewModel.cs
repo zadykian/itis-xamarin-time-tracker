@@ -1,8 +1,8 @@
 ﻿using System;
-using TimeTrackerTutorial.Models;
-using TimeTrackerTutorial.PageModels.Base;
+using TimeTracker.Models;
+using TimeTracker.PageModels.Base;
 
-namespace TimeTrackerTutorial.ViewModels
+namespace TimeTracker.ViewModels
 {
     public class PayStatementViewModel : ExtendedBindableObject
     {

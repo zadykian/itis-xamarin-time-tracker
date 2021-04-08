@@ -6,8 +6,8 @@
         mc:Ignorable="d"
         xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
         android:TabbedPage.ToolbarPlacement="Bottom"
-        xmlns:pages="clr-namespace:TimeTrackerTutorial.Pages"
-        x:Class="TimeTrackerTutorial.Pages.DashboardPage">
+        xmlns:pages="clr-namespace:TimeTracker.Pages"
+        x:Class="TimeTracker.Pages.DashboardPage">
     <TabbedPage.Children>
         <NavigationPage Title="Time">
             <x:Arguments>

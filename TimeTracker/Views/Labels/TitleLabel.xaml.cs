@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Xamarin.Forms;
 
-namespace TimeTrackerTutorial.Views.Labels
+namespace TimeTracker.Views.Labels
 {
     public partial class TitleLabel : Label
     {

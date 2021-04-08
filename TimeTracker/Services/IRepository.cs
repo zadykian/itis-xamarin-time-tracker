@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace TimeTrackerTutorial.Services
+namespace TimeTracker.Services
 {
     public interface IIdentifiable
     {

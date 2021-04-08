@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using TimeTrackerTutorial.PageModels.Base;
+using TimeTracker.PageModels.Base;
 
-namespace TimeTrackerTutorial.Services.Navigation
+namespace TimeTracker.Services.Navigation
 {
     public interface INavigationService
     {

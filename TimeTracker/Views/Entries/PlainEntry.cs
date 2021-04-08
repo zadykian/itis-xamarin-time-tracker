@@ -1,7 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 
-namespace TimeTrackerTutorial.Views.Entries
+namespace TimeTracker.Views.Entries
 {
     public class PlainEntry : Entry
     {

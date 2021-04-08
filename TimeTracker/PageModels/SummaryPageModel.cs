@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TimeTrackerTutorial.Models;
-using TimeTrackerTutorial.PageModels.Base;
-using TimeTrackerTutorial.Services.Account;
-using TimeTrackerTutorial.Services.Statement;
-using TimeTrackerTutorial.Services.Work;
-using TimeTrackerTutorial.ViewModels;
+using TimeTracker.Models;
+using TimeTracker.PageModels.Base;
+using TimeTracker.Services.Account;
+using TimeTracker.Services.Statement;
+using TimeTracker.Services.Work;
+using TimeTracker.ViewModels;
 
-namespace TimeTrackerTutorial.PageModels
+namespace TimeTracker.PageModels
 {
     public class SummaryPageModel : PageModelBase
     {

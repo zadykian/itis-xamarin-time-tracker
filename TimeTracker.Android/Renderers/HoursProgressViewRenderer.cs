@@ -1,14 +1,14 @@
 ﻿using System;
 using Android.Content;
 using Android.Graphics;
-using TimeTrackerTutorial.Droid.Renderers;
-using TimeTrackerTutorial.Views;
+using TimeTracker.Droid.Renderers;
+using TimeTracker.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using Color = Xamarin.Forms.Color;
 
 [assembly: ExportRenderer(typeof(HoursProgressView), typeof(HoursProgressViewRenderer))]
-namespace TimeTrackerTutorial.Droid.Renderers
+namespace TimeTracker.Droid.Renderers
 {
     public class HoursProgressViewRenderer : ViewRenderer
     {
