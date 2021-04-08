@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
 using TimeTracker.Models;
 using TimeTracker.PageModels.Base;
-using TimeTracker.Services;
 using TimeTracker.Services.Account;
 using TimeTracker.Services.Work;
 using TimeTracker.ViewModels.Buttons;

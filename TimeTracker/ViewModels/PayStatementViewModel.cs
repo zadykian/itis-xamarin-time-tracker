@@ -1,5 +1,4 @@
-﻿using System;
-using TimeTracker.Models;
+﻿using TimeTracker.Models;
 using TimeTracker.PageModels.Base;
 
 namespace TimeTracker.ViewModels

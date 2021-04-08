@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using TimeTracker.PageModels.Base;
 using TimeTracker.Services.Account;
 using TimeTracker.Services.Navigation;

@@ -1,5 +1,4 @@
-﻿using System;
-using Android.Content;
+﻿using Android.Content;
 using TimeTracker.Droid.Renderers;
 using TimeTracker.Views.Entries;
 using Xamarin.Forms;

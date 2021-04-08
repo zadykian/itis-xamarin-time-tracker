@@ -1,5 +1,4 @@
-﻿using System;
-namespace TimeTracker.Models
+﻿namespace TimeTracker.Models
 {
     public class AuthenticatedUser
     {
