@@ -1,26 +1,7 @@
-﻿using Xamarin.Forms;
-
-namespace TimeTracker.Views
+﻿namespace TimeTracker.Views
 {
 	public partial class LoginEntryView
 	{
-		public LoginEntryView()
-		{
-			InitializeComponent();
-			entInput.Focused += EntInput_Focused;
-			entInput.Unfocused += EntInput_Focused;
-		}
-
-		private async void EntInput_Focused(object sender, FocusEventArgs e)
-		{
-			if (e.IsFocused)
-			{
-				await bvUnderline.FadeTo(1);
-			}
-			else
-			{
-				await bvUnderline.FadeTo(0.5);
-			}
-		}
+		public LoginEntryView() => InitializeComponent();
 	}
 }

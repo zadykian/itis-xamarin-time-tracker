@@ -6,53 +6,48 @@ using TimeTracker.ViewModels.Buttons;
 
 namespace TimeTracker.PageModels
 {
-    public class LoginPageModel : PageModelBase
-    {
-        private string _icon;
-        public string Icon
-        {
-            get => _icon;
-            set => SetProperty(ref _icon, value);
-        }
+	public class LoginPageModel : PageModelBase
+	{
+		private readonly IAccountService accountService;
+		private readonly INavigationService navigationService;
 
-        public LoginEntryViewModel EmailEntryViewModel { get; set; }
-        public LoginEntryViewModel PasswordEntryViewModel { get; set; }
+		public LoginEntryViewModel EmailEntryViewModel { get; }
 
-        public ButtonModel ForgotPasswordModel { get; set; }
-        public ButtonModel LogInModel { get; set; }
+		public LoginEntryViewModel PasswordEntryViewModel { get; }
 
-        private IAccountService _accountService;
-        private INavigationService _navigationService;
+		public ButtonModel CreateAccountModel { get; }
 
-        public LoginPageModel(INavigationService navigationService,
-            IAccountService accountService)
-        {
-            _accountService = accountService;
-            _navigationService = navigationService;
-            EmailEntryViewModel = new LoginEntryViewModel("email", false);
-            PasswordEntryViewModel = new LoginEntryViewModel("password", true);
+		public ButtonModel LogInModel { get; }
+		
 
-            ForgotPasswordModel = new ButtonModel("forgot password", OnForgotPassword);
-            LogInModel = new ButtonModel("LOG IN", OnLogin);
-        }
+		public LoginPageModel(INavigationService navigationService,
+			IAccountService accountService)
+		{
+			this.accountService = accountService;
+			this.navigationService = navigationService;
+			EmailEntryViewModel = new LoginEntryViewModel("username", false);
+			PasswordEntryViewModel = new LoginEntryViewModel("password", true);
 
-        private async void OnLogin()
-        {
-            var loginAttempt = await _accountService.LoginAsync(EmailEntryViewModel.Text, PasswordEntryViewModel.Text);
-            if (loginAttempt)
-            {
-                // navigate to the Dashboard.
-                await _navigationService.NavigateToAsync<RecentActivityPageModel>();
-            }
-            else
-            {
-                // TODO: Display an Alert for Failure!
-            }
-        }
+			LogInModel = new ButtonModel("log in", OnLogin);
+			CreateAccountModel = new ButtonModel("create account", OnCreateAccount);
+		}
 
-        private void OnForgotPassword()
-        {
+		private async void OnLogin()
+		{
+			var loginAttempt = await accountService.LoginAsync(EmailEntryViewModel.Text, PasswordEntryViewModel.Text);
+			if (loginAttempt)
+			{
+				// navigate to the Dashboard.
+				await navigationService.NavigateToAsync<RecentActivityPageModel>();
+			}
+			else
+			{
+				// TODO: Display an Alert for Failure!
+			}
+		}
 
-        }
-    }
+		private void OnCreateAccount()
+		{
+		}
+	}
 }

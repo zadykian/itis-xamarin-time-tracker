@@ -14,11 +14,9 @@
             <views:LoginEntryView BindingContext="{Binding EmailEntryViewModel}" />
             <views:LoginEntryView BindingContext="{Binding PasswordEntryViewModel}" />
 
-            <buttons:BindableButton BackgroundColor="Transparent"
-                                    TextColor="White" FontFamily="Nunito-Regular"
-                                    BindingContext="{Binding ForgotPasswordModel}"
-                                    HorizontalOptions="End" WidthRequest="140" />
+            <buttons:BindableButton BindingContext="{Binding CreateAccountModel}" />
             <buttons:BindableButton BindingContext="{Binding LogInModel}" />
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
