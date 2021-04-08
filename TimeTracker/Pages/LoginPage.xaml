@@ -9,7 +9,7 @@
              xmlns:buttons="clr-namespace:TimeTracker.Views.Buttons"
              x:Class="TimeTracker.Pages.LoginPage">
     <ContentPage.Content>
-        <StackLayout WidthRequest="220" HorizontalOptions="Center">
+        <StackLayout WidthRequest="220" HorizontalOptions="Center" VerticalOptions="Center">
 
             <views:LoginEntryView BindingContext="{Binding EmailEntryViewModel}" />
             <views:LoginEntryView BindingContext="{Binding PasswordEntryViewModel}" />
