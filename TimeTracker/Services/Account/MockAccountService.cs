@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using TimeTracker.Models;
+﻿using System.Threading.Tasks;
 
 namespace TimeTracker.Services.Account
 {
@@ -9,11 +7,6 @@ namespace TimeTracker.Services.Account
 		public Task<double> GetCurrentPayRateAsync()
 		{
 			return Task.FromResult(10.0);
-		}
-
-		public Task<AuthenticatedUser> GetUserAsync()
-		{
-			throw new NotImplementedException();
 		}
 
 		public Task<bool> LoginAsync(string username, string password)

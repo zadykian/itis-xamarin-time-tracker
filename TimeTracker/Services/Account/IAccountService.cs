@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using TimeTracker.Models;
 
 namespace TimeTracker.Services.Account
 {
@@ -8,7 +7,5 @@ namespace TimeTracker.Services.Account
 		Task<bool> LoginAsync(string username, string password);
 
 		Task<double> GetCurrentPayRateAsync();
-
-		Task<AuthenticatedUser> GetUserAsync();
 	}
 }
