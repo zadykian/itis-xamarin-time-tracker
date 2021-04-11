@@ -6,9 +6,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:buttons="clr-namespace:TimeTracker.ViewModels.Buttons;assembly=TimeTracker"
         mc:Ignorable="d"
-        x:Class="TimeTracker.Views.Buttons.BindableButton" x:DataType="buttons:ButtonModel"
+        x:Class="TimeTracker.Views.Buttons.BindableButton"
+        x:DataType="buttons:ButtonModel"
         HeightRequest="50"
+        WidthRequest="250"
+        HorizontalOptions="CenterAndExpand"
         Text="{Binding Text}"
         IsEnabled="{Binding IsEnabled}"
-        Command="{Binding Command}" WidthRequest="250"
-        HorizontalOptions="CenterAndExpand" />
+        Command="{Binding Command}" />
