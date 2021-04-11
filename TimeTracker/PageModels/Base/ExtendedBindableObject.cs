@@ -9,7 +9,7 @@ namespace TimeTracker.PageModels.Base
 		/// <summary>
 		/// Simplifes the process of updating a Bindable Property and calling INotifyPropertyChanged
 		/// </summary>
-		protected void SetProperty<T>(  ref T storage, T value, [CallerMemberName] string propertyName = null)
+		protected void SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
 		{
 			if (EqualityComparer<T>.Default.Equals(storage, value))
 			{
