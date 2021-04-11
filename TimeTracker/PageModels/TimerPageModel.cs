@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using System.Timers;
 using TimeTracker.Models;
 using TimeTracker.PageModels.Base;
-using TimeTracker.Services.Account;
 using TimeTracker.Services.Work;
 using TimeTracker.ViewModels.Buttons;
 
@@ -60,13 +59,10 @@ namespace TimeTracker.PageModels
 
 		private readonly Timer _timer;
 		private ObservableCollection<WorkItem> _workItems;
-		private readonly IAccountService _accountService;
 		private readonly IWorkService _workService;
 
-		public TimerPageModel(IAccountService accountService,
-			IWorkService workService)
+		public TimerPageModel(IWorkService workService)
 		{
-			_accountService = accountService;
 			_workService = workService;
 
 			TimerButtonModel = new ButtonModel("start timer", OnTimerButtonClicked);
