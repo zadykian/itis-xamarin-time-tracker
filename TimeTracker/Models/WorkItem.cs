@@ -1,15 +1,13 @@
 ﻿using System;
-using TimeTracker.Services;
 
 namespace TimeTracker.Models
 {
-    public class WorkItem : IIdentifiable
-    {
-        public DateTime Start { get; set; }
-        public DateTime End { get; set; }
+	public class WorkItem
+	{
+		public DateTime Start { get; set; }
 
-        public TimeSpan Total => End - Start;
+		public DateTime End { get; set; }
 
-        public string Id { get; set; }
-    }
+		public TimeSpan Total => End - Start;
+	}
 }

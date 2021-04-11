@@ -16,6 +16,7 @@ namespace TimeTracker.PageModels
 		{
 			this.accountService = accountService;
 			this.navigationService = navigationService;
+
 			EmailEntryViewModel = new LoginEntryViewModel("username", false);
 			PasswordEntryViewModel = new LoginEntryViewModel("password", true);
 
@@ -36,8 +37,7 @@ namespace TimeTracker.PageModels
 			var loginAttempt = await accountService.LoginAsync(EmailEntryViewModel.Text, PasswordEntryViewModel.Text);
 			if (loginAttempt)
 			{
-				// navigate to the Dashboard.
-				await navigationService.NavigateToAsync<RecentActivityPageModel>();
+				await navigationService.NavigateToAsync<MainPageModel>();
 			}
 			else
 			{

@@ -6,28 +6,21 @@ using TimeTracker.Models;
 
 namespace TimeTracker.Services.Work
 {
-    internal class WorkService : IWorkService
-    {
-        private IRepository<WorkItem> _repo;
+	internal class WorkService : IWorkService
+	{
+		public Task<ObservableCollection<WorkItem>> GetTodaysWorkAsync()
+		{
+			throw new NotImplementedException();
+		}
 
-        public WorkService(IRepository<WorkItem> repository)
-        {
-            _repo = repository;
-        }
+		public Task<List<WorkItem>> GetWorkForThisPeriodAsync()
+		{
+			throw new NotImplementedException();
+		}
 
-        public Task<ObservableCollection<WorkItem>> GetTodaysWorkAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<List<WorkItem>> GetWorkForThisPeriodAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> LogWorkAsync(WorkItem item)
-        {
-            throw new NotImplementedException();
-        }
-    }
+		public Task<bool> LogWorkAsync(WorkItem item)
+		{
+			throw new NotImplementedException();
+		}
+	}
 }

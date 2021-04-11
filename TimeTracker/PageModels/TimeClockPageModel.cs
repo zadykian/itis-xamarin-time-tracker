@@ -42,14 +42,6 @@ namespace TimeTracker.PageModels
 			set => SetProperty(ref _workItems, value);
 		}
 
-		double _todaysEarnings;
-
-		public double TodaysEarnings
-		{
-			get => _todaysEarnings;
-			set => SetProperty(ref _todaysEarnings, value);
-		}
-
 		ButtonModel _clockInOutButtonModel;
 
 		public ButtonModel ClockInOutButtonModel
@@ -62,7 +54,6 @@ namespace TimeTracker.PageModels
 		private ObservableCollection<WorkItem> _workItems;
 		private readonly IAccountService _accountService;
 		private readonly IWorkService _workService;
-		private double _hourlyRate;
 
 		public TimeClockPageModel(IAccountService accountService,
 			IWorkService workService)
@@ -83,7 +74,7 @@ namespace TimeTracker.PageModels
 		public override async Task InitializeAsync(object navigationData)
 		{
 			RunningTotal = new TimeSpan();
-			_hourlyRate = await _accountService.GetCurrentPayRateAsync();
+			await _accountService.GetCurrentPayRateAsync();
 			WorkItems = await _workService.GetTodaysWorkAsync();
 
 			await base.InitializeAsync(navigationData);
@@ -94,7 +85,6 @@ namespace TimeTracker.PageModels
 			if (IsClockedIn)
 			{
 				_timer.Enabled = false;
-				TodaysEarnings += _hourlyRate * RunningTotal.TotalHours;
 				RunningTotal = TimeSpan.Zero;
 				ClockInOutButtonModel.Text = "start timer";
 				var item = new WorkItem
