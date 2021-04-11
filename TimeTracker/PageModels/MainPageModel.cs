@@ -6,21 +6,21 @@ namespace TimeTracker.PageModels
 	internal class MainPageModel : PageModelBase
 	{
 		public MainPageModel(
-			TimeClockPageModel timeClockPageModel,
+			TimerPageModel timerPageModel,
 			ProfilePageModel profilePM,
-			SummaryPageModel summaryPM)
+			ViewAllPageModel viewAllPm)
 		{
 			ProfilePageModel = profilePM;
-			SummaryPageModel = summaryPM;
-			TimeClockPageModel = timeClockPageModel;
+			ViewAllPageModel = viewAllPm;
+			TimerPageModel = timerPageModel;
 		}
 
-		private TimeClockPageModel timeClockPageModel;
+		private TimerPageModel timerPageModel;
 
-		public TimeClockPageModel TimeClockPageModel
+		public TimerPageModel TimerPageModel
 		{
-			get => timeClockPageModel;
-			set => SetProperty(ref timeClockPageModel, value);
+			get => timerPageModel;
+			set => SetProperty(ref timerPageModel, value);
 		}
 
 		private ProfilePageModel profilePageModel;
@@ -31,19 +31,19 @@ namespace TimeTracker.PageModels
 			set => SetProperty(ref profilePageModel, value);
 		}
 
-		private SummaryPageModel summaryPageModel;
+		private ViewAllPageModel viewAllPageModel;
 
-		public SummaryPageModel SummaryPageModel
+		public ViewAllPageModel ViewAllPageModel
 		{
-			get => summaryPageModel;
-			set => SetProperty(ref summaryPageModel, value);
+			get => viewAllPageModel;
+			set => SetProperty(ref viewAllPageModel, value);
 		}
 
 		public override Task InitializeAsync(object navigationData)
 			=> Task.WhenAny(
 				base.InitializeAsync(navigationData),
 				ProfilePageModel.InitializeAsync(null),
-				SummaryPageModel.InitializeAsync(null),
-				TimeClockPageModel.InitializeAsync(null));
+				ViewAllPageModel.InitializeAsync(null),
+				TimerPageModel.InitializeAsync(null));
 	}
 }

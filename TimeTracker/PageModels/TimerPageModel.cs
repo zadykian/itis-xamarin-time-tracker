@@ -10,7 +10,7 @@ using TimeTracker.ViewModels.Buttons;
 
 namespace TimeTracker.PageModels
 {
-	internal class TimeClockPageModel : PageModelBase
+	internal class TimerPageModel : PageModelBase
 	{
 		bool _isClockedIn;
 
@@ -55,7 +55,7 @@ namespace TimeTracker.PageModels
 		private readonly IAccountService _accountService;
 		private readonly IWorkService _workService;
 
-		public TimeClockPageModel(IAccountService accountService,
+		public TimerPageModel(IAccountService accountService,
 			IWorkService workService)
 		{
 			_accountService = accountService;

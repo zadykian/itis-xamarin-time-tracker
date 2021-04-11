@@ -25,7 +25,6 @@
     <Folder Include="Services\Work\" />
     <Folder Include="Services\Statement\" />
     <Folder Include="Views\Labels\" />
-    <Folder Include="Views\Layouts\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Pages\MainPage.xaml">
@@ -37,10 +36,10 @@
     <EmbeddedResource Update="Pages\ProfilePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\SummaryPage.xaml">
+    <EmbeddedResource Update="Pages\ViewAllPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\TimeClockPage.xaml">
+    <EmbeddedResource Update="Pages\TimerPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Buttons\BindableButton.xaml">

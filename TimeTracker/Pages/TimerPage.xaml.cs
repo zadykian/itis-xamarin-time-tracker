@@ -3,8 +3,8 @@
 namespace TimeTracker.Pages
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class TimeClockPage
+	public partial class TimerPage
 	{
-		public TimeClockPage() => InitializeComponent();
+		public TimerPage() => InitializeComponent();
 	}
 }

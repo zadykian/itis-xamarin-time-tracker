@@ -6,7 +6,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" NavigationPage.HasNavigationBar="False"
              xmlns:buttons="clr-namespace:TimeTracker.Views.Buttons"
-             x:Class="TimeTracker.Pages.TimeClockPage">
+             x:Class="TimeTracker.Pages.TimerPage">
     <ContentPage.Content>
         <StackLayout>
             <StackLayout BackgroundColor="{StaticResource PrimaryHeaderColor}"
@@ -54,12 +54,6 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-
-            <!-- <StackLayout BackgroundColor="{StaticResource PrimaryHeaderColor}" -->
-            <!--              Padding="10"> -->
-            <!--     <Label Text="{Binding TodaysEarnings, StringFormat='Earnings Today: {0:C}'}" -->
-            <!--            HorizontalOptions="Center" TextColor="White" /> -->
-            <!-- </StackLayout> -->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

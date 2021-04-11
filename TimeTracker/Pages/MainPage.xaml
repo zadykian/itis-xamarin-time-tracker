@@ -12,12 +12,12 @@
     <TabbedPage.Children>
         <NavigationPage Title="Time">
             <x:Arguments>
-                <pages:TimeClockPage BindingContext="{Binding TimeClockPageModel}" />
+                <pages:TimerPage BindingContext="{Binding TimeClockPageModel}" />
             </x:Arguments>
         </NavigationPage>
-        <NavigationPage Title="Summary">
+        <NavigationPage Title="View all">
             <x:Arguments>
-                <pages:SummaryPage BindingContext="{Binding SummaryPageModel}" />
+                <pages:ViewAllPage BindingContext="{Binding SummaryPageModel}" />
             </x:Arguments>
         </NavigationPage>
         <NavigationPage Title="Profile">

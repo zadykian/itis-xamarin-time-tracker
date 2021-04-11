@@ -10,7 +10,7 @@ using TimeTracker.ViewModels;
 
 namespace TimeTracker.PageModels
 {
-    internal class SummaryPageModel : PageModelBase
+    internal class ViewAllPageModel : PageModelBase
     {
         private string _currentPayDateRange;
         public string CurrentPayDateRange
@@ -45,7 +45,7 @@ namespace TimeTracker.PageModels
         private IWorkService _workService;
         private double _hourlyRate;
 
-        public SummaryPageModel(IStatementService statementService, IWorkService workService,
+        public ViewAllPageModel(IStatementService statementService, IWorkService workService,
             IAccountService accountService)
         {
             _accountService = accountService;

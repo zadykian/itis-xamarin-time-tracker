@@ -7,20 +7,19 @@ namespace TimeTracker.ViewModels.Buttons
 {
 	internal class ButtonModel : ExtendedBindableObject
 	{
+		public ButtonModel(string text, Action onClicked, bool isEnabled = true)
+		{
+			Text = text;
+			Command = new Command(onClicked);
+			IsEnabled = isEnabled;
+		}
+
 		string _text;
 
 		public string Text
 		{
 			get => _text;
 			set => SetProperty(ref _text, value);
-		}
-
-		bool _isVisible;
-
-		public bool IsVisible
-		{
-			get => _isVisible;
-			set => SetProperty(ref _isVisible, value);
 		}
 
 		bool _isEnabled;
@@ -37,14 +36,6 @@ namespace TimeTracker.ViewModels.Buttons
 		{
 			get => _command;
 			set => SetProperty(ref _command, value);
-		}
-
-		public ButtonModel(string text, Action action, bool isVisible = true, bool isEnabled = true)
-		{
-			Text = text;
-			Command = new Command(action);
-			IsVisible = isVisible;
-			IsEnabled = isEnabled;
 		}
 	}
 }

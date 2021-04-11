@@ -9,7 +9,6 @@
         x:Class="TimeTracker.Views.Buttons.BindableButton" x:DataType="buttons:ButtonModel"
         HeightRequest="50"
         Text="{Binding Text}"
-        IsVisible="{Binding IsVisible}"
         IsEnabled="{Binding IsEnabled}"
         Command="{Binding Command}" WidthRequest="250"
         HorizontalOptions="CenterAndExpand" />
