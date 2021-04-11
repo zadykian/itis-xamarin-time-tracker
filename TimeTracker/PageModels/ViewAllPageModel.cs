@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TimeTracker.PageModels.Base;
-using TimeTracker.Services.Account;
 using TimeTracker.Services.Statement;
 using TimeTracker.Services.Work;
 using TimeTracker.ViewModels;
@@ -40,22 +39,17 @@ namespace TimeTracker.PageModels
             set => SetProperty(ref _statements, value);
         }
 
-        private IAccountService _accountService;
         private IStatementService _statementService;
         private IWorkService _workService;
-        private double _hourlyRate;
 
-        public ViewAllPageModel(IStatementService statementService, IWorkService workService,
-            IAccountService accountService)
+        public ViewAllPageModel(IStatementService statementService, IWorkService workService)
         {
-            _accountService = accountService;
             _statementService = statementService;
             _workService = workService;
         }
 
         public override async Task InitializeAsync(object navigationData)
         {
-            _hourlyRate = await _accountService.GetCurrentPayRateAsync();
             var statements = await _statementService.GetStatementHistoryAsync();
             if (statements != null)
             {
@@ -84,7 +78,7 @@ namespace TimeTracker.PageModels
             var currentPeriodItems = await _workService.GetWorkForThisPeriodAsync();
             foreach (var item in currentPeriodItems)
             {
-                CurrentPeriodEarnings += item.Total.TotalHours * _hourlyRate;
+                CurrentPeriodEarnings += item.Total.TotalHours * 10;
             }
             await base.InitializeAsync(navigationData);
         }

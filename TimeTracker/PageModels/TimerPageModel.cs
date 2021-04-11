@@ -12,12 +12,12 @@ namespace TimeTracker.PageModels
 {
 	internal class TimerPageModel : PageModelBase
 	{
-		bool _isClockedIn;
+		bool timerIsStarted;
 
-		public bool IsClockedIn
+		public bool TimerIsStarted
 		{
-			get => _isClockedIn;
-			set => SetProperty(ref _isClockedIn, value);
+			get => timerIsStarted;
+			set => SetProperty(ref timerIsStarted, value);
 		}
 
 		TimeSpan _runningTotal;
@@ -42,12 +42,20 @@ namespace TimeTracker.PageModels
 			set => SetProperty(ref _workItems, value);
 		}
 
-		ButtonModel _clockInOutButtonModel;
+		ButtonModel timerButtonModel;
 
-		public ButtonModel ClockInOutButtonModel
+		public ButtonModel TimerButtonModel
 		{
-			get => _clockInOutButtonModel;
-			set => SetProperty(ref _clockInOutButtonModel, value);
+			get => timerButtonModel;
+			set => SetProperty(ref timerButtonModel, value);
+		}
+
+		private ButtonModel attachPhotoButtonModel;
+		
+		public ButtonModel AttachPhotoButtonModel
+		{
+			get => attachPhotoButtonModel;
+			set => SetProperty(ref attachPhotoButtonModel, value);
 		}
 
 		private readonly Timer _timer;
@@ -60,12 +68,11 @@ namespace TimeTracker.PageModels
 		{
 			_accountService = accountService;
 			_workService = workService;
-			ClockInOutButtonModel = new ButtonModel("Clock In", OnClockInOutAction);
-			_timer = new Timer
-			{
-				Interval = 1000,
-				Enabled = false
-			};
+
+			TimerButtonModel = new ButtonModel("start timer", OnTimerButtonClicked);
+			AttachPhotoButtonModel = new ButtonModel("attach photo", OnAttachPhotoButtonClicked, isEnabled: false);
+
+			_timer = new Timer {Interval = 1000, Enabled = false};
 			_timer.Elapsed += OnTimerElapsed;
 		}
 
@@ -74,19 +81,19 @@ namespace TimeTracker.PageModels
 		public override async Task InitializeAsync(object navigationData)
 		{
 			RunningTotal = new TimeSpan();
-			await _accountService.GetCurrentPayRateAsync();
 			WorkItems = await _workService.GetTodaysWorkAsync();
 
 			await base.InitializeAsync(navigationData);
 		}
 
-		private async void OnClockInOutAction()
+		private async void OnTimerButtonClicked()
 		{
-			if (IsClockedIn)
+			if (TimerIsStarted)
 			{
 				_timer.Enabled = false;
 				RunningTotal = TimeSpan.Zero;
-				ClockInOutButtonModel.Text = "start timer";
+				TimerButtonModel.Text = "start timer";
+				AttachPhotoButtonModel.IsEnabled = false;
 				var item = new WorkItem
 				{
 					Start = CurrentStartTime,
@@ -99,10 +106,16 @@ namespace TimeTracker.PageModels
 			{
 				CurrentStartTime = DateTime.Now;
 				_timer.Enabled = true;
-				ClockInOutButtonModel.Text = "stop timer";
+				TimerButtonModel.Text = "stop timer";
+				AttachPhotoButtonModel.IsEnabled = true;
 			}
 
-			IsClockedIn = !IsClockedIn;
+			TimerIsStarted = !TimerIsStarted;
+		}
+
+		private async void OnAttachPhotoButtonClicked()
+		{
+			await Task.CompletedTask;
 		}
 	}
 }

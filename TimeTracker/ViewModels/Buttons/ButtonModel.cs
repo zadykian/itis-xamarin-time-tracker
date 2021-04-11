@@ -14,28 +14,28 @@ namespace TimeTracker.ViewModels.Buttons
 			IsEnabled = isEnabled;
 		}
 
-		string _text;
+		private string text;
 
 		public string Text
 		{
-			get => _text;
-			set => SetProperty(ref _text, value);
+			get => text;
+			set => SetProperty(ref text, value);
 		}
 
-		bool _isEnabled;
+		private bool isEnabled;
 
 		public bool IsEnabled
 		{
-			get => _isEnabled;
-			set => SetProperty(ref _isEnabled, value);
+			get => isEnabled;
+			set => SetProperty(ref isEnabled, value);
 		}
 
-		ICommand _command;
+		private ICommand command;
 
 		public ICommand Command
 		{
-			get => _command;
-			set => SetProperty(ref _command, value);
+			get => command;
+			set => SetProperty(ref command, value);
 		}
 	}
 }

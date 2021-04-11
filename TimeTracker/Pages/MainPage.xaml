@@ -8,16 +8,18 @@
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
             android:TabbedPage.ToolbarPlacement="Bottom"
             xmlns:pages="clr-namespace:TimeTracker.Pages"
-            x:Class="TimeTracker.Pages.MainPage">
+            xmlns:pageModels="clr-namespace:TimeTracker.PageModels;assembly=TimeTracker"
+            x:Class="TimeTracker.Pages.MainPage"
+            x:DataType="pageModels:MainPageModel">
     <TabbedPage.Children>
         <NavigationPage Title="Time">
             <x:Arguments>
-                <pages:TimerPage BindingContext="{Binding TimeClockPageModel}" />
+                <pages:TimerPage BindingContext="{Binding TimerPageModel}" />
             </x:Arguments>
         </NavigationPage>
         <NavigationPage Title="View all">
             <x:Arguments>
-                <pages:ViewAllPage BindingContext="{Binding SummaryPageModel}" />
+                <pages:ViewAllPage BindingContext="{Binding ViewAllPageModel}" />
             </x:Arguments>
         </NavigationPage>
         <NavigationPage Title="Profile">

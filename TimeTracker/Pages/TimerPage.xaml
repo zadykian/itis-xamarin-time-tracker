@@ -6,54 +6,33 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" NavigationPage.HasNavigationBar="False"
              xmlns:buttons="clr-namespace:TimeTracker.Views.Buttons"
-             x:Class="TimeTracker.Pages.TimerPage">
+             xmlns:pageModels="clr-namespace:TimeTracker.PageModels;assembly=TimeTracker"
+             x:Class="TimeTracker.Pages.TimerPage" 
+             x:DataType="pageModels:TimerPageModel">
     <ContentPage.Content>
-        <StackLayout>
-            <StackLayout BackgroundColor="{StaticResource PrimaryHeaderColor}"
-                         Padding="20,50,20,5">
+        <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
 
-                <Label Text="{Binding RunningTotal, StringFormat='{}{0:h\\:mm\\:ss}'}"
-                       FontSize="50" HorizontalTextAlignment="Center"
-                       TextColor="Black" />
+            <Label Text="{Binding RunningTotal, StringFormat='{}{0:h\\:mm\\:ss}'}"
+                   FontSize="50" HorizontalTextAlignment="Center"
+                   TextColor="Black" />
 
-                <Label Text="{Binding CurrentStartTime, StringFormat='You clocked in at {0:h:mm tt}'}"
-                       HorizontalTextAlignment="Center" TextColor="Black"
-                       IsVisible="{Binding IsClockedIn}" />
+            <Label Text="{Binding CurrentStartTime, StringFormat='started at {0:h:mm tt}'}"
+                   HorizontalTextAlignment="Center"
+                   TextColor="Black"
+                   IsVisible="{Binding TimerIsStarted}" />
 
-                <buttons:BindableButton BindingContext="{Binding ClockInOutButtonModel}"
-                                        HorizontalOptions="Center" WidthRequest="200"
-                                        BackgroundColor="Black" />
+            <buttons:BindableButton BindingContext="{Binding TimerButtonModel}"
+                                    HorizontalOptions="Center"
+                                    BackgroundColor="LightGray"
+                                    TextColor="Black"
+                                    WidthRequest="200" />
 
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="Start" HorizontalOptions="CenterAndExpand"
-                           TextColor="Black" />
-                    <Label Text="End" HorizontalOptions="CenterAndExpand"
-                           TextColor="Black" />
-                    <Label Text="Total" HorizontalOptions="CenterAndExpand"
-                           TextColor="Black" />
-                </StackLayout>
+            <buttons:BindableButton BindingContext="{Binding AttachPhotoButtonModel}"
+                                    HorizontalOptions="Center"
+                                    BackgroundColor="LightGray"
+                                    TextColor="Black"
+                                    WidthRequest="200" />
 
-            </StackLayout>
-
-            <ListView ItemsSource="{Binding WorkItems}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding Start, StringFormat='{}{0:h:mm:ss tt}'}"
-                                       HorizontalOptions="CenterAndExpand"
-                                       VerticalOptions="CenterAndExpand" />
-                                <Label Text="{Binding End, StringFormat='{}{0:h:mm:ss tt}'}"
-                                       HorizontalOptions="CenterAndExpand"
-                                       VerticalOptions="CenterAndExpand" />
-                                <Label Text="{Binding Total, StringFormat='{}{0:h\\:mm\\:ss}'}"
-                                       HorizontalOptions="CenterAndExpand"
-                                       VerticalOptions="CenterAndExpand" />
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
