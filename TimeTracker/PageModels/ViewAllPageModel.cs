@@ -21,10 +21,16 @@ namespace TimeTracker.PageModels
 			AllForCurrentUser = new ObservableCollection<TrackedPeriod>();
 		}
 
+		private ObservableCollection<TrackedPeriod> allForCurrentUser;
+
 		/// <summary>
 		/// All current user's tracked periods.
 		/// </summary>
-		public ObservableCollection<TrackedPeriod> AllForCurrentUser { get; }
+		public ObservableCollection<TrackedPeriod> AllForCurrentUser
+		{
+			get => allForCurrentUser;
+			set => SetProperty(ref allForCurrentUser, value);
+		}
 
 		/// <inheritdoc />
 		public override async Task InitializeAsync(object navigationData)

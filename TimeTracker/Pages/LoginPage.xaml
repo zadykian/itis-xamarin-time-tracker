@@ -7,15 +7,17 @@
              xmlns:views="clr-namespace:TimeTracker.Views" mc:Ignorable="d"
              NavigationPage.HasNavigationBar="False"
              xmlns:buttons="clr-namespace:TimeTracker.Views.Buttons"
-             x:Class="TimeTracker.Pages.LoginPage">
+             xmlns:pageModels="clr-namespace:TimeTracker.PageModels;assembly=TimeTracker"
+             x:Class="TimeTracker.Pages.LoginPage"
+             x:DataType="pageModels:LoginPageModel">
 	<ContentPage.Content>
 		<StackLayout WidthRequest="220" HorizontalOptions="Center" VerticalOptions="Center">
 
-			<views:LoginEntryView BindingContext="{Binding EmailEntryViewModel}" />
+			<views:LoginEntryView BindingContext="{Binding UsernameEntryViewModel}" />
 			<views:LoginEntryView BindingContext="{Binding PasswordEntryViewModel}" />
 
-			<buttons:BindableButton BindingContext="{Binding CreateAccountModel}" />
-			<buttons:BindableButton BindingContext="{Binding LogInModel}" />
+			<buttons:BindableButton BindingContext="{Binding CreateAccountButtonViewModel}" />
+			<buttons:BindableButton BindingContext="{Binding LogInButtonViewModel}" />
 
 		</StackLayout>
 	</ContentPage.Content>

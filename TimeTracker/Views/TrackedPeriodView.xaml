@@ -2,9 +2,26 @@
 
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewModels="clr-namespace:TimeTracker.ViewModels;assembly=TimeTracker"
-             x:Class="TimeTracker.Views.TrackedPeriodView">
+             xmlns:models="clr-namespace:TimeTracker.Models;assembly=TimeTracker"
+             x:Class="TimeTracker.Views.TrackedPeriodView"
+             x:DataType="models:TrackedPeriod">
 	<ContentView.Content>
-		<!-- todo -->
+		<Frame Padding="0" CornerRadius="8" BackgroundColor="LightGray"
+		       HasShadow="True">
+			<StackLayout Orientation="Horizontal" HeightRequest="200">
+				<StackLayout HorizontalOptions="CenterAndExpand">
+					<Label Text="{Binding Start, StringFormat='{}{0:h\\:mm\\:ss}'}"
+					       FontSize="32" HorizontalTextAlignment="Center"
+					       TextColor="Black" />
+					<Label Text="start" HorizontalTextAlignment="Center"/>
+				</StackLayout>
+				<StackLayout HorizontalOptions="CenterAndExpand">
+					<Label Text="{Binding End, StringFormat='{}{0:h\\:mm\\:ss}'}"
+					       FontSize="32" HorizontalTextAlignment="Center"
+					       TextColor="Black" />
+					<Label Text="stop" HorizontalTextAlignment="Center"/>
+				</StackLayout>
+			</StackLayout>
+		</Frame>
 	</ContentView.Content>
 </ContentView>

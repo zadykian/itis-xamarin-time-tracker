@@ -47,7 +47,7 @@ namespace TimeTracker
 			where TPage : Page
 		{
 			pageModelsToPages.Add(typeof(TPageModel), typeof(TPage));
-			container.Register<TPageModel>();
+			container.Register<TPageModel>().AsSingleton();
 		}
 
 		public static T Resolve<T>() where T : class => container.Resolve<T>();

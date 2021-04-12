@@ -15,10 +15,13 @@
 				<StackLayout>
 					<labels:TitleLabel Text="all tracked periods" />
 					<ListView ItemsSource="{Binding AllForCurrentUser}">
+
 						<ListView.ItemTemplate>
 							<DataTemplate>
 								<ViewCell>
-									<views:TrackedPeriodView />
+									<Frame Padding="2">
+										<views:TrackedPeriodView />
+									</Frame>
 								</ViewCell>
 							</DataTemplate>
 						</ListView.ItemTemplate>
