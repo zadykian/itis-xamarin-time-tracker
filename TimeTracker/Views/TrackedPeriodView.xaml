@@ -9,18 +9,27 @@
 		<Frame Padding="0" CornerRadius="8" BackgroundColor="LightGray"
 		       HasShadow="True" BorderColor="DarkGray">
 			<StackLayout Orientation="Horizontal">
-				<StackLayout HorizontalOptions="CenterAndExpand" >
+
+				<StackLayout HorizontalOptions="CenterAndExpand">
 					<Label Text="{Binding Start, StringFormat='{}{0:h\\:mm\\:ss}'}"
 					       FontSize="32"
 					       TextColor="Black" />
-					<Label Text="begin" FontSize="Small" TextColor="Black" HorizontalTextAlignment="Center"/>
+					<Label Text="begin"
+					       FontSize="Small"
+					       TextColor="Black"
+					       HorizontalTextAlignment="Center" />
 				</StackLayout>
+
 				<StackLayout HorizontalOptions="CenterAndExpand">
 					<Label Text="{Binding End, StringFormat='{}{0:h\\:mm\\:ss}'}"
 					       FontSize="32" HorizontalTextAlignment="Center"
 					       TextColor="Black" />
-					<Label Text="end" FontSize="Small" TextColor="Black" HorizontalTextAlignment="Center"/>
+					<Label Text="end"
+					       FontSize="Small"
+					       TextColor="Black"
+					       HorizontalTextAlignment="Center" />
 				</StackLayout>
+
 			</StackLayout>
 		</Frame>
 	</ContentView.Content>
