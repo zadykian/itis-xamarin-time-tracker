@@ -27,7 +27,7 @@ namespace TimeTracker.PageModels.Base
 			RegisterPageWithModel<ProfilePageModel, ProfilePage>();
 
 			container.Register<INavigationService, NavigationService>();
-			container.Register<IAccountService, MockAccountService>();
+			container.Register<IAccountService, AccountService>();
 			container.Register<IStatementService, MockStatementService>();
 			container.Register<IWorkService, MockWorkService>();
 		}

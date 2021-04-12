@@ -9,7 +9,7 @@ namespace TimeTracker.Services.Navigation
 		/// Navigation method to asynchronously navigate between Page Models,
 		/// and optionally pass navigation Data.
 		/// </summary>
-		Task NavigateToAsync<TPageModel>(object navigationData = null, bool setRoot = false)
+		Task NavigateToAsync<TPageModel>(bool setRoot = false)
 			where TPageModel : PageModelBase;
 	}
 }

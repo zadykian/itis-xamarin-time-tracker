@@ -6,7 +6,7 @@ namespace TimeTracker.Services.Navigation
 {
 	internal class NavigationService : INavigationService
 	{
-		public async Task NavigateToAsync<TPageModel>(object navigationData = null, bool setRoot = false)
+		public async Task NavigateToAsync<TPageModel>( bool setRoot = false)
 			where TPageModel : PageModelBase
 		{
 			var page = PageModelLocator.CreatePageFor<TPageModel>();
@@ -47,7 +47,7 @@ namespace TimeTracker.Services.Navigation
 
 			if (page.BindingContext is PageModelBase pmBase)
 			{
-				await pmBase.InitializeAsync(navigationData);
+				await pmBase.InitializeAsync(null);
 			}
 		}
 	}

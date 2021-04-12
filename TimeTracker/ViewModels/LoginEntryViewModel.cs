@@ -2,33 +2,36 @@
 
 namespace TimeTracker.ViewModels
 {
-    internal class LoginEntryViewModel : ExtendedBindableObject
-    {
-        private string _placeholder;
-        public string Placeholder
-        {
-            get => _placeholder;
-            set => SetProperty(ref _placeholder, value);
-        }
+	internal class LoginEntryViewModel : ExtendedBindableObject
+	{
+		public LoginEntryViewModel(string placeholder, bool isPassword)
+		{
+			Placeholder = placeholder;
+			IsPassword = isPassword;
+		}
 
-        private string _text;
-        public string Text
-        {
-            get => _text;
-            set => SetProperty(ref _text, value);
-        }
+		private string placeholder;
 
-        private bool _isPassword;
-        public bool IsPassword
-        {
-            get => _isPassword;
-            set => SetProperty(ref _isPassword, value);
-        }
+		public string Placeholder
+		{
+			get => placeholder;
+			set => SetProperty(ref placeholder, value);
+		}
 
-        public LoginEntryViewModel(string placeholder, bool isPassword)
-        {
-            Placeholder = placeholder;
-            IsPassword = isPassword;
-        }
-    }
+		private string text;
+
+		public string Text
+		{
+			get => text;
+			set => SetProperty(ref text, value);
+		}
+
+		private bool isPassword;
+
+		public bool IsPassword
+		{
+			get => isPassword;
+			set => SetProperty(ref isPassword, value);
+		}
+	}
 }

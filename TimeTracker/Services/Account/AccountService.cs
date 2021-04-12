@@ -2,7 +2,7 @@
 
 namespace TimeTracker.Services.Account
 {
-	internal class MockAccountService : IAccountService
+	internal class AccountService : IAccountService
 	{
 		public Task<bool> LoginAsync(string username, string password)
 		{
