@@ -5,6 +5,7 @@ using TimeTracker.PageModels.Base;
 using TimeTracker.Pages;
 using TimeTracker.Services.Account;
 using TimeTracker.Services.Navigation;
+using TimeTracker.Services.Notifications;
 using TimeTracker.Services.Photo;
 using TimeTracker.Services.TimeTracking;
 using TimeTracker.Services.UserLocation;
@@ -34,9 +35,11 @@ namespace TimeTracker
 
 			container.Register<IAccountService, AccountService>();
 			container.Register<INavigationService, NavigationService>();
+
 			container.Register<ITrackedPeriodService, TrackedPeriodService>();
 			container.Register<ILocationService, LocationService>();
 			container.Register<IPhotoService, PhotoService>();
+			container.Register<INotificationService, NotificationService>();
 		}
 
 		private static void RegisterPageWithModel<TPageModel, TPage>()

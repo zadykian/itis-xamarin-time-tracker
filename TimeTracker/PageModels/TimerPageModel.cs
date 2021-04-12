@@ -4,6 +4,7 @@ using System.Timers;
 using TimeTracker.Models;
 using TimeTracker.PageModels.Base;
 using TimeTracker.Services.Account;
+using TimeTracker.Services.Notifications;
 using TimeTracker.Services.Photo;
 using TimeTracker.Services.TimeTracking;
 using TimeTracker.Services.UserLocation;
@@ -13,38 +14,41 @@ namespace TimeTracker.PageModels
 {
 	internal class TimerPageModel : PageModelBase
 	{
-		private readonly Timer timer;
+		private readonly Timer generalTimer;
+		private readonly Timer notificationTimer;
+
 		private readonly ViewAllPageModel viewAllPageModel;
 
 		private readonly ITrackedPeriodService trackedPeriodService;
 		private readonly IAccountService accountService;
 		private readonly ILocationService locationService;
 		private readonly IPhotoService photoService;
+		private readonly INotificationService notificationService;
 
 		public TimerPageModel(
 			ITrackedPeriodService trackedPeriodService,
 			IAccountService accountService,
 			ILocationService locationService,
 			IPhotoService photoService,
+			INotificationService notificationService,
 			ViewAllPageModel viewAllPageModel)
 		{
 			this.trackedPeriodService = trackedPeriodService;
 			this.accountService = accountService;
 			this.locationService = locationService;
 			this.photoService = photoService;
+			this.notificationService = notificationService;
+
 			this.viewAllPageModel = viewAllPageModel;
 
-			TimerButtonViewModel = new ButtonViewModel("start timer", async () =>
-			{
-				if (TimerIsStarted) await OnTimerStopped();
-				else await OnTimerStarted();
-				TimerIsStarted = !TimerIsStarted;
-			});
-
+			TimerButtonViewModel = new ButtonViewModel("start timer", OnTimerButtonPressed);
 			AttachPhotoButtonViewModel = new ButtonViewModel("attach photo", OnAttachPhotoButtonClicked, isEnabled: false);
 
-			timer = new Timer {Interval = 1000, Enabled = false};
-			timer.Elapsed += OnTimerElapsed;
+			generalTimer = new Timer {Interval = 1000};
+			generalTimer.Elapsed += (sender, args) => RunningTotal += TimeSpan.FromSeconds(1);
+
+			notificationTimer = new Timer {Interval = TimeSpan.FromMinutes(1).TotalMilliseconds};
+			notificationTimer.Elapsed += async (sender, args) => await OnNotificationTimerElapsed();
 		}
 
 		private bool timerIsStarted;
@@ -93,12 +97,18 @@ namespace TimeTracker.PageModels
 			await base.InitializeAsync(navigationData);
 		}
 
-		private void OnTimerElapsed(object sender, ElapsedEventArgs e) => RunningTotal += TimeSpan.FromSeconds(1);
+		private async void OnTimerButtonPressed()
+		{
+			if (TimerIsStarted) await OnTimerStopped();
+			else await OnTimerStarted();
+			TimerIsStarted = !TimerIsStarted;
+		}
 
 		private async Task OnTimerStarted()
 		{
 			CurrentStartTime = DateTime.Now;
-			timer.Enabled = true;
+			generalTimer.Start();
+			notificationTimer.Start();
 			TimerButtonViewModel.Text = "stop timer";
 			AttachPhotoButtonViewModel.IsEnabled = true;
 
@@ -110,7 +120,8 @@ namespace TimeTracker.PageModels
 
 		private async Task OnTimerStopped()
 		{
-			timer.Enabled = false;
+			generalTimer.Stop();
+			notificationTimer.Stop();
 			RunningTotal = TimeSpan.Zero;
 			TimerButtonViewModel.Text = "start timer";
 			AttachPhotoButtonViewModel.IsEnabled = false;
@@ -120,6 +131,12 @@ namespace TimeTracker.PageModels
 			await trackedPeriodService.UpsertAsync(currentPeriod);
 			viewAllPageModel.AllForCurrentUser.Remove(currentPeriod);
 			viewAllPageModel.AllForCurrentUser.Insert(0, currentPeriod);
+		}
+
+		private async Task OnNotificationTimerElapsed()
+		{
+			var currentPeriod = await trackedPeriodService.GetCurrentAsync(accountService.CurrentUser.Id);
+			await notificationService.PushNotificationAsync(currentPeriod.Total);
 		}
 
 		private async void OnAttachPhotoButtonClicked()
