@@ -14,7 +14,7 @@
 			<Frame>
 				<StackLayout>
 					<labels:TitleLabel Text="all tracked periods" />
-					<ListView ItemsSource="{Binding AllForCurrentUser}">
+					<ListView ItemsSource="{Binding AllForCurrentUser}" HasUnevenRows="true">
 
 						<ListView.ItemTemplate>
 							<DataTemplate>
