@@ -1,22 +1,20 @@
 ﻿using System.Threading.Tasks;
-using SQLite;
 using TimeTracker.Models;
+using TimeTracker.Services.ConnectionFactory;
 
 namespace TimeTracker.Services.Account
 {
-	/// <inheritdoc />
-	internal class AccountService : IAccountService
+	/// <inheritdoc cref="IAccountService"/>
+	internal class AccountService : SqliteServiceBase, IAccountService
 	{
-		private readonly SQLiteAsyncConnection dbConnection;
-
-		public AccountService(SQLiteAsyncConnection dbConnection) => this.dbConnection = dbConnection;
-
 		/// <inheritdoc />
 		public User CurrentUser { get; private set; }
 
 		/// <inheritdoc />
 		async Task<bool> IAccountService.LoginAsync(UserCredentials credentials)
 		{
+			var dbConnection = await Connection.Value;
+			
 			var existingUser = await dbConnection
 				.Table<User>()
 				.FirstOrDefaultAsync(user => user.Username == credentials.Username && user.Password == credentials.Password);
@@ -33,6 +31,8 @@ namespace TimeTracker.Services.Account
 		/// <inheritdoc />
 		async Task<bool> IAccountService.CreateAccountAsync(User newUser)
 		{
+			var dbConnection = await Connection.Value;
+
 			var existingUser = await dbConnection
 				.Table<User>()
 				.FirstOrDefaultAsync(user => user.Username == newUser.Username);
@@ -56,6 +56,7 @@ namespace TimeTracker.Services.Account
 			}
 
 			CurrentUser.Password = credentials.Password;
+			var dbConnection = await Connection.Value;
 			await dbConnection.UpdateAsync(CurrentUser);
 			return true;
 		}

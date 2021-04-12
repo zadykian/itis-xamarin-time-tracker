@@ -25,7 +25,7 @@ namespace TimeTracker.Models
 		/// <summary>
 		/// Period's id.
 		/// </summary>
-		[PrimaryKey]
+		[PrimaryKey, AutoIncrement]
 		public int Id { get; set; }
 
 		/// <summary>

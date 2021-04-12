@@ -1,18 +1,18 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using SQLite;
 using TimeTracker.Models;
+using TimeTracker.Services.ConnectionFactory;
 
 namespace TimeTracker.Services.TimeTracking
 {
 	/// <inheritdoc />
-	internal class TrackedPeriodService  : ITrackedPeriodService
+	internal class TrackedPeriodService :  ITrackedPeriodService
 	{
 		private readonly ITrackedPeriodService sqliteSubService;
 
-		public TrackedPeriodService(SQLiteAsyncConnection dbConnection)
+		public TrackedPeriodService()
 		{
-			sqliteSubService = new SqliteSubService(dbConnection);
+			sqliteSubService = new SqliteSubService();
 		}
 
 		/// <inheritdoc />
@@ -53,29 +53,25 @@ namespace TimeTracker.Services.TimeTracking
 		/// <summary>
 		/// Tracked periods sub-service which is responsible for communication with SQLite database. 
 		/// </summary>
-		private class SqliteSubService : ITrackedPeriodService
+		private class SqliteSubService : SqliteServiceBase, ITrackedPeriodService
 		{
-			private readonly SQLiteAsyncConnection dbConnection;
-
-			public SqliteSubService(SQLiteAsyncConnection dbConnection)
-				=> this.dbConnection = dbConnection;
-
 			/// <inheritdoc />
 			async Task ITrackedPeriodService.UpsertAsync(TrackedPeriod trackedPeriod)
 			{
+				var dbConnection = await Connection.Value;
 				await dbConnection.DeleteAsync(trackedPeriod);
 				await dbConnection.InsertAsync(trackedPeriod);
 			}
 
 			/// <inheritdoc />
 			async Task<TrackedPeriod> ITrackedPeriodService.GetCurrentAsync(int userId)
-				=> await dbConnection
+				=> await (await Connection.Value)
 					.Table<TrackedPeriod>()
 					.FirstAsync(period => period.UserId == userId && period.End == null);
 
 			/// <inheritdoc />
 			async Task<IReadOnlyCollection<TrackedPeriod>> ITrackedPeriodService.GetAllAsync(int userId)
-				=> await dbConnection
+				=> await (await Connection.Value)
 					.Table<TrackedPeriod>()
 					.Where(period => period.UserId == userId)
 					.OrderByDescending(period => period.Start)
@@ -83,13 +79,13 @@ namespace TimeTracker.Services.TimeTracking
 
 			/// <inheritdoc />
 			async Task ITrackedPeriodService.ClearDataAsync(int userId)
-				=> await dbConnection
+				=> await (await Connection.Value)
 					.Table<TrackedPeriod>()
 					.DeleteAsync(period => period.UserId == userId && period.End != null);
 
 			/// <inheritdoc />
 			async Task ITrackedPeriodService.AddImageAsync(Image image)
-				=> await dbConnection.InsertAsync(image);
+				=> await (await Connection.Value).InsertAsync(image);
 		}
 	}
 }

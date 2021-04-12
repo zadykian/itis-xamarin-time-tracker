@@ -129,7 +129,7 @@ namespace TimeTracker.PageModels
 			var currentPeriod = await trackedPeriodService.GetCurrentAsync(accountService.CurrentUser.Id);
 			currentPeriod.End = DateTime.Now;
 			await trackedPeriodService.UpsertAsync(currentPeriod);
-			viewAllPageModel.AllForCurrentUser.Remove(currentPeriod);
+			viewAllPageModel.AllForCurrentUser.RemoveAt(0);
 			viewAllPageModel.AllForCurrentUser.Insert(0, currentPeriod);
 		}
 

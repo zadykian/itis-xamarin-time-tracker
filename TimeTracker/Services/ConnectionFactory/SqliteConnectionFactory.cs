@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Threading.Tasks;
 using SQLite;
 using TimeTracker.Models;
@@ -14,12 +13,11 @@ namespace TimeTracker.Services.ConnectionFactory
 		/// <summary>
 		/// Create new connection.
 		/// </summary>
-		public static SQLiteAsyncConnection Create()
+		public static async Task<SQLiteAsyncConnection> Create()
 		{
-			var databaseDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-			var databaseFullPath = Path.Combine(databaseDirectory, "time-tracker.db");
+			var databaseFullPath = Path.Combine(Xamarin.Essentials.FileSystem.AppDataDirectory, "time-tracker.db");
 			var dbConnection = new SQLiteAsyncConnection(databaseFullPath);
-			Initialize(dbConnection).ConfigureAwait(false).GetAwaiter().GetResult();
+			await Initialize(dbConnection);
 			return dbConnection;
 		}
 
