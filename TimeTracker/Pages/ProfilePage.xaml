@@ -13,11 +13,12 @@
 	<ContentPage.Content>
 		<StackLayout WidthRequest="220" HorizontalOptions="Center" VerticalOptions="Center">
 
-			<views:LoginEntryView BindingContext="{Binding UsernameEntryViewModel}" IsEnabled="False"/>
+			<views:LoginEntryView BindingContext="{Binding UsernameEntryViewModel}" IsEnabled="False" />
 			<views:LoginEntryView BindingContext="{Binding PasswordEntryViewModel}" />
 
 			<buttons:BindableButton BindingContext="{Binding UpdatePasswordButtonViewModel}" />
 			<buttons:BindableButton BindingContext="{Binding ClearUserDataButtonViewModel}" />
+			<buttons:BindableButton BindingContext="{Binding LogOutButtonViewModel}" />
 
 		</StackLayout>
 	</ContentPage.Content>

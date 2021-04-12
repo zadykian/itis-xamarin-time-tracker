@@ -19,6 +19,11 @@ namespace TimeTracker.Services.Account
 		Task<bool> LoginAsync(UserCredentials credentials);
 
 		/// <summary>
+		/// Log out.
+		/// </summary>
+		void LogOut();
+
+		/// <summary>
 		/// Create new account. 
 		/// </summary>
 		Task<bool> CreateAccountAsync(User user);

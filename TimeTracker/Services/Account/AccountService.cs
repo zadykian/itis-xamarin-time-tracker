@@ -14,7 +14,7 @@ namespace TimeTracker.Services.Account
 		async Task<bool> IAccountService.LoginAsync(UserCredentials credentials)
 		{
 			var dbConnection = await Connection.Value;
-			
+
 			var existingUser = await dbConnection
 				.Table<User>()
 				.FirstOrDefaultAsync(user => user.Username == credentials.Username && user.Password == credentials.Password);
@@ -27,6 +27,9 @@ namespace TimeTracker.Services.Account
 			CurrentUser = existingUser;
 			return true;
 		}
+
+		/// <inheritdoc />
+		void IAccountService.LogOut() => CurrentUser = null;
 
 		/// <inheritdoc />
 		async Task<bool> IAccountService.CreateAccountAsync(User newUser)

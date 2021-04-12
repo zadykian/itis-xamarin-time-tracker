@@ -1,6 +1,8 @@
-﻿using TimeTracker.Models;
+﻿using System.Linq;
+using TimeTracker.Models;
 using TimeTracker.PageModels.Base;
 using TimeTracker.Services.Account;
+using TimeTracker.Services.Navigation;
 using TimeTracker.Services.TimeTracking;
 using TimeTracker.ViewModels;
 
@@ -13,16 +15,23 @@ namespace TimeTracker.PageModels
 	{
 		private readonly IAccountService accountService;
 		private readonly ITrackedPeriodService trackedPeriodService;
+		private readonly INavigationService navigationService;
+
 		private readonly ViewAllPageModel viewAllPageModel;
+		private readonly TimerPageModel timerPageModel;
 
 		public ProfilePageModel(
 			IAccountService accountService,
 			ITrackedPeriodService trackedPeriodService,
-			ViewAllPageModel viewAllPageModel)
+			INavigationService navigationService,
+			ViewAllPageModel viewAllPageModel,
+			TimerPageModel timerPageModel)
 		{
 			this.accountService = accountService;
 			this.trackedPeriodService = trackedPeriodService;
+			this.navigationService = navigationService;
 			this.viewAllPageModel = viewAllPageModel;
+			this.timerPageModel = timerPageModel;
 
 			var currentUser = accountService.CurrentUser;
 			UsernameEntryViewModel = new LoginEntryViewModel("username", isPassword: false) {Text = currentUser.Username};
@@ -30,6 +39,7 @@ namespace TimeTracker.PageModels
 
 			UpdatePasswordButtonViewModel = new ButtonViewModel("update password", OnUpdatePasswordButtonPressed);
 			ClearUserDataButtonViewModel = new ButtonViewModel("clear data", OnClearDataButtonPressed);
+			LogOutButtonViewModel = new ButtonViewModel("log out", OnLogOutButtonPressed);
 		}
 
 		/// <summary>
@@ -53,6 +63,11 @@ namespace TimeTracker.PageModels
 		public ButtonViewModel ClearUserDataButtonViewModel { get; }
 
 		/// <summary>
+		/// Log out button.
+		/// </summary>
+		public ButtonViewModel LogOutButtonViewModel { get; }
+
+		/// <summary>
 		/// Action bound to <see cref="UpdatePasswordButtonViewModel"/> button.
 		/// </summary>
 		private async void OnUpdatePasswordButtonPressed()
@@ -67,7 +82,31 @@ namespace TimeTracker.PageModels
 		private async void OnClearDataButtonPressed()
 		{
 			await trackedPeriodService.ClearDataAsync(accountService.CurrentUser.Id);
-			viewAllPageModel.AllForCurrentUser.Clear();
+
+			if (viewAllPageModel.AllForCurrentUser.Any())
+			{
+				var currentPeriod = viewAllPageModel.AllForCurrentUser[0];
+				viewAllPageModel.AllForCurrentUser.Clear();
+				viewAllPageModel.AllForCurrentUser.Insert(0, currentPeriod);
+			}
+			else
+			{
+				viewAllPageModel.AllForCurrentUser.Clear();	
+			}
+		}
+
+		/// <summary>
+		/// Action bound to <see cref="LogOutButtonViewModel"/> button.
+		/// </summary>
+		private async void OnLogOutButtonPressed()
+		{
+			if (timerPageModel.TimerIsStarted)
+			{
+				timerPageModel.TimerButtonViewModel.Command.Execute(parameter: null);
+			}
+
+			accountService.LogOut();
+			await navigationService.NavigateToAsync<LoginPageModel>(setRoot: true);
 		}
 	}
 }

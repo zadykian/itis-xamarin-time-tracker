@@ -35,9 +35,10 @@ namespace TimeTracker.PageModels
 		/// <inheritdoc />
 		public override async Task InitializeAsync(object navigationData)
 		{
+			AllForCurrentUser.Clear();
 			var currentUser = accountService.CurrentUser;
 			var trackedPeriods = await trackedPeriodService.GetAllAsync(currentUser.Id);
-			foreach (var trackedPeriod in trackedPeriods) AllForCurrentUser.Insert(0, trackedPeriod);
+			foreach (var trackedPeriod in trackedPeriods) AllForCurrentUser.Add(trackedPeriod);
 		}
 	}
 }
