@@ -6,6 +6,9 @@ using TimeTracker.ViewModels;
 
 namespace TimeTracker.PageModels
 {
+	/// <summary>
+	/// Login page's model.
+	/// </summary>
 	internal class LoginPageModel : PageModelBase
 	{
 		private readonly IAccountService accountService;
@@ -24,20 +27,35 @@ namespace TimeTracker.PageModels
 			CreateAccountButtonViewModel = new ButtonViewModel("create account", OnCreateAccount);
 		}
 
+		/// <summary>
+		/// Username input.
+		/// </summary>
 		public LoginEntryViewModel UsernameEntryViewModel { get; }
 
+		/// <summary>
+		/// Password input.
+		/// </summary>
 		public LoginEntryViewModel PasswordEntryViewModel { get; }
 
+		/// <summary>
+		/// Button to create new account.
+		/// </summary>
 		public ButtonViewModel CreateAccountButtonViewModel { get; }
 
+		/// <summary>
+		/// Button to log in as existing user.
+		/// </summary>
 		public ButtonViewModel LogInButtonViewModel { get; }
 
-		private async void OnLogin()
+		/// <summary>
+		/// Handler of <see cref="CreateAccountButtonViewModel"/> button pressed event.
+		/// </summary>
+		private async void OnCreateAccount()
 		{
-			var userCredentials = new UserCredentials(UsernameEntryViewModel.Text, PasswordEntryViewModel.Text);
-			var loginAttempt = await accountService.LoginAsync(userCredentials);
+			var newUser = new User(UsernameEntryViewModel.Text, PasswordEntryViewModel.Text);
+			var wasCreated = await accountService.CreateAccountAsync(newUser);
 
-			if (loginAttempt)
+			if (wasCreated)
 			{
 				await navigationService.NavigateToAsync<MainPageModel>();
 			}
@@ -47,12 +65,15 @@ namespace TimeTracker.PageModels
 			}
 		}
 
-		private async void OnCreateAccount()
+		/// <summary>
+		/// Handler of <see cref="LogInButtonViewModel"/> button pressed event.
+		/// </summary>
+		private async void OnLogin()
 		{
-			var newUser = new User(UsernameEntryViewModel.Text, PasswordEntryViewModel.Text);
-			var wasCreated = await accountService.CreateAccountAsync(newUser);
+			var userCredentials = new UserCredentials(UsernameEntryViewModel.Text, PasswordEntryViewModel.Text);
+			var loginAttempt = await accountService.LoginAsync(userCredentials);
 
-			if (wasCreated)
+			if (loginAttempt)
 			{
 				await navigationService.NavigateToAsync<MainPageModel>();
 			}

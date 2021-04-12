@@ -11,12 +11,18 @@ namespace TimeTracker.Models
 	{
 		public Image(IEnumerable<byte> content, Guid trackedPeriodId)
 		{
-			TrackedPeriodId = trackedPeriodId;
 			Content = content.ToArray();
+			TrackedPeriodId = trackedPeriodId;
 		}
 
+		/// <summary>
+		/// Image's content.
+		/// </summary>
 		public IReadOnlyCollection<byte> Content { get; }
 
+		/// <summary>
+		/// Tracked period which this photo belongs to.
+		/// </summary>
 		public Guid TrackedPeriodId { get; }
 	}
 }

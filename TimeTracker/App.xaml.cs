@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using TimeTracker.PageModels;
-using TimeTracker.PageModels.Base;
 using TimeTracker.Services.Navigation;
 
 namespace TimeTracker
