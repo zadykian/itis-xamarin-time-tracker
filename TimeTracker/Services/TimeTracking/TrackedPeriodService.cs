@@ -9,13 +9,14 @@ namespace TimeTracker.Services.TimeTracking
 	/// <inheritdoc />
 	internal class TrackedPeriodService  : ITrackedPeriodService
 	{
-		private readonly ICollection<TrackedPeriod> trackedPeriods = new List<TrackedPeriod>();
+		private readonly List<TrackedPeriod> trackedPeriods = new List<TrackedPeriod>();
 
 		/// <inheritdoc />
-		async Task ITrackedPeriodService.AddAsync(TrackedPeriod trackedPeriod)
+		async Task ITrackedPeriodService.UpsertAsync(TrackedPeriod trackedPeriod)
 		{
 			// todo
 			await Task.CompletedTask;
+			trackedPeriods.RemoveAll(period => period.Id == trackedPeriod.Id);
 			trackedPeriods.Add(trackedPeriod);
 		}
 
@@ -24,7 +25,7 @@ namespace TimeTracker.Services.TimeTracking
 		{
 			// todo
 			await Task.CompletedTask;
-			return trackedPeriods.ToArray();
+			return trackedPeriods.OrderBy(period => period.Start).ToArray();
 		}
 	}
 }

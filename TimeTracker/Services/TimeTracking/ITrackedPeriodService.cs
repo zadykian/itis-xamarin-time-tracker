@@ -11,9 +11,9 @@ namespace TimeTracker.Services.TimeTracking
 	internal interface ITrackedPeriodService
 	{
 		/// <summary>
-		/// Add new tracked period.
+		/// Add new or update existing tracked period.
 		/// </summary>
-		Task AddAsync(TrackedPeriod trackedPeriod);
+		Task UpsertAsync(TrackedPeriod trackedPeriod);
 
 		/// <summary>
 		/// Get all tracked periods for user with id <paramref name="userId"/>. 

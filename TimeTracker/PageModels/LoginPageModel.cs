@@ -1,4 +1,5 @@
-﻿using TimeTracker.PageModels.Base;
+﻿using TimeTracker.Models;
+using TimeTracker.PageModels.Base;
 using TimeTracker.Services.Account;
 using TimeTracker.Services.Navigation;
 using TimeTracker.ViewModels;
@@ -33,19 +34,32 @@ namespace TimeTracker.PageModels
 
 		private async void OnLogin()
 		{
-			var loginAttempt = await accountService.LoginAsync(UsernameEntryViewModel.Text, PasswordEntryViewModel.Text);
+			var userCredentials = new UserCredentials(UsernameEntryViewModel.Text, PasswordEntryViewModel.Text);
+			var loginAttempt = await accountService.LoginAsync(userCredentials);
+
 			if (loginAttempt)
 			{
 				await navigationService.NavigateToAsync<MainPageModel>();
 			}
 			else
 			{
-				// TODO: Display an Alert for Failure!
+				// todo
 			}
 		}
 
-		private void OnCreateAccount()
+		private async void OnCreateAccount()
 		{
+			var newUser = new User(UsernameEntryViewModel.Text, PasswordEntryViewModel.Text);
+			var wasCreated = await accountService.CreateAccountAsync(newUser);
+
+			if (wasCreated)
+			{
+				await navigationService.NavigateToAsync<MainPageModel>();
+			}
+			else
+			{
+				// todo
+			}
 		}
 	}
 }

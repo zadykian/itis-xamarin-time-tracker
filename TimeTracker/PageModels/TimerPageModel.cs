@@ -3,7 +3,8 @@ using System.Threading.Tasks;
 using System.Timers;
 using TimeTracker.Models;
 using TimeTracker.PageModels.Base;
-using TimeTracker.Services.Work;
+using TimeTracker.Services.Account;
+using TimeTracker.Services.TimeTracking;
 using TimeTracker.ViewModels;
 
 namespace TimeTracker.PageModels
@@ -11,11 +12,15 @@ namespace TimeTracker.PageModels
 	internal class TimerPageModel : PageModelBase
 	{
 		private readonly Timer timer;
-		private readonly IWorkService workService;
+		private readonly ITrackedPeriodService trackedPeriodService;
+		private readonly IAccountService accountService;
 
-		public TimerPageModel(IWorkService workService)
+		public TimerPageModel(
+			ITrackedPeriodService trackedPeriodService,
+			IAccountService accountService)
 		{
-			this.workService = workService;
+			this.trackedPeriodService = trackedPeriodService;
+			this.accountService = accountService;
 
 			TimerButtonViewModel = new ButtonViewModel("start timer", OnTimerButtonClicked);
 			AttachPhotoButtonViewModel = new ButtonViewModel("attach photo", OnAttachPhotoButtonClicked, isEnabled: false);
@@ -80,8 +85,8 @@ namespace TimeTracker.PageModels
 				RunningTotal = TimeSpan.Zero;
 				TimerButtonViewModel.Text = "start timer";
 				AttachPhotoButtonViewModel.IsEnabled = false;
-				var item = new WorkItem {Start = CurrentStartTime, End = DateTime.Now};
-				await workService.LogWorkAsync(item);
+				var newTrackedPeriod = new TrackedPeriod(accountService.CurrentUser.Id);
+				await trackedPeriodService.UpsertAsync(newTrackedPeriod);
 			}
 			else
 			{

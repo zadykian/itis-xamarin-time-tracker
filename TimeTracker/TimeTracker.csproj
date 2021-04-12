@@ -22,7 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\Work\" />
     <Folder Include="Views\Labels\" />
   </ItemGroup>
   <ItemGroup>
