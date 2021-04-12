@@ -4,12 +4,13 @@ using Xamarin.Forms;
 
 namespace TimeTracker.Services.Navigation
 {
+	/// <inheritdoc />
 	internal class NavigationService : INavigationService
 	{
-		public async Task NavigateToAsync<TPageModel>( bool setRoot = false)
-			where TPageModel : PageModelBase
+		/// <inheritdoc />
+		async Task INavigationService.NavigateToAsync<TPageModel>(bool setRoot)
 		{
-			var page = PageModelLocator.CreatePageFor<TPageModel>();
+			var page = AppContext.CreatePageFor<TPageModel>();
 
 			if (setRoot)
 			{

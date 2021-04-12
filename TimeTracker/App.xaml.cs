@@ -9,12 +9,6 @@ namespace TimeTracker
 	{
 		public App() => InitializeComponent();
 
-		private static Task InitNavigation()
-		{
-			var navigationService = PageModelLocator.Resolve<INavigationService>();
-			return navigationService.NavigateToAsync<LoginPageModel>(setRoot: true);
-		}
-
 		protected override async void OnStart()
 		{
 			base.OnStart();
@@ -22,8 +16,9 @@ namespace TimeTracker
 			base.OnResume();
 		}
 
-		protected override void OnSleep()
-		{
-		}
+		private static Task InitNavigation()
+			=> AppContext
+				.Resolve<INavigationService>()
+				.NavigateToAsync<LoginPageModel>(setRoot: true);
 	}
 }

@@ -9,12 +9,15 @@ using Xamarin.Forms;
 
 namespace TimeTracker.PageModels.Base
 {
-	public class PageModelLocator
+	/// <summary>
+	/// Application global context.
+	/// </summary>
+	public static class AppContext
 	{
 		private static readonly TinyIoCContainer container;
 		private static readonly Dictionary<Type, Type> pageModelsToPages;
 
-		static PageModelLocator()
+		static AppContext()
 		{
 			container = new TinyIoCContainer();
 			pageModelsToPages = new Dictionary<Type, Type>();
