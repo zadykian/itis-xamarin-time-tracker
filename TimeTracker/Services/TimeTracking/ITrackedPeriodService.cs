@@ -18,17 +18,17 @@ namespace TimeTracker.Services.TimeTracking
 		/// <summary>
 		/// Get current tracked period for user with id <paramref name="userId"/>.
 		/// </summary>
-		Task<TrackedPeriod> GetCurrentAsync(Guid userId);
+		Task<TrackedPeriod> GetCurrentAsync(int userId);
 
 		/// <summary>
 		/// Get all tracked periods for user with id <paramref name="userId"/>. 
 		/// </summary>
-		Task<IReadOnlyCollection<TrackedPeriod>> GetAllAsync(Guid userId);
+		Task<IReadOnlyCollection<TrackedPeriod>> GetAllAsync(int userId);
 
 		/// <summary>
 		/// Delete data of user with id <paramref name="userId"/>.
 		/// </summary>
-		Task ClearDataAsync(Guid userId);
+		Task ClearDataAsync(int userId);
 
 		/// <summary>
 		/// Add new image related to current tracked period. 

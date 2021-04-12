@@ -1,4 +1,5 @@
 using System;
+using SQLite;
 using Xamarin.Essentials;
 
 namespace TimeTracker.Models
@@ -8,28 +9,34 @@ namespace TimeTracker.Models
 	/// </summary>
 	internal class TrackedPeriod
 	{
-		public TrackedPeriod(Guid userId, Location startLocation)
+		public TrackedPeriod()
 		{
-			Id = Guid.NewGuid();
+		}
+		
+		public TrackedPeriod(int userId, Location startLocation)
+		{
 			UserId = userId;
 			Start = DateTime.Now;
-			StartLocation = startLocation;
+
+			StartLatitude = startLocation.Latitude;
+			StartLongitude = startLocation.Longitude;
 		}
 
 		/// <summary>
 		/// Period's id.
 		/// </summary>
-		public Guid Id { get; }
+		[PrimaryKey]
+		public int Id { get; set; }
 
 		/// <summary>
 		/// Id of a user which this period belongs to.
 		/// </summary>
-		public Guid UserId { get; }
+		public int UserId { get; set; }
 
 		/// <summary>
 		/// Period's start.
 		/// </summary>
-		public DateTime Start { get; }
+		public DateTime Start { get; set; }
 
 		/// <summary>
 		/// Period's end.
@@ -39,11 +46,17 @@ namespace TimeTracker.Models
 		/// <summary>
 		/// Period's total interval.
 		/// </summary>
+		[Ignore]
 		public TimeSpan Total => (End ?? DateTime.Now) - Start;
 
 		/// <summary>
-		/// Period's start location.
+		/// Start location latitude.
 		/// </summary>
-		public Location StartLocation { get; }
+		public double StartLatitude { get; set; }
+		
+		/// <summary>
+		/// Start location longitude.
+		/// </summary>
+		public double StartLongitude { get; set; }
 	}
 }

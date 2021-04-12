@@ -15,7 +15,7 @@ namespace TimeTracker.Services.Account
 		{
 			// todo
 			await Task.CompletedTask;
-			CurrentUser = new User(Guid.NewGuid(), credentials.Username, credentials.Password);
+			CurrentUser = new User(credentials.Username, credentials.Password);
 			return true;
 		}
 

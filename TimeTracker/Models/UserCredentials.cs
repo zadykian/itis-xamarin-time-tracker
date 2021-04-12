@@ -5,6 +5,10 @@ namespace TimeTracker.Models
 	/// </summary>
 	internal class UserCredentials
 	{
+		protected UserCredentials()
+		{
+		}
+		
 		public UserCredentials(string username, string password)
 		{
 			Username = username;
@@ -14,11 +18,11 @@ namespace TimeTracker.Models
 		/// <summary>
 		/// User's login.
 		/// </summary>
-		public string Username { get; }
+		public string Username { get; set; }
 
 		/// <summary>
 		/// User's password.
 		/// </summary>
-		public string Password { get; }
+		public string Password { get; set; }
 	}
 }

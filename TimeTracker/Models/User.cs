@@ -1,4 +1,5 @@
 using System;
+using SQLite;
 
 namespace TimeTracker.Models
 {
@@ -7,18 +8,23 @@ namespace TimeTracker.Models
 	/// </summary>
 	internal class User : UserCredentials
 	{
-		public User(Guid id, string username, string password)
+		public User()
+		{
+		}
+		
+		public User(int id, string username, string password)
 			: base(username, password)
 			=> Id = id;
 
 		public User(string username, string password)
-			: this(Guid.NewGuid(), username, password)
+			: base(username, password)
 		{
 		}
 
 		/// <summary>
 		/// User's identifier.
 		/// </summary>
-		public Guid Id { get; }
+		[PrimaryKey]
+		public int Id { get; set; }
 	}
 }
