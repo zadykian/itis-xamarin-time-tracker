@@ -5,9 +5,9 @@ using Xamarin.Forms;
 
 namespace TimeTracker.ViewModels
 {
-	internal class ButtonModel : ExtendedBindableObject
+	internal class ButtonViewModel : ExtendedBindableObject
 	{
-		public ButtonModel(string text, Action onClicked, bool isEnabled = true)
+		public ButtonViewModel(string text, Action onClicked, bool isEnabled = true)
 		{
 			Text = text;
 			Command = new Command(onClicked);

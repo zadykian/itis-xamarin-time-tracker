@@ -7,7 +7,7 @@
         xmlns:viewModels="clr-namespace:TimeTracker.ViewModels;assembly=TimeTracker"
         mc:Ignorable="d"
         x:Class="TimeTracker.Views.Buttons.BindableButton"
-        x:DataType="viewModels:ButtonModel"
+        x:DataType="viewModels:ButtonViewModel"
         HeightRequest="50"
         WidthRequest="250"
         HorizontalOptions="CenterAndExpand"

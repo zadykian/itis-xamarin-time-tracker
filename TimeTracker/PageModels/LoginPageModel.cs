@@ -19,17 +19,17 @@ namespace TimeTracker.PageModels
 			EmailEntryViewModel = new LoginEntryViewModel("username", false);
 			PasswordEntryViewModel = new LoginEntryViewModel("password", true);
 
-			LogInModel = new ButtonModel("log in", OnLogin);
-			CreateAccountModel = new ButtonModel("create account", OnCreateAccount);
+			LogInButtonViewModel = new ButtonViewModel("log in", OnLogin);
+			CreateAccountButtonViewModel = new ButtonViewModel("create account", OnCreateAccount);
 		}
 
 		public LoginEntryViewModel EmailEntryViewModel { get; }
 
 		public LoginEntryViewModel PasswordEntryViewModel { get; }
 
-		public ButtonModel CreateAccountModel { get; }
+		public ButtonViewModel CreateAccountButtonViewModel { get; }
 
-		public ButtonModel LogInModel { get; }
+		public ButtonViewModel LogInButtonViewModel { get; }
 
 		private async void OnLogin()
 		{

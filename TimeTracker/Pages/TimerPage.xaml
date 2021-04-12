@@ -21,13 +21,13 @@
 			       TextColor="Black"
 			       IsVisible="{Binding TimerIsStarted}" />
 
-			<buttons:BindableButton BindingContext="{Binding TimerButtonModel}"
+			<buttons:BindableButton BindingContext="{Binding TimerButtonViewModel}"
 			                        HorizontalOptions="Center"
 			                        BackgroundColor="LightGray"
 			                        TextColor="Black"
 			                        WidthRequest="200" />
 
-			<buttons:BindableButton BindingContext="{Binding AttachPhotoButtonModel}"
+			<buttons:BindableButton BindingContext="{Binding AttachPhotoButtonViewModel}"
 			                        HorizontalOptions="Center"
 			                        BackgroundColor="LightGray"
 			                        TextColor="Black"

@@ -17,8 +17,8 @@ namespace TimeTracker.PageModels
 		{
 			this.workService = workService;
 
-			TimerButtonModel = new ButtonModel("start timer", OnTimerButtonClicked);
-			AttachPhotoButtonModel = new ButtonModel("attach photo", OnAttachPhotoButtonClicked, isEnabled: false);
+			TimerButtonViewModel = new ButtonViewModel("start timer", OnTimerButtonClicked);
+			AttachPhotoButtonViewModel = new ButtonViewModel("attach photo", OnAttachPhotoButtonClicked, isEnabled: false);
 
 			timer = new Timer {Interval = 1000, Enabled = false};
 			timer.Elapsed += OnTimerElapsed;
@@ -48,20 +48,20 @@ namespace TimeTracker.PageModels
 			set => SetProperty(ref currentStartTime, value);
 		}
 
-		private ButtonModel timerButtonModel;
+		private ButtonViewModel timerButtonViewModel;
 
-		public ButtonModel TimerButtonModel
+		public ButtonViewModel TimerButtonViewModel
 		{
-			get => timerButtonModel;
-			set => SetProperty(ref timerButtonModel, value);
+			get => timerButtonViewModel;
+			set => SetProperty(ref timerButtonViewModel, value);
 		}
 
-		private ButtonModel attachPhotoButtonModel;
+		private ButtonViewModel attachPhotoButtonViewModel;
 
-		public ButtonModel AttachPhotoButtonModel
+		public ButtonViewModel AttachPhotoButtonViewModel
 		{
-			get => attachPhotoButtonModel;
-			set => SetProperty(ref attachPhotoButtonModel, value);
+			get => attachPhotoButtonViewModel;
+			set => SetProperty(ref attachPhotoButtonViewModel, value);
 		}
 
 		public override async Task InitializeAsync(object navigationData)
@@ -78,8 +78,8 @@ namespace TimeTracker.PageModels
 			{
 				timer.Enabled = false;
 				RunningTotal = TimeSpan.Zero;
-				TimerButtonModel.Text = "start timer";
-				AttachPhotoButtonModel.IsEnabled = false;
+				TimerButtonViewModel.Text = "start timer";
+				AttachPhotoButtonViewModel.IsEnabled = false;
 				var item = new WorkItem {Start = CurrentStartTime, End = DateTime.Now};
 				await workService.LogWorkAsync(item);
 			}
@@ -87,8 +87,8 @@ namespace TimeTracker.PageModels
 			{
 				CurrentStartTime = DateTime.Now;
 				timer.Enabled = true;
-				TimerButtonModel.Text = "stop timer";
-				AttachPhotoButtonModel.IsEnabled = true;
+				TimerButtonViewModel.Text = "stop timer";
+				AttachPhotoButtonViewModel.IsEnabled = true;
 			}
 
 			TimerIsStarted = !TimerIsStarted;
