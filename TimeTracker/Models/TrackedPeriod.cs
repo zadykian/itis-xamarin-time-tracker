@@ -1,4 +1,5 @@
 using System;
+using Xamarin.Essentials;
 
 namespace TimeTracker.Models
 {
@@ -7,11 +8,12 @@ namespace TimeTracker.Models
 	/// </summary>
 	internal class TrackedPeriod
 	{
-		public TrackedPeriod(Guid userId)
+		public TrackedPeriod(Guid userId, Location startLocation)
 		{
 			Id = Guid.NewGuid();
 			UserId = userId;
 			Start = DateTime.Now;
+			StartLocation = startLocation;
 		}
 
 		public Guid Id { get; }
@@ -23,5 +25,7 @@ namespace TimeTracker.Models
 		public DateTime? End { get; set; }
 
 		public TimeSpan Total => (End ?? DateTime.Now) - Start;
+
+		public Location StartLocation { get; }
 	}
 }

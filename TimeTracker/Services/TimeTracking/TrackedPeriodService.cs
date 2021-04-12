@@ -21,11 +21,26 @@ namespace TimeTracker.Services.TimeTracking
 		}
 
 		/// <inheritdoc />
+		async Task<TrackedPeriod> ITrackedPeriodService.GetCurrentAsync(Guid userId)
+		{
+			// todo
+			await Task.CompletedTask;
+			return trackedPeriods.Single(period => period.End is null);
+		}
+
+		/// <inheritdoc />
 		async Task<IReadOnlyCollection<TrackedPeriod>> ITrackedPeriodService.GetAllAsync(Guid userId)
 		{
 			// todo
 			await Task.CompletedTask;
 			return trackedPeriods.OrderBy(period => period.Start).ToArray();
+		}
+
+		/// <inheritdoc />
+		async Task ITrackedPeriodService.AddImageAsync(Image image)
+		{
+			// todo
+			await Task.CompletedTask;
 		}
 	}
 }

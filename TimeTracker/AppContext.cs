@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using TimeTracker.PageModels;
+using TimeTracker.PageModels.Base;
 using TimeTracker.Pages;
 using TimeTracker.Services.Account;
 using TimeTracker.Services.Navigation;
+using TimeTracker.Services.Photo;
 using TimeTracker.Services.TimeTracking;
+using TimeTracker.Services.UserLocation;
 using TinyIoC;
 using Xamarin.Forms;
 
-namespace TimeTracker.PageModels.Base
+namespace TimeTracker
 {
 	/// <summary>
 	/// Application global context.
@@ -31,6 +35,8 @@ namespace TimeTracker.PageModels.Base
 			container.Register<IAccountService, AccountService>();
 			container.Register<INavigationService, NavigationService>();
 			container.Register<ITrackedPeriodService, TrackedPeriodService>();
+			container.Register<ILocationService, LocationService>();
+			container.Register<IPhotoService, PhotoService>();
 		}
 
 		private static void RegisterPageWithModel<TPageModel, TPage>()

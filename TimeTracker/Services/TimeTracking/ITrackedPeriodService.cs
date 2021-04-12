@@ -16,8 +16,18 @@ namespace TimeTracker.Services.TimeTracking
 		Task UpsertAsync(TrackedPeriod trackedPeriod);
 
 		/// <summary>
+		/// Get current tracked period for user with id <paramref name="userId"/>.
+		/// </summary>
+		Task<TrackedPeriod> GetCurrentAsync(Guid userId);
+
+		/// <summary>
 		/// Get all tracked periods for user with id <paramref name="userId"/>. 
 		/// </summary>
 		Task<IReadOnlyCollection<TrackedPeriod>> GetAllAsync(Guid userId);
+
+		/// <summary>
+		/// Add new image related to current tracked period. 
+		/// </summary>
+		Task AddImageAsync(Image image);
 	}
 }
