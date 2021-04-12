@@ -18,7 +18,7 @@
 						<ListView.ItemTemplate>
 							<DataTemplate>
 								<ViewCell>
-									<views:PayStatementView />
+									<views:TrackedPeriodView />
 								</ViewCell>
 							</DataTemplate>
 						</ListView.ItemTemplate>
