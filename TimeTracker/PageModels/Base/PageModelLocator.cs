@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using TimeTracker.Pages;
 using TimeTracker.Services.Account;
 using TimeTracker.Services.Navigation;
-using TimeTracker.Services.Statement;
 using TimeTracker.Services.Work;
 using TinyIoC;
 using Xamarin.Forms;
@@ -28,7 +27,6 @@ namespace TimeTracker.PageModels.Base
 
 			container.Register<INavigationService, NavigationService>();
 			container.Register<IAccountService, AccountService>();
-			container.Register<IStatementService, MockStatementService>();
 			container.Register<IWorkService, MockWorkService>();
 		}
 

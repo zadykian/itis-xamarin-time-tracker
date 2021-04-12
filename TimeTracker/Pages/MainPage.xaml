@@ -11,21 +11,21 @@
             xmlns:pageModels="clr-namespace:TimeTracker.PageModels;assembly=TimeTracker"
             x:Class="TimeTracker.Pages.MainPage"
             x:DataType="pageModels:MainPageModel">
-    <TabbedPage.Children>
-        <NavigationPage Title="Time">
-            <x:Arguments>
-                <pages:TimerPage BindingContext="{Binding TimerPageModel}" />
-            </x:Arguments>
-        </NavigationPage>
-        <NavigationPage Title="View all">
-            <x:Arguments>
-                <pages:ViewAllPage BindingContext="{Binding ViewAllPageModel}" />
-            </x:Arguments>
-        </NavigationPage>
-        <NavigationPage Title="Profile">
-            <x:Arguments>
-                <pages:ProfilePage BindingContext="{Binding ProfilePageModel}" />
-            </x:Arguments>
-        </NavigationPage>
-    </TabbedPage.Children>
+	<TabbedPage.Children>
+		<NavigationPage Title="Time">
+			<x:Arguments>
+				<pages:TimerPage BindingContext="{Binding TimerPageModel}" />
+			</x:Arguments>
+		</NavigationPage>
+		<NavigationPage Title="View all">
+			<x:Arguments>
+				<pages:ViewAllPage BindingContext="{Binding ViewAllPageModel}" />
+			</x:Arguments>
+		</NavigationPage>
+		<NavigationPage Title="Profile">
+			<x:Arguments>
+				<pages:ProfilePage BindingContext="{Binding ProfilePageModel}" />
+			</x:Arguments>
+		</NavigationPage>
+	</TabbedPage.Children>
 </TabbedPage>

@@ -8,15 +8,15 @@
              NavigationPage.HasNavigationBar="False"
              xmlns:buttons="clr-namespace:TimeTracker.Views.Buttons"
              x:Class="TimeTracker.Pages.LoginPage">
-    <ContentPage.Content>
-        <StackLayout WidthRequest="220" HorizontalOptions="Center" VerticalOptions="Center">
+	<ContentPage.Content>
+		<StackLayout WidthRequest="220" HorizontalOptions="Center" VerticalOptions="Center">
 
-            <views:LoginEntryView BindingContext="{Binding EmailEntryViewModel}" />
-            <views:LoginEntryView BindingContext="{Binding PasswordEntryViewModel}" />
+			<views:LoginEntryView BindingContext="{Binding EmailEntryViewModel}" />
+			<views:LoginEntryView BindingContext="{Binding PasswordEntryViewModel}" />
 
-            <buttons:BindableButton BindingContext="{Binding CreateAccountModel}" />
-            <buttons:BindableButton BindingContext="{Binding LogInModel}" />
+			<buttons:BindableButton BindingContext="{Binding CreateAccountModel}" />
+			<buttons:BindableButton BindingContext="{Binding LogInModel}" />
 
-        </StackLayout>
-    </ContentPage.Content>
+		</StackLayout>
+	</ContentPage.Content>
 </ContentPage>

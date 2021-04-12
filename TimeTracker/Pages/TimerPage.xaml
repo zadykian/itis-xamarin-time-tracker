@@ -7,32 +7,32 @@
              mc:Ignorable="d" NavigationPage.HasNavigationBar="False"
              xmlns:buttons="clr-namespace:TimeTracker.Views.Buttons"
              xmlns:pageModels="clr-namespace:TimeTracker.PageModels;assembly=TimeTracker"
-             x:Class="TimeTracker.Pages.TimerPage" 
+             x:Class="TimeTracker.Pages.TimerPage"
              x:DataType="pageModels:TimerPageModel">
-    <ContentPage.Content>
-        <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+	<ContentPage.Content>
+		<StackLayout VerticalOptions="Center" HorizontalOptions="Center">
 
-            <Label Text="{Binding RunningTotal, StringFormat='{}{0:h\\:mm\\:ss}'}"
-                   FontSize="50" HorizontalTextAlignment="Center"
-                   TextColor="Black" />
+			<Label Text="{Binding RunningTotal, StringFormat='{}{0:h\\:mm\\:ss}'}"
+			       FontSize="50" HorizontalTextAlignment="Center"
+			       TextColor="Black" />
 
-            <Label Text="{Binding CurrentStartTime, StringFormat='started at {0:h:mm tt}'}"
-                   HorizontalTextAlignment="Center"
-                   TextColor="Black"
-                   IsVisible="{Binding TimerIsStarted}" />
+			<Label Text="{Binding CurrentStartTime, StringFormat='started at {0:h:mm tt}'}"
+			       HorizontalTextAlignment="Center"
+			       TextColor="Black"
+			       IsVisible="{Binding TimerIsStarted}" />
 
-            <buttons:BindableButton BindingContext="{Binding TimerButtonModel}"
-                                    HorizontalOptions="Center"
-                                    BackgroundColor="LightGray"
-                                    TextColor="Black"
-                                    WidthRequest="200" />
+			<buttons:BindableButton BindingContext="{Binding TimerButtonModel}"
+			                        HorizontalOptions="Center"
+			                        BackgroundColor="LightGray"
+			                        TextColor="Black"
+			                        WidthRequest="200" />
 
-            <buttons:BindableButton BindingContext="{Binding AttachPhotoButtonModel}"
-                                    HorizontalOptions="Center"
-                                    BackgroundColor="LightGray"
-                                    TextColor="Black"
-                                    WidthRequest="200" />
+			<buttons:BindableButton BindingContext="{Binding AttachPhotoButtonModel}"
+			                        HorizontalOptions="Center"
+			                        BackgroundColor="LightGray"
+			                        TextColor="Black"
+			                        WidthRequest="200" />
 
-        </StackLayout>
-    </ContentPage.Content>
+		</StackLayout>
+	</ContentPage.Content>
 </ContentPage>

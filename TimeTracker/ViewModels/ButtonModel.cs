@@ -3,7 +3,7 @@ using System.Windows.Input;
 using TimeTracker.PageModels.Base;
 using Xamarin.Forms;
 
-namespace TimeTracker.ViewModels.Buttons
+namespace TimeTracker.ViewModels
 {
 	internal class ButtonModel : ExtendedBindableObject
 	{

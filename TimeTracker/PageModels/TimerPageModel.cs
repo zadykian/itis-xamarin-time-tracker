@@ -1,17 +1,30 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Timers;
 using TimeTracker.Models;
 using TimeTracker.PageModels.Base;
 using TimeTracker.Services.Work;
-using TimeTracker.ViewModels.Buttons;
+using TimeTracker.ViewModels;
 
 namespace TimeTracker.PageModels
 {
 	internal class TimerPageModel : PageModelBase
 	{
-		bool timerIsStarted;
+		private readonly Timer timer;
+		private readonly IWorkService workService;
+
+		public TimerPageModel(IWorkService workService)
+		{
+			this.workService = workService;
+
+			TimerButtonModel = new ButtonModel("start timer", OnTimerButtonClicked);
+			AttachPhotoButtonModel = new ButtonModel("attach photo", OnAttachPhotoButtonClicked, isEnabled: false);
+
+			timer = new Timer {Interval = 1000, Enabled = false};
+			timer.Elapsed += OnTimerElapsed;
+		}
+
+		private bool timerIsStarted;
 
 		public bool TimerIsStarted
 		{
@@ -19,29 +32,23 @@ namespace TimeTracker.PageModels
 			set => SetProperty(ref timerIsStarted, value);
 		}
 
-		TimeSpan _runningTotal;
+		private TimeSpan runningTotal;
 
 		public TimeSpan RunningTotal
 		{
-			get => _runningTotal;
-			set => SetProperty(ref _runningTotal, value);
+			get => runningTotal;
+			set => SetProperty(ref runningTotal, value);
 		}
 
-		DateTime _currentStartTime;
+		private DateTime currentStartTime;
 
 		public DateTime CurrentStartTime
 		{
-			get => _currentStartTime;
-			set => SetProperty(ref _currentStartTime, value);
+			get => currentStartTime;
+			set => SetProperty(ref currentStartTime, value);
 		}
 
-		public ObservableCollection<WorkItem> WorkItems
-		{
-			get => _workItems;
-			set => SetProperty(ref _workItems, value);
-		}
-
-		ButtonModel timerButtonModel;
+		private ButtonModel timerButtonModel;
 
 		public ButtonModel TimerButtonModel
 		{
@@ -50,58 +57,36 @@ namespace TimeTracker.PageModels
 		}
 
 		private ButtonModel attachPhotoButtonModel;
-		
+
 		public ButtonModel AttachPhotoButtonModel
 		{
 			get => attachPhotoButtonModel;
 			set => SetProperty(ref attachPhotoButtonModel, value);
 		}
 
-		private readonly Timer _timer;
-		private ObservableCollection<WorkItem> _workItems;
-		private readonly IWorkService _workService;
-
-		public TimerPageModel(IWorkService workService)
-		{
-			_workService = workService;
-
-			TimerButtonModel = new ButtonModel("start timer", OnTimerButtonClicked);
-			AttachPhotoButtonModel = new ButtonModel("attach photo", OnAttachPhotoButtonClicked, isEnabled: false);
-
-			_timer = new Timer {Interval = 1000, Enabled = false};
-			_timer.Elapsed += OnTimerElapsed;
-		}
-
-		private void OnTimerElapsed(object sender, ElapsedEventArgs e) => RunningTotal += TimeSpan.FromSeconds(1);
-
 		public override async Task InitializeAsync(object navigationData)
 		{
 			RunningTotal = new TimeSpan();
-			WorkItems = await _workService.GetTodaysWorkAsync();
-
 			await base.InitializeAsync(navigationData);
 		}
+
+		private void OnTimerElapsed(object sender, ElapsedEventArgs e) => RunningTotal += TimeSpan.FromSeconds(1);
 
 		private async void OnTimerButtonClicked()
 		{
 			if (TimerIsStarted)
 			{
-				_timer.Enabled = false;
+				timer.Enabled = false;
 				RunningTotal = TimeSpan.Zero;
 				TimerButtonModel.Text = "start timer";
 				AttachPhotoButtonModel.IsEnabled = false;
-				var item = new WorkItem
-				{
-					Start = CurrentStartTime,
-					End = DateTime.Now
-				};
-				WorkItems.Insert(0, item);
-				await _workService.LogWorkAsync(item);
+				var item = new WorkItem {Start = CurrentStartTime, End = DateTime.Now};
+				await workService.LogWorkAsync(item);
 			}
 			else
 			{
 				CurrentStartTime = DateTime.Now;
-				_timer.Enabled = true;
+				timer.Enabled = true;
 				TimerButtonModel.Text = "stop timer";
 				AttachPhotoButtonModel.IsEnabled = true;
 			}
