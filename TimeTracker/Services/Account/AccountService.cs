@@ -27,5 +27,15 @@ namespace TimeTracker.Services.Account
 			CurrentUser = user;
 			return true;
 		}
+
+		/// <inheritdoc />
+		async Task<bool> IAccountService.UpdatePasswordAsync(UserCredentials credentials)
+		{
+			// todo
+			await Task.CompletedTask;
+			if (credentials.Password == CurrentUser.Password) return false;
+			CurrentUser = new User(CurrentUser.Id, CurrentUser.Username, credentials.Password);
+			return true;
+		}
 	}
 }

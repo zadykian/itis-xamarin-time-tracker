@@ -26,6 +26,11 @@ namespace TimeTracker.Services.TimeTracking
 		Task<IReadOnlyCollection<TrackedPeriod>> GetAllAsync(Guid userId);
 
 		/// <summary>
+		/// Delete data of user with id <paramref name="userId"/>.
+		/// </summary>
+		Task ClearDataAsync(Guid userId);
+
+		/// <summary>
 		/// Add new image related to current tracked period. 
 		/// </summary>
 		Task AddImageAsync(Image image);

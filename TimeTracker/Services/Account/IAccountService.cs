@@ -22,5 +22,10 @@ namespace TimeTracker.Services.Account
 		/// Create new account. 
 		/// </summary>
 		Task<bool> CreateAccountAsync(User user);
+
+		/// <summary>
+		/// Update user's password. 
+		/// </summary>
+		Task<bool> UpdatePasswordAsync(UserCredentials credentials);
 	}
 }

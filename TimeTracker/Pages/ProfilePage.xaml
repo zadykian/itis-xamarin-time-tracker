@@ -4,13 +4,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:pageModels="clr-namespace:TimeTracker.PageModels;assembly=TimeTracker"
+             xmlns:views="clr-namespace:TimeTracker.Views"
+             xmlns:buttons="clr-namespace:TimeTracker.Views.Buttons;assembly=TimeTracker"
              mc:Ignorable="d"
-             x:Class="TimeTracker.Pages.ProfilePage">
+             x:Class="TimeTracker.Pages.ProfilePage"
+             x:DataType="pageModels:ProfilePageModel">
 	<ContentPage.Content>
-		<StackLayout>
-			<Label Text="Welcome to Xamarin.Forms!"
-			       VerticalOptions="CenterAndExpand"
-			       HorizontalOptions="CenterAndExpand" />
+		<StackLayout WidthRequest="220" HorizontalOptions="Center" VerticalOptions="Center">
+
+			<views:LoginEntryView BindingContext="{Binding UsernameEntryViewModel}" />
+			<views:LoginEntryView BindingContext="{Binding PasswordEntryViewModel}" />
+
+			<buttons:BindableButton BindingContext="{Binding UpdatePasswordButtonViewModel}" />
+			<buttons:BindableButton BindingContext="{Binding ClearUserDataButtonViewModel}" />
+
 		</StackLayout>
 	</ContentPage.Content>
 </ContentPage>

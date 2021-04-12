@@ -37,6 +37,14 @@ namespace TimeTracker.Services.TimeTracking
 		}
 
 		/// <inheritdoc />
+		async Task ITrackedPeriodService.ClearDataAsync(Guid userId)
+		{
+			// todo
+			await Task.CompletedTask;
+			trackedPeriods.Clear();
+		}
+
+		/// <inheritdoc />
 		async Task ITrackedPeriodService.AddImageAsync(Image image)
 		{
 			// todo

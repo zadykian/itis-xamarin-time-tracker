@@ -10,12 +10,11 @@
              x:Class="TimeTracker.Pages.ViewAllPage"
              x:DataType="pageModels:ViewAllPageModel">
 	<ContentPage.Content>
-		<StackLayout Margin="10">
+		<StackLayout>
 			<Frame>
 				<StackLayout>
 					<labels:TitleLabel Text="all tracked periods" />
 					<ListView ItemsSource="{Binding AllForCurrentUser}" HasUnevenRows="true">
-
 						<ListView.ItemTemplate>
 							<DataTemplate>
 								<ViewCell>
