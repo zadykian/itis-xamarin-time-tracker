@@ -1,4 +1,3 @@
-using System;
 using SQLite;
 
 namespace TimeTracker.Models
@@ -11,10 +10,6 @@ namespace TimeTracker.Models
 		public User()
 		{
 		}
-		
-		public User(int id, string username, string password)
-			: base(username, password)
-			=> Id = id;
 
 		public User(string username, string password)
 			: base(username, password)

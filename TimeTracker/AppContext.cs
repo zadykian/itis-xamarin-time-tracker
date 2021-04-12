@@ -4,6 +4,7 @@ using TimeTracker.PageModels;
 using TimeTracker.PageModels.Base;
 using TimeTracker.Pages;
 using TimeTracker.Services.Account;
+using TimeTracker.Services.ConnectionFactory;
 using TimeTracker.Services.Navigation;
 using TimeTracker.Services.Notifications;
 using TimeTracker.Services.Photo;
@@ -32,6 +33,8 @@ namespace TimeTracker
 			RegisterPageWithModel<TimerPageModel, TimerPage>();
 			RegisterPageWithModel<ViewAllPageModel, ViewAllPage>();
 			RegisterPageWithModel<ProfilePageModel, ProfilePage>();
+
+			container.Register((c, n) => SqliteConnectionFactory.Create()).AsSingleton();
 
 			container.Register<IAccountService, AccountService>();
 			container.Register<INavigationService, NavigationService>();

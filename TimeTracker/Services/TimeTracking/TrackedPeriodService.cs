@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Threading.Tasks;
 using SQLite;
 using TimeTracker.Models;
@@ -10,7 +8,12 @@ namespace TimeTracker.Services.TimeTracking
 	/// <inheritdoc />
 	internal class TrackedPeriodService  : ITrackedPeriodService
 	{
-		private readonly ITrackedPeriodService sqliteSubService = new SqliteSubService();
+		private readonly ITrackedPeriodService sqliteSubService;
+
+		public TrackedPeriodService(SQLiteAsyncConnection dbConnection)
+		{
+			sqliteSubService = new SqliteSubService(dbConnection);
+		}
 
 		/// <inheritdoc />
 		async Task ITrackedPeriodService.UpsertAsync(TrackedPeriod trackedPeriod)
@@ -54,13 +57,8 @@ namespace TimeTracker.Services.TimeTracking
 		{
 			private readonly SQLiteAsyncConnection dbConnection;
 
-			public SqliteSubService()
-			{
-				var databaseDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-				var databaseFullPath = Path.Combine(databaseDirectory, "time-tracker.db");
-				dbConnection = new SQLiteAsyncConnection(databaseFullPath);
-				Initialize().ConfigureAwait(false).GetAwaiter().GetResult();
-			}
+			public SqliteSubService(SQLiteAsyncConnection dbConnection)
+				=> this.dbConnection = dbConnection;
 
 			/// <inheritdoc />
 			async Task ITrackedPeriodService.UpsertAsync(TrackedPeriod trackedPeriod)
@@ -92,16 +90,6 @@ namespace TimeTracker.Services.TimeTracking
 			/// <inheritdoc />
 			async Task ITrackedPeriodService.AddImageAsync(Image image)
 				=> await dbConnection.InsertAsync(image);
-
-			/// <summary>
-			/// Initialize database schema.
-			/// </summary>
-			private async Task Initialize()
-			{
-				await dbConnection.CreateTableAsync<User>();
-				await dbConnection.CreateTableAsync<TrackedPeriod>();
-				await dbConnection.CreateTableAsync<Image>();
-			}
 		}
 	}
 }
