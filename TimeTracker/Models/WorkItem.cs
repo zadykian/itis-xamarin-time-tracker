@@ -6,8 +6,8 @@ namespace TimeTracker.Models
 	{
 		public DateTime Start { get; set; }
 
-		public DateTime End { get; set; }
+		public DateTime? End { get; set; }
 
-		public TimeSpan Total => End - Start;
+		public TimeSpan Total => (End ?? DateTime.Now) - Start;
 	}
 }

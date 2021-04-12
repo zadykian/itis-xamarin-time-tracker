@@ -16,14 +16,14 @@ namespace TimeTracker.PageModels
 			this.accountService = accountService;
 			this.navigationService = navigationService;
 
-			EmailEntryViewModel = new LoginEntryViewModel("username", false);
+			UsernameEntryViewModel = new LoginEntryViewModel("username", false);
 			PasswordEntryViewModel = new LoginEntryViewModel("password", true);
 
 			LogInButtonViewModel = new ButtonViewModel("log in", OnLogin);
 			CreateAccountButtonViewModel = new ButtonViewModel("create account", OnCreateAccount);
 		}
 
-		public LoginEntryViewModel EmailEntryViewModel { get; }
+		public LoginEntryViewModel UsernameEntryViewModel { get; }
 
 		public LoginEntryViewModel PasswordEntryViewModel { get; }
 
@@ -33,7 +33,7 @@ namespace TimeTracker.PageModels
 
 		private async void OnLogin()
 		{
-			var loginAttempt = await accountService.LoginAsync(EmailEntryViewModel.Text, PasswordEntryViewModel.Text);
+			var loginAttempt = await accountService.LoginAsync(UsernameEntryViewModel.Text, PasswordEntryViewModel.Text);
 			if (loginAttempt)
 			{
 				await navigationService.NavigateToAsync<MainPageModel>();
