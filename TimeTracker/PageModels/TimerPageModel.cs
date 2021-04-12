@@ -31,7 +31,13 @@ namespace TimeTracker.PageModels
 			this.locationService = locationService;
 			this.photoService = photoService;
 
-			TimerButtonViewModel = new ButtonViewModel("start timer", OnTimerButtonClicked);
+			TimerButtonViewModel = new ButtonViewModel("start timer", async () =>
+			{
+				if (TimerIsStarted) await OnTimerStopped();
+				else await OnTimerStarted();
+				TimerIsStarted = !TimerIsStarted;
+			});
+
 			AttachPhotoButtonViewModel = new ButtonViewModel("attach photo", OnAttachPhotoButtonClicked, isEnabled: false);
 
 			timer = new Timer {Interval = 1000, Enabled = false};
@@ -86,32 +92,28 @@ namespace TimeTracker.PageModels
 
 		private void OnTimerElapsed(object sender, ElapsedEventArgs e) => RunningTotal += TimeSpan.FromSeconds(1);
 
-		private async void OnTimerButtonClicked()
+		private async Task OnTimerStarted()
 		{
-			if (TimerIsStarted)
-			{
-				timer.Enabled = false;
-				RunningTotal = TimeSpan.Zero;
-				TimerButtonViewModel.Text = "start timer";
-				AttachPhotoButtonViewModel.IsEnabled = false;
+			CurrentStartTime = DateTime.Now;
+			timer.Enabled = true;
+			TimerButtonViewModel.Text = "stop timer";
+			AttachPhotoButtonViewModel.IsEnabled = true;
 
-				var currentLocation = await locationService.GetCurrentLocationAsync();
-				var newTrackedPeriod = new TrackedPeriod(accountService.CurrentUser.Id, currentLocation);
-				await trackedPeriodService.UpsertAsync(newTrackedPeriod);
-			}
-			else
-			{
-				CurrentStartTime = DateTime.Now;
-				timer.Enabled = true;
-				TimerButtonViewModel.Text = "stop timer";
-				AttachPhotoButtonViewModel.IsEnabled = true;
+			var currentPeriod = await trackedPeriodService.GetCurrentAsync(accountService.CurrentUser.Id);
+			currentPeriod.End = DateTime.Now;
+			await trackedPeriodService.UpsertAsync(currentPeriod);
+		}
 
-				var currentPeriod = await trackedPeriodService.GetCurrentAsync(accountService.CurrentUser.Id);
-				currentPeriod.End = DateTime.Now;
-				await trackedPeriodService.UpsertAsync(currentPeriod);
-			}
+		private async Task OnTimerStopped()
+		{
+			timer.Enabled = false;
+			RunningTotal = TimeSpan.Zero;
+			TimerButtonViewModel.Text = "start timer";
+			AttachPhotoButtonViewModel.IsEnabled = false;
 
-			TimerIsStarted = !TimerIsStarted;
+			var currentLocation = await locationService.GetCurrentLocationAsync();
+			var newTrackedPeriod = new TrackedPeriod(accountService.CurrentUser.Id, currentLocation);
+			await trackedPeriodService.UpsertAsync(newTrackedPeriod);
 		}
 
 		private async void OnAttachPhotoButtonClicked()
