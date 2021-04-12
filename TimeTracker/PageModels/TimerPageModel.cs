@@ -105,6 +105,7 @@ namespace TimeTracker.PageModels
 				timer.Enabled = true;
 				TimerButtonViewModel.Text = "stop timer";
 				AttachPhotoButtonViewModel.IsEnabled = true;
+
 				var currentPeriod = await trackedPeriodService.GetCurrentAsync(accountService.CurrentUser.Id);
 				currentPeriod.End = DateTime.Now;
 				await trackedPeriodService.UpsertAsync(currentPeriod);

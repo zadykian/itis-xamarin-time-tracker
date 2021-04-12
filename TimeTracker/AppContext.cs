@@ -16,7 +16,7 @@ namespace TimeTracker
 	/// <summary>
 	/// Application global context.
 	/// </summary>
-	public static class AppContext
+	internal static class AppContext
 	{
 		private static readonly TinyIoCContainer container;
 		private static readonly Dictionary<Type, Type> pageModelsToPages;
@@ -53,8 +53,7 @@ namespace TimeTracker
 		{
 			var pageType = pageModelsToPages[typeof(TPageModelType)];
 			var page = (Page) Activator.CreateInstance(pageType);
-			var pageModel = Resolve<TPageModelType>();
-			page.BindingContext = pageModel;
+			page.BindingContext = Resolve<TPageModelType>();
 			return page;
 		}
 	}
