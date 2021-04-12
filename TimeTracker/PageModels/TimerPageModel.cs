@@ -14,6 +14,7 @@ namespace TimeTracker.PageModels
 	internal class TimerPageModel : PageModelBase
 	{
 		private readonly Timer timer;
+		private readonly ViewAllPageModel viewAllPageModel;
 
 		private readonly ITrackedPeriodService trackedPeriodService;
 		private readonly IAccountService accountService;
@@ -24,12 +25,14 @@ namespace TimeTracker.PageModels
 			ITrackedPeriodService trackedPeriodService,
 			IAccountService accountService,
 			ILocationService locationService,
-			IPhotoService photoService)
+			IPhotoService photoService,
+			ViewAllPageModel viewAllPageModel)
 		{
 			this.trackedPeriodService = trackedPeriodService;
 			this.accountService = accountService;
 			this.locationService = locationService;
 			this.photoService = photoService;
+			this.viewAllPageModel = viewAllPageModel;
 
 			TimerButtonViewModel = new ButtonViewModel("start timer", async () =>
 			{
@@ -99,9 +102,10 @@ namespace TimeTracker.PageModels
 			TimerButtonViewModel.Text = "stop timer";
 			AttachPhotoButtonViewModel.IsEnabled = true;
 
-			var currentPeriod = await trackedPeriodService.GetCurrentAsync(accountService.CurrentUser.Id);
-			currentPeriod.End = DateTime.Now;
-			await trackedPeriodService.UpsertAsync(currentPeriod);
+			var currentLocation = await locationService.GetCurrentLocationAsync();
+			var newTrackedPeriod = new TrackedPeriod(accountService.CurrentUser.Id, currentLocation);
+			await trackedPeriodService.UpsertAsync(newTrackedPeriod);
+			viewAllPageModel.AllForCurrentUser.Insert(0, newTrackedPeriod);
 		}
 
 		private async Task OnTimerStopped()
@@ -111,9 +115,11 @@ namespace TimeTracker.PageModels
 			TimerButtonViewModel.Text = "start timer";
 			AttachPhotoButtonViewModel.IsEnabled = false;
 
-			var currentLocation = await locationService.GetCurrentLocationAsync();
-			var newTrackedPeriod = new TrackedPeriod(accountService.CurrentUser.Id, currentLocation);
-			await trackedPeriodService.UpsertAsync(newTrackedPeriod);
+			var currentPeriod = await trackedPeriodService.GetCurrentAsync(accountService.CurrentUser.Id);
+			currentPeriod.End = DateTime.Now;
+			await trackedPeriodService.UpsertAsync(currentPeriod);
+			viewAllPageModel.AllForCurrentUser.Remove(currentPeriod);
+			viewAllPageModel.AllForCurrentUser.Insert(0, currentPeriod);
 		}
 
 		private async void OnAttachPhotoButtonClicked()

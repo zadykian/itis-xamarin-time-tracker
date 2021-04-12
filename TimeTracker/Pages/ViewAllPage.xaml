@@ -13,16 +13,16 @@
 		<StackLayout Margin="10">
 			<Frame>
 				<StackLayout>
-					<labels:TitleLabel Text="Pay Statements" />
-					<!-- <ListView ItemsSource="{Binding Statements}"> -->
-					<!-- 	<ListView.ItemTemplate> -->
-					<!-- 		<DataTemplate> -->
-					<!-- 			<ViewCell> -->
-					<!-- 				<views:PayStatementView /> -->
-					<!-- 			</ViewCell> -->
-					<!-- 		</DataTemplate> -->
-					<!-- 	</ListView.ItemTemplate> -->
-					<!-- </ListView> -->
+					<labels:TitleLabel Text="all tracked periods" />
+					<ListView ItemsSource="{Binding AllForCurrentUser}">
+						<ListView.ItemTemplate>
+							<DataTemplate>
+								<ViewCell>
+									<views:PayStatementView />
+								</ViewCell>
+							</DataTemplate>
+						</ListView.ItemTemplate>
+					</ListView>
 				</StackLayout>
 			</Frame>
 		</StackLayout>
