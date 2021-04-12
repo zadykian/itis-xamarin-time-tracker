@@ -12,11 +12,11 @@
 	<ContentPage.Content>
 		<StackLayout VerticalOptions="Center" HorizontalOptions="Center">
 
-			<Label Text="{Binding RunningTotal, StringFormat='{}{0:h\\:mm\\:ss}'}"
+			<Label Text="{Binding RunningTotal, StringFormat='{}{0:hh\\:mm\\:ss}'}"
 			       FontSize="50" HorizontalTextAlignment="Center"
 			       TextColor="Black" />
 
-			<Label Text="{Binding CurrentStartTime, StringFormat='started at {0:h:mm tt}'}"
+			<Label Text="{Binding CurrentStartTime, StringFormat='started at {0:HH:mm}'}"
 			       HorizontalTextAlignment="Center"
 			       TextColor="Black"
 			       IsVisible="{Binding TimerIsStarted}" />

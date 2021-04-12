@@ -11,7 +11,7 @@
 			<StackLayout Orientation="Horizontal">
 
 				<StackLayout HorizontalOptions="CenterAndExpand">
-					<Label Text="{Binding Start, StringFormat='{}{0:h\\:mm\\:ss}'}"
+					<Label Text="{Binding Start, StringFormat='{}{0:HH\\:mm\\:ss}'}"
 					       FontSize="32"
 					       TextColor="Black" />
 					<Label Text="begin"
@@ -21,7 +21,7 @@
 				</StackLayout>
 
 				<StackLayout HorizontalOptions="CenterAndExpand">
-					<Label Text="{Binding End, StringFormat='{}{0:h\\:mm\\:ss}'}"
+					<Label Text="{Binding End, StringFormat='{}{0:HH\\:mm\\:ss}'}"
 					       FontSize="32" HorizontalTextAlignment="Center"
 					       TextColor="Black" />
 					<Label Text="end"
