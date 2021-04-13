@@ -109,18 +109,26 @@ namespace TimeTracker.PageModels
 				return;
 			}
 
-			generalTimer.Start();
-			notificationTimer.Start();
-			TimerIsStarted = true;
+			TimerButtonViewModel.IsEnabled = false;
+			try
+			{
+				generalTimer.Start();
+				notificationTimer.Start();
+				TimerIsStarted = true;
 
-			CurrentStartTime = DateTime.Now;
-			TimerButtonViewModel.Text = "stop timer";
-			AttachPhotoButtonViewModel.IsEnabled = true;
+				CurrentStartTime = DateTime.Now;
+				TimerButtonViewModel.Text = "stop timer";
+				AttachPhotoButtonViewModel.IsEnabled = true;
 
-			var currentLocation = await locationService.GetCurrentLocationAsync();
-			var newTrackedPeriod = new TrackedPeriod(accountService.CurrentUser.Id, currentLocation);
-			await trackedPeriodService.UpsertAsync(newTrackedPeriod);
-			viewAllPageModel.AllForCurrentUser.Insert(0, newTrackedPeriod);
+				var currentLocation = await locationService.GetCurrentLocationAsync();
+				var newTrackedPeriod = new TrackedPeriod(accountService.CurrentUser.Id, currentLocation);
+				viewAllPageModel.AllForCurrentUser.Insert(0, newTrackedPeriod);
+				await trackedPeriodService.UpsertAsync(newTrackedPeriod);
+			}
+			finally
+			{
+				TimerButtonViewModel.IsEnabled = true;
+			}
 		}
 
 		private async Task OnTimerStopped()
@@ -158,19 +166,27 @@ namespace TimeTracker.PageModels
 				return;
 			}
 
-			generalTimer.Stop();
-			notificationTimer.Stop();
-			TimerIsStarted = false;
+			TimerButtonViewModel.IsEnabled = false;
+			try
+			{
+				generalTimer.Stop();
+				notificationTimer.Stop();
+				TimerIsStarted = false;
 
-			RunningTotal = TimeSpan.Zero;
-			TimerButtonViewModel.Text = "start timer";
-			AttachPhotoButtonViewModel.IsEnabled = false;
+				RunningTotal = TimeSpan.Zero;
+				TimerButtonViewModel.Text = "start timer";
+				AttachPhotoButtonViewModel.IsEnabled = false;
 
-			var currentPeriod = await trackedPeriodService.GetCurrentAsync(accountService.CurrentUser.Id);
-			currentPeriod.End = DateTime.Now;
-			await trackedPeriodService.UpsertAsync(currentPeriod);
-			viewAllPageModel.AllForCurrentUser.RemoveAt(0);
-			viewAllPageModel.AllForCurrentUser.Insert(0, currentPeriod);
+				var currentPeriod = await trackedPeriodService.GetCurrentAsync(accountService.CurrentUser.Id);
+				currentPeriod.End = DateTime.Now;
+				await trackedPeriodService.UpsertAsync(currentPeriod);
+				viewAllPageModel.AllForCurrentUser.RemoveAt(0);
+				viewAllPageModel.AllForCurrentUser.Insert(0, currentPeriod);
+			}
+			finally
+			{
+				TimerButtonViewModel.IsEnabled = true;
+			}
 		}
 
 		private async Task OnNotificationTimerElapsed()
