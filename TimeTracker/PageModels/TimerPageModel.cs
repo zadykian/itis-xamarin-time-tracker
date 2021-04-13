@@ -61,7 +61,7 @@ namespace TimeTracker.PageModels
 		public bool TimerIsStarted
 		{
 			get => timerIsStarted;
-			set => SetProperty(ref timerIsStarted, value);
+			private set => SetProperty(ref timerIsStarted, value);
 		}
 
 		private TimeSpan runningTotal;
@@ -69,7 +69,7 @@ namespace TimeTracker.PageModels
 		public TimeSpan RunningTotal
 		{
 			get => runningTotal;
-			set => SetProperty(ref runningTotal, value);
+			private set => SetProperty(ref runningTotal, value);
 		}
 
 		private DateTime currentStartTime;
@@ -77,7 +77,7 @@ namespace TimeTracker.PageModels
 		public DateTime CurrentStartTime
 		{
 			get => currentStartTime;
-			set => SetProperty(ref currentStartTime, value);
+			private set => SetProperty(ref currentStartTime, value);
 		}
 
 		private ButtonViewModel timerButtonViewModel;
@@ -85,7 +85,7 @@ namespace TimeTracker.PageModels
 		public ButtonViewModel TimerButtonViewModel
 		{
 			get => timerButtonViewModel;
-			set => SetProperty(ref timerButtonViewModel, value);
+			private set => SetProperty(ref timerButtonViewModel, value);
 		}
 
 		private ButtonViewModel attachPhotoButtonViewModel;
@@ -93,21 +93,27 @@ namespace TimeTracker.PageModels
 		public ButtonViewModel AttachPhotoButtonViewModel
 		{
 			get => attachPhotoButtonViewModel;
-			set => SetProperty(ref attachPhotoButtonViewModel, value);
+			private set => SetProperty(ref attachPhotoButtonViewModel, value);
 		}
 
 		private async void OnTimerButtonPressed()
 		{
 			if (TimerIsStarted) await OnTimerStopped();
 			else await OnTimerStarted();
-			TimerIsStarted = !TimerIsStarted;
 		}
 
 		private async Task OnTimerStarted()
 		{
-			CurrentStartTime = DateTime.Now;
+			if (TimerIsStarted)
+			{
+				return;
+			}
+
 			generalTimer.Start();
 			notificationTimer.Start();
+			TimerIsStarted = true;
+
+			CurrentStartTime = DateTime.Now;
 			TimerButtonViewModel.Text = "stop timer";
 			AttachPhotoButtonViewModel.IsEnabled = true;
 
@@ -145,15 +151,17 @@ namespace TimeTracker.PageModels
 		/// <summary>
 		/// Stop timer.
 		/// </summary>
-		public async Task StopTimer()
+		public async ValueTask StopTimer()
 		{
 			if (!TimerIsStarted)
 			{
 				return;
 			}
-			
+
 			generalTimer.Stop();
 			notificationTimer.Stop();
+			TimerIsStarted = false;
+
 			RunningTotal = TimeSpan.Zero;
 			TimerButtonViewModel.Text = "start timer";
 			AttachPhotoButtonViewModel.IsEnabled = false;
