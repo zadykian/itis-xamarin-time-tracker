@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using TimeTracker.Models;
 using TimeTracker.Services.ConnectionFactory;
 
@@ -17,7 +18,10 @@ namespace TimeTracker.Services.Account
 		}
 
 		/// <inheritdoc />
-		User IAccountService.CurrentUser => sqliteSubService.CurrentUser ?? webApiSubService.CurrentUser;
+		User IAccountService.CurrentUser
+			=> sqliteSubService.CurrentUser
+			   ?? webApiSubService.CurrentUser
+			   ?? throw new InvalidOperationException("Current user is not initialized.");
 
 		/// <inheritdoc />
 		async Task<bool> IAccountService.LoginAsync(UserCredentials credentials)
