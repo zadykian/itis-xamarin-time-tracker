@@ -94,7 +94,7 @@ namespace TimeTracker.PageModels
 			// If last tracked period is not finished yet, return it to the top of a list.
 			if (lastTrackedPeriod.End is null)
 			{
-				viewAllPageModel.AllForCurrentUser.Insert(0, lastTrackedPeriod);	
+				viewAllPageModel.AllForCurrentUser.Insert(0, lastTrackedPeriod);
 			}
 		}
 
@@ -103,11 +103,7 @@ namespace TimeTracker.PageModels
 		/// </summary>
 		private async void OnLogOutButtonPressed()
 		{
-			if (timerPageModel.TimerIsStarted)
-			{
-				timerPageModel.TimerButtonViewModel.Command.Execute(parameter: null);
-			}
-
+			await timerPageModel.StopTimer();
 			await accountService.LogOutAsync();
 			await navigationService.NavigateToAsync<LoginPageModel>(setRoot: true);
 		}

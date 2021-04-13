@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Timers;
+using Plugin.Fingerprint;
+using Plugin.Fingerprint.Abstractions;
 using TimeTracker.Models;
 using TimeTracker.PageModels.Base;
 using TimeTracker.Services.Account;
@@ -117,6 +119,39 @@ namespace TimeTracker.PageModels
 
 		private async Task OnTimerStopped()
 		{
+			var isFingerprintAvailable = await CrossFingerprint.Current.IsAvailableAsync();
+
+			if (!isFingerprintAvailable)
+			{
+				await StopTimer();
+				return;
+			}
+
+			var authRequestConfig = new AuthenticationRequestConfiguration(
+				"Authentication",
+				"Authenticate access to your personal data");
+			var authResult = await CrossFingerprint.Current.AuthenticateAsync(authRequestConfig);
+
+			if (authResult.Authenticated)
+			{
+				await StopTimer();
+			}
+			else
+			{
+				// todo
+			}
+		}
+
+		/// <summary>
+		/// Stop timer.
+		/// </summary>
+		public async Task StopTimer()
+		{
+			if (!TimerIsStarted)
+			{
+				return;
+			}
+			
 			generalTimer.Stop();
 			notificationTimer.Stop();
 			RunningTotal = TimeSpan.Zero;
