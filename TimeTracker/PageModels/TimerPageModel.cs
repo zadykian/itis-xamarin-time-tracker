@@ -114,17 +114,17 @@ namespace TimeTracker.PageModels
 			try
 			{
 				generalTimer.Start();
-				notificationTimer.Start();
 				TimerIsStarted = true;
 
 				CurrentStartTime = DateTime.Now;
 				TimerButtonViewModel.Text = "stop timer";
 
 				var currentLocation = await locationService.GetCurrentLocationAsync();
-				var newTrackedPeriod = new TrackedPeriod(accountService.CurrentUser.Id, currentLocation);
+				var newTrackedPeriod = new TrackedPeriod(accountService.CurrentUser.Id, CurrentStartTime, currentLocation);
 				viewAllPageModel.AllForCurrentUser.Insert(0, newTrackedPeriod);
 				await trackedPeriodService.UpsertAsync(newTrackedPeriod);
 
+				notificationTimer.Start();
 				AttachPhotoButtonViewModel.IsEnabled = true;
 			}
 			finally

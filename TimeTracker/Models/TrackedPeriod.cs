@@ -12,12 +12,11 @@ namespace TimeTracker.Models
 		public TrackedPeriod()
 		{
 		}
-		
-		public TrackedPeriod(int userId, Location startLocation)
+
+		public TrackedPeriod(int userId, DateTime start, Location startLocation)
 		{
 			UserId = userId;
-			Start = DateTime.Now;
-
+			Start = start;
 			StartLatitude = startLocation.Latitude;
 			StartLongitude = startLocation.Longitude;
 		}
@@ -53,7 +52,7 @@ namespace TimeTracker.Models
 		/// Start location latitude.
 		/// </summary>
 		public double StartLatitude { get; set; }
-		
+
 		/// <summary>
 		/// Start location longitude.
 		/// </summary>

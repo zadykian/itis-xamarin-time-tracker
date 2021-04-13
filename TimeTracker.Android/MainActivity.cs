@@ -3,6 +3,7 @@ using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
 using Plugin.Fingerprint;
+using Plugin.LocalNotification;
 
 namespace TimeTracker.Android
 {
@@ -15,7 +16,15 @@ namespace TimeTracker.Android
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			CrossFingerprint.SetCurrentActivityResolver(() => this);
-			
+
+			NotificationCenter.CreateNotificationChannel(
+				new Plugin.LocalNotification.Platform.Droid.NotificationChannelRequest
+				{
+					Id = "time-tracker-notifications",
+					Name = "General",
+					Description = "General",
+				});
+
 			base.OnCreate(savedInstanceState);
 
 			Xamarin.Essentials.Platform.Init(this, savedInstanceState);
