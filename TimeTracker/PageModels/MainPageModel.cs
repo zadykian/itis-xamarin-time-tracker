@@ -40,7 +40,7 @@ namespace TimeTracker.PageModels
 		}
 
 		public override Task InitializeAsync(object navigationData)
-			=> Task.WhenAny(
+			=> Task.WhenAll(
 				base.InitializeAsync(navigationData),
 				ProfilePageModel.InitializeAsync(null),
 				ViewAllPageModel.InitializeAsync(null),

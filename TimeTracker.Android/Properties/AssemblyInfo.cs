@@ -35,5 +35,5 @@ using Android.App;
 [assembly: UsesFeature("android.hardware.location.gps", Required = false)]
 [assembly: UsesFeature("android.hardware.location.network", Required = false)]
 [assembly: UsesFeature("android.hardware.fingerprint", Required = false)]
-[assembly: UsesFeature("android.hardware.camera", Required = true)]
-[assembly: UsesFeature("android.hardware.camera.autofocus", Required = true)]
+[assembly: UsesFeature("android.hardware.camera", Required = false)]
+[assembly: UsesFeature("android.hardware.camera.autofocus", Required = false)]

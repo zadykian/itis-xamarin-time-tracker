@@ -135,7 +135,7 @@ namespace TimeTracker.Services.Account
 			async Task<bool> IAccountService.LoginAsync(UserCredentials credentials)
 			{
 				await Task.CompletedTask;
-				return true;
+				return false;
 			}
 
 			/// <inheritdoc />
@@ -145,14 +145,14 @@ namespace TimeTracker.Services.Account
 			async Task<bool> IAccountService.CreateAccountAsync(User user)
 			{
 				await Task.CompletedTask;
-				return true;
+				return false;
 			}
 
 			/// <inheritdoc />
 			async Task<bool> IAccountService.UpdatePasswordAsync(UserCredentials credentials)
 			{
 				await Task.CompletedTask;
-				return true;
+				return false;
 			}
 		}
 	}

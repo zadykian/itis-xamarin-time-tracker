@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using TimeTracker.Models;
 using TimeTracker.PageModels.Base;
 using TimeTracker.Services.Account;
@@ -33,9 +34,8 @@ namespace TimeTracker.PageModels
 			this.viewAllPageModel = viewAllPageModel;
 			this.timerPageModel = timerPageModel;
 
-			var currentUser = accountService.CurrentUser;
-			UsernameEntryViewModel = new LoginEntryViewModel("username", isPassword: false) {Text = currentUser.Username};
-			PasswordEntryViewModel = new LoginEntryViewModel("password", isPassword: true) {Text = currentUser.Password};
+			UsernameEntryViewModel = new LoginEntryViewModel("username", isPassword: false);
+			PasswordEntryViewModel = new LoginEntryViewModel("password", isPassword: true);
 
 			UpdatePasswordButtonViewModel = new ButtonViewModel("update password", OnUpdatePasswordButtonPressed);
 			ClearUserDataButtonViewModel = new ButtonViewModel("clear data", OnClearDataButtonPressed);
@@ -66,6 +66,15 @@ namespace TimeTracker.PageModels
 		/// Log out button.
 		/// </summary>
 		public ButtonViewModel LogOutButtonViewModel { get; }
+
+		/// <inheritdoc />
+		public override async Task InitializeAsync(object navigationData)
+		{
+			await Task.CompletedTask;
+			var currentUser = accountService.CurrentUser;
+			UsernameEntryViewModel.Text = currentUser.Username;
+			PasswordEntryViewModel.Text = currentUser.Password;
+		}
 
 		/// <summary>
 		/// Action bound to <see cref="UpdatePasswordButtonViewModel"/> button.
