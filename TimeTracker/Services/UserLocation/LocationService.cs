@@ -7,12 +7,6 @@ namespace TimeTracker.Services.UserLocation
 	internal class LocationService : ILocationService
 	{
 		/// <inheritdoc />
-		async Task<Location> ILocationService.GetCurrentLocationAsync()
-		{
-			// todo
-			// return await Geolocation.GetLocationAsync();
-			await Task.CompletedTask;
-			return new Location(50, 50);
-		}
+		async Task<Location> ILocationService.GetCurrentLocationAsync() => await Geolocation.GetLocationAsync();
 	}
 }

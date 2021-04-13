@@ -11,10 +11,6 @@ namespace TimeTracker.Android
 	{
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
-			// todo
-			// TabLayoutResource = Resource.Layout.Tabbar;
-			// ToolbarResource = Resource.Layout.Toolbar;
-
 			base.OnCreate(savedInstanceState);
 
 			Xamarin.Essentials.Platform.Init(this, savedInstanceState);
