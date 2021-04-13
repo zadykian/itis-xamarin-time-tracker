@@ -14,7 +14,7 @@
 					<Label Text="{Binding Start, StringFormat='{}{0:HH\\:mm\\:ss}'}"
 					       FontSize="32"
 					       TextColor="Black" />
-					<Label Text="begin"
+					<Label Text="start"
 					       FontSize="Small"
 					       TextColor="Black"
 					       HorizontalTextAlignment="Center" />

@@ -12,6 +12,9 @@ using TimeTracker.ViewModels;
 
 namespace TimeTracker.PageModels
 {
+	/// <summary>
+	/// Timer page model.
+	/// </summary>
 	internal class TimerPageModel : PageModelBase
 	{
 		private readonly Timer generalTimer;
@@ -89,12 +92,6 @@ namespace TimeTracker.PageModels
 		{
 			get => attachPhotoButtonViewModel;
 			set => SetProperty(ref attachPhotoButtonViewModel, value);
-		}
-
-		public override async Task InitializeAsync(object navigationData)
-		{
-			RunningTotal = new TimeSpan();
-			await base.InitializeAsync(navigationData);
 		}
 
 		private async void OnTimerButtonPressed()

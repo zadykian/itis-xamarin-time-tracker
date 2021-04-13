@@ -88,13 +88,13 @@ namespace TimeTracker.PageModels
 				return;
 			}
 
-			var currentPeriod = viewAllPageModel.AllForCurrentUser[0];
+			var lastTrackedPeriod = viewAllPageModel.AllForCurrentUser[0];
 			viewAllPageModel.AllForCurrentUser.Clear();
 
-			// If current period is not finished yet, return it to the top of a list.
-			if (currentPeriod.End is null)
+			// If last tracked period is not finished yet, return it to the top of a list.
+			if (lastTrackedPeriod.End is null)
 			{
-				viewAllPageModel.AllForCurrentUser.Insert(0, currentPeriod);	
+				viewAllPageModel.AllForCurrentUser.Insert(0, lastTrackedPeriod);	
 			}
 		}
 

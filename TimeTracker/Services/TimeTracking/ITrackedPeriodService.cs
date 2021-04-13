@@ -25,8 +25,11 @@ namespace TimeTracker.Services.TimeTracking
 		Task<IReadOnlyCollection<TrackedPeriod>> GetAllAsync(int userId);
 
 		/// <summary>
-		/// Delete data of user with id <paramref name="userId"/>.
+		/// Delete tracked periods of a user with id <paramref name="userId"/>.
 		/// </summary>
+		/// <remarks>
+		/// If user has not finished tracked period, it stays untouched.
+		/// </remarks>
 		Task ClearDataAsync(int userId);
 
 		/// <summary>
