@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 
 namespace TimeTracker.Services.Photo
 {
@@ -9,8 +11,11 @@ namespace TimeTracker.Services.Photo
 		/// <inheritdoc />
 		async Task<IReadOnlyCollection<byte>> IPhotoService.CapturePhotoAsync()
 		{
-			await Task.CompletedTask;
-			return new byte[] { 10, 20, 30, 40 };
+			var fileResult = await MediaPicker.CapturePhotoAsync();
+			var fileStream = await fileResult.OpenReadAsync();
+			var memoryStream = new MemoryStream();
+			await fileStream.CopyToAsync(memoryStream);
+			return memoryStream.ToArray();
 		}
 	}
 }
