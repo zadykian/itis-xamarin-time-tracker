@@ -21,7 +21,7 @@ namespace TimeTracker.Services.Account
 		/// <summary>
 		/// Log out.
 		/// </summary>
-		void LogOut();
+		Task LogOutAsync();
 
 		/// <summary>
 		/// Create new account. 

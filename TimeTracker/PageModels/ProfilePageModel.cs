@@ -108,7 +108,7 @@ namespace TimeTracker.PageModels
 				timerPageModel.TimerButtonViewModel.Command.Execute(parameter: null);
 			}
 
-			accountService.LogOut();
+			await accountService.LogOutAsync();
 			await navigationService.NavigateToAsync<LoginPageModel>(setRoot: true);
 		}
 	}
