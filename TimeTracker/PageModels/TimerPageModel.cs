@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Timers;
 using Plugin.Fingerprint;
@@ -118,12 +119,13 @@ namespace TimeTracker.PageModels
 
 				CurrentStartTime = DateTime.Now;
 				TimerButtonViewModel.Text = "stop timer";
-				AttachPhotoButtonViewModel.IsEnabled = true;
 
 				var currentLocation = await locationService.GetCurrentLocationAsync();
 				var newTrackedPeriod = new TrackedPeriod(accountService.CurrentUser.Id, currentLocation);
 				viewAllPageModel.AllForCurrentUser.Insert(0, newTrackedPeriod);
 				await trackedPeriodService.UpsertAsync(newTrackedPeriod);
+
+				AttachPhotoButtonViewModel.IsEnabled = true;
 			}
 			finally
 			{
@@ -198,6 +200,12 @@ namespace TimeTracker.PageModels
 		private async void OnAttachPhotoButtonClicked()
 		{
 			var imageContent = await photoService.CapturePhotoAsync();
+
+			if (!imageContent.Any())
+			{
+				return;
+			}
+
 			var currentTrackedPeriod = await trackedPeriodService.GetCurrentAsync(accountService.CurrentUser.Id);
 			var image = new Image(imageContent, currentTrackedPeriod.Id);
 			await trackedPeriodService.AddImageAsync(image);

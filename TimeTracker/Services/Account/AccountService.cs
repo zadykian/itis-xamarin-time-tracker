@@ -145,7 +145,7 @@ namespace TimeTracker.Services.Account
 			async Task<bool> IAccountService.CreateAccountAsync(User user)
 			{
 				await Task.CompletedTask;
-				return false;
+				return true;
 			}
 
 			/// <inheritdoc />
