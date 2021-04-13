@@ -83,15 +83,18 @@ namespace TimeTracker.PageModels
 		{
 			await trackedPeriodService.ClearDataAsync(accountService.CurrentUser.Id);
 
-			if (viewAllPageModel.AllForCurrentUser.Any())
+			if (!viewAllPageModel.AllForCurrentUser.Any())
 			{
-				var currentPeriod = viewAllPageModel.AllForCurrentUser[0];
-				viewAllPageModel.AllForCurrentUser.Clear();
-				viewAllPageModel.AllForCurrentUser.Insert(0, currentPeriod);
+				return;
 			}
-			else
+
+			var currentPeriod = viewAllPageModel.AllForCurrentUser[0];
+			viewAllPageModel.AllForCurrentUser.Clear();
+
+			// If current period is not finished yet, return it to the top of a list.
+			if (currentPeriod.End is null)
 			{
-				viewAllPageModel.AllForCurrentUser.Clear();	
+				viewAllPageModel.AllForCurrentUser.Insert(0, currentPeriod);	
 			}
 		}
 
