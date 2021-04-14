@@ -66,4 +66,7 @@
 			<SubType>Code</SubType>
 		</Compile>
 	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\TimeTracker.Services\TimeTracker.Services.csproj"/>
+	</ItemGroup>
 </Project>

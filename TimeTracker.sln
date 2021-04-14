@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeTracker.App.Android", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeTracker.App.Core", "TimeTracker.App.Core\TimeTracker.App.Core.csproj", "{764C33A9-C9F3-4D94-B945-3F2168473335}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeTracker.Services", "TimeTracker.Services\TimeTracker.Services.csproj", "{48D41114-BD61-483C-831E-B9EAEBE31639}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,18 @@ Global
 		{764C33A9-C9F3-4D94-B945-3F2168473335}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{764C33A9-C9F3-4D94-B945-3F2168473335}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{764C33A9-C9F3-4D94-B945-3F2168473335}.Release|iPhoneSimulator.Deploy.0 = Release|Any CPU
+		{48D41114-BD61-483C-831E-B9EAEBE31639}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48D41114-BD61-483C-831E-B9EAEBE31639}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48D41114-BD61-483C-831E-B9EAEBE31639}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{48D41114-BD61-483C-831E-B9EAEBE31639}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{48D41114-BD61-483C-831E-B9EAEBE31639}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{48D41114-BD61-483C-831E-B9EAEBE31639}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{48D41114-BD61-483C-831E-B9EAEBE31639}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48D41114-BD61-483C-831E-B9EAEBE31639}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48D41114-BD61-483C-831E-B9EAEBE31639}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{48D41114-BD61-483C-831E-B9EAEBE31639}.Release|iPhone.Build.0 = Release|Any CPU
+		{48D41114-BD61-483C-831E-B9EAEBE31639}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{48D41114-BD61-483C-831E-B9EAEBE31639}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
