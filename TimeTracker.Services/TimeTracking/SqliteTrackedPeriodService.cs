@@ -46,19 +46,15 @@ namespace TimeTracker.Services.TimeTracking
 				.OrderByDescending(period => period.Start)
 				.FirstOrDefaultAsync();
 
+			var periodsQuery = dbConnection.Table<TrackedPeriod>();
 			if (notFinishedPeriod is null)
 			{
-				await dbConnection.DeleteAllAsync<TrackedPeriod>();
-				return;
+				await periodsQuery.DeleteAsync(period => period.UserId == userId);
 			}
-
-			await dbConnection
-				.Table<TrackedPeriod>()
-				.DeleteAsync(period => period.Id != notFinishedPeriod.Id);
+			else
+			{
+				await periodsQuery.DeleteAsync(period => period.UserId == userId && period.Id != notFinishedPeriod.Id);
+			}
 		}
-
-		/// <inheritdoc />
-		async Task ITrackedPeriodService.AddImageAsync(Image image)
-			=> await (await Connection.Value).InsertAsync(image);
 	}
 }

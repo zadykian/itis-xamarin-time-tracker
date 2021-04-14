@@ -6,10 +6,11 @@ using Plugin.Fingerprint;
 using Plugin.Fingerprint.Abstractions;
 using TimeTracker.App.Core.PageModels.Base;
 using TimeTracker.App.Core.Services.Notifications;
-using TimeTracker.App.Core.Services.Photo;
+using TimeTracker.App.Core.Services.PhotoCapturing;
 using TimeTracker.App.Core.Services.UserLocation;
 using TimeTracker.App.Core.ViewModels;
 using TimeTracker.Services.Account;
+using TimeTracker.Services.Images;
 using TimeTracker.Services.Models;
 using TimeTracker.Services.TimeTracking;
 
@@ -26,23 +27,28 @@ namespace TimeTracker.App.Core.PageModels
 		private readonly ViewAllPageModel viewAllPageModel;
 
 		private readonly ITrackedPeriodService trackedPeriodService;
+		private readonly IImageService imageService;
 		private readonly IAccountService accountService;
+
 		private readonly ILocationService locationService;
-		private readonly IPhotoService photoService;
+		private readonly IPhotoCapturingService photoCapturingService;
 		private readonly INotificationService notificationService;
 
 		public TimerPageModel(
 			ITrackedPeriodService trackedPeriodService,
 			IAccountService accountService,
+			IImageService imageService,
 			ILocationService locationService,
-			IPhotoService photoService,
+			IPhotoCapturingService photoCapturingService,
 			INotificationService notificationService,
 			ViewAllPageModel viewAllPageModel)
 		{
 			this.trackedPeriodService = trackedPeriodService;
 			this.accountService = accountService;
+			this.imageService = imageService;
+
 			this.locationService = locationService;
-			this.photoService = photoService;
+			this.photoCapturingService = photoCapturingService;
 			this.notificationService = notificationService;
 
 			this.viewAllPageModel = viewAllPageModel;
@@ -197,7 +203,7 @@ namespace TimeTracker.App.Core.PageModels
 
 		private async void OnAttachPhotoButtonClicked()
 		{
-			var imageContent = await photoService.CapturePhotoAsync();
+			var imageContent = await photoCapturingService.CapturePhotoAsync();
 
 			if (!imageContent.Any())
 			{
@@ -206,7 +212,7 @@ namespace TimeTracker.App.Core.PageModels
 
 			var currentTrackedPeriod = await trackedPeriodService.GetCurrentAsync(accountService.CurrentUser.Id!.Value);
 			var image = new Image(imageContent, currentTrackedPeriod.Id!.Value);
-			await trackedPeriodService.AddImageAsync(image);
+			await imageService.AddImageAsync(image);
 		}
 	}
 }

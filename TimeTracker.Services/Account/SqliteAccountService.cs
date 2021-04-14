@@ -15,7 +15,7 @@ namespace TimeTracker.Services.Account
 		public User CurrentUser { get; private set; }
 
 		/// <inheritdoc />
-		async Task<bool> IAccountService.LoginAsync(UserCredentials credentials)
+		async Task<bool> IAccountService.LogInAsync(UserCredentials credentials)
 		{
 			var dbConnection = await Connection.Value;
 

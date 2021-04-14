@@ -4,13 +4,13 @@ using System.IO;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 
-namespace TimeTracker.App.Core.Services.Photo
+namespace TimeTracker.App.Core.Services.PhotoCapturing
 {
 	/// <inheritdoc />
-	internal class PhotoService : IPhotoService
+	internal class PhotoCapturingService : IPhotoCapturingService
 	{
 		/// <inheritdoc />
-		async Task<IReadOnlyCollection<byte>> IPhotoService.CapturePhotoAsync()
+		async Task<IReadOnlyCollection<byte>> IPhotoCapturingService.CapturePhotoAsync()
 		{
 			var fileResult = await MediaPicker.CapturePhotoAsync();
 

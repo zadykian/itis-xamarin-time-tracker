@@ -31,10 +31,5 @@ namespace TimeTracker.Services.TimeTracking
 		/// If user has not finished tracked period, it stays untouched.
 		/// </remarks>
 		Task ClearDataAsync(int userId);
-
-		/// <summary>
-		/// Add new image related to current tracked period. 
-		/// </summary>
-		Task AddImageAsync(Image image);
 	}
 }

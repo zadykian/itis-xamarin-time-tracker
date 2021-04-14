@@ -6,7 +6,7 @@ using TimeTracker.App.Core.Pages;
 using TimeTracker.App.Core.Services.Account;
 using TimeTracker.App.Core.Services.Navigation;
 using TimeTracker.App.Core.Services.Notifications;
-using TimeTracker.App.Core.Services.Photo;
+using TimeTracker.App.Core.Services.PhotoCapturing;
 using TimeTracker.App.Core.Services.TimeTracking;
 using TimeTracker.App.Core.Services.UserLocation;
 using TimeTracker.Services.Account;
@@ -40,7 +40,7 @@ namespace TimeTracker.App.Core
 
 			container.Register<ITrackedPeriodService, TrackedPeriodService>();
 			container.Register<ILocationService, LocationService>();
-			container.Register<IPhotoService, PhotoService>();
+			container.Register<IPhotoCapturingService, PhotoCapturingService>();
 			container.Register<INotificationService, NotificationService>();
 		}
 

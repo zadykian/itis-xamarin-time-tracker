@@ -9,49 +9,49 @@ namespace TimeTracker.App.Core.Services.Account
 	/// <inheritdoc cref="IAccountService"/>
 	internal class AccountService : IAccountService
 	{
-		private readonly IAccountService sqliteSubService;
-		private readonly IAccountService webApiSubService;
+		private readonly IAccountService sqliteAccountService;
+		private readonly IAccountService webApiAccountService;
 
 		public AccountService()
 		{
-			sqliteSubService = new SqliteAccountService(FileSystem.AppDataDirectory);
-			webApiSubService = new WebApiSubService();
+			sqliteAccountService = new SqliteAccountService(FileSystem.AppDataDirectory);
+			webApiAccountService = new WebApiSubService();
 		}
 
 		/// <inheritdoc />
 		User IAccountService.CurrentUser
-			=> sqliteSubService.CurrentUser
-			   ?? webApiSubService.CurrentUser
+			=> sqliteAccountService.CurrentUser
+			   ?? webApiAccountService.CurrentUser
 			   ?? throw new InvalidOperationException("Current user is not initialized.");
 
 		/// <inheritdoc />
-		async Task<bool> IAccountService.LoginAsync(UserCredentials credentials)
+		async Task<bool> IAccountService.LogInAsync(UserCredentials credentials)
 		{
-			var succeededLocally = await sqliteSubService.LoginAsync(credentials);
+			var succeededLocally = await sqliteAccountService.LogInAsync(credentials);
 			if (succeededLocally) return true;
-			return await webApiSubService.LoginAsync(credentials);
+			return await webApiAccountService.LogInAsync(credentials);
 		}
 
 		/// <inheritdoc />
 		async Task IAccountService.LogOutAsync()
 		{
-			await sqliteSubService.LogOutAsync();
-			await webApiSubService.LogOutAsync();
+			await sqliteAccountService.LogOutAsync();
+			await webApiAccountService.LogOutAsync();
 		}
 
 		/// <inheritdoc />
 		async Task<bool> IAccountService.CreateAccountAsync(User newUser)
 		{
-			var succeededLocally = await sqliteSubService.CreateAccountAsync(newUser);
-			var succeededRemotely = await webApiSubService.CreateAccountAsync(newUser);
+			var succeededLocally = await sqliteAccountService.CreateAccountAsync(newUser);
+			var succeededRemotely = await webApiAccountService.CreateAccountAsync(newUser);
 			return succeededLocally && succeededRemotely;
 		}
 
 		/// <inheritdoc />
 		async Task<bool> IAccountService.UpdatePasswordAsync(UserCredentials credentials)
 		{
-			var succeededLocally = await sqliteSubService.UpdatePasswordAsync(credentials);
-			var succeededRemotely = await webApiSubService.UpdatePasswordAsync(credentials);
+			var succeededLocally = await sqliteAccountService.UpdatePasswordAsync(credentials);
+			var succeededRemotely = await webApiAccountService.UpdatePasswordAsync(credentials);
 			return succeededLocally && succeededRemotely;
 		}
 
@@ -66,7 +66,7 @@ namespace TimeTracker.App.Core.Services.Account
 			User IAccountService.CurrentUser => null;
 
 			/// <inheritdoc />
-			async Task<bool> IAccountService.LoginAsync(UserCredentials credentials)
+			async Task<bool> IAccountService.LogInAsync(UserCredentials credentials)
 			{
 				await Task.CompletedTask;
 				return false;

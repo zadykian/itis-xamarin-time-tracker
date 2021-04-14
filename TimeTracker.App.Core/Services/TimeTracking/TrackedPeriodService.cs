@@ -11,70 +11,63 @@ namespace TimeTracker.App.Core.Services.TimeTracking
 	/// <inheritdoc />
 	internal class TrackedPeriodService :  ITrackedPeriodService
 	{
-		private readonly ITrackedPeriodService sqliteSubService;
-		private readonly ITrackedPeriodService webApiSubService;
+		private readonly ITrackedPeriodService sqliteTrackedPeriodService;
+		private readonly ITrackedPeriodService webApiTrackedPeriodService;
 
 		public TrackedPeriodService()
 		{
-			sqliteSubService = new SqliteTrackedPeriodService(FileSystem.AppDataDirectory);
-			webApiSubService = new WebApiSubService();
+			sqliteTrackedPeriodService = new SqliteTrackedPeriodService(FileSystem.AppDataDirectory);
+			webApiTrackedPeriodService = new WebApiSubService();
 		}
 
 		/// <inheritdoc />
 		async Task ITrackedPeriodService.UpsertAsync(TrackedPeriod trackedPeriod)
 		{
-			await sqliteSubService.UpsertAsync(trackedPeriod);
-			await webApiSubService.UpsertAsync(trackedPeriod);
+			await sqliteTrackedPeriodService.UpsertAsync(trackedPeriod);
+			await webApiTrackedPeriodService.UpsertAsync(trackedPeriod);
 		}
 
 		/// <inheritdoc />
 		async Task<TrackedPeriod> ITrackedPeriodService.GetCurrentAsync(int userId)
 		{
-			var currentLocal = await sqliteSubService.GetCurrentAsync(userId);
+			var currentLocal = await sqliteTrackedPeriodService.GetCurrentAsync(userId);
 
 			if (currentLocal != null)
 			{
 				return currentLocal;
 			}
 
-			var currentRemote = await webApiSubService.GetCurrentAsync(userId);
+			var currentRemote = await webApiTrackedPeriodService.GetCurrentAsync(userId);
 
 			if (currentRemote is null)
 			{
 				throw new ArgumentException($"User with id {userId} does not have current active period.", nameof(userId));
 			}
 
-			await sqliteSubService.UpsertAsync(currentRemote);
+			await sqliteTrackedPeriodService.UpsertAsync(currentRemote);
 			return currentRemote;
 		}
 
 		/// <inheritdoc />
 		async Task<IReadOnlyCollection<TrackedPeriod>> ITrackedPeriodService.GetAllAsync(int userId)
 		{
-			var allLocal = await sqliteSubService.GetAllAsync(userId);
+			var localPeriods = await sqliteTrackedPeriodService.GetAllAsync(userId);
 
-			if (allLocal.Any())
+			if (localPeriods.Any())
 			{
-				return allLocal;
+				return localPeriods;
 			}
 
-			var allRemote = await webApiSubService.GetAllAsync(userId);
-			foreach (var remotePeriod in allRemote) await sqliteSubService.UpsertAsync(remotePeriod);
-			return allRemote;
+			var remotePeriods = await webApiTrackedPeriodService.GetAllAsync(userId);
+			foreach (var remotePeriod in remotePeriods) await sqliteTrackedPeriodService.UpsertAsync(remotePeriod);
+			return remotePeriods;
 		}
 
 		/// <inheritdoc />
 		async Task ITrackedPeriodService.ClearDataAsync(int userId)
 		{
-			await sqliteSubService.ClearDataAsync(userId);
-			await webApiSubService.ClearDataAsync(userId);
-		}
-
-		/// <inheritdoc />
-		async Task ITrackedPeriodService.AddImageAsync(Image image)
-		{
-			await sqliteSubService.AddImageAsync(image);
-			await webApiSubService.AddImageAsync(image);
+			await sqliteTrackedPeriodService.ClearDataAsync(userId);
+			await webApiTrackedPeriodService.ClearDataAsync(userId);
 		}
 
 		/// <summary>
@@ -104,9 +97,6 @@ namespace TimeTracker.App.Core.Services.TimeTracking
 
 			/// <inheritdoc />
 			async Task ITrackedPeriodService.ClearDataAsync(int userId) => await Task.CompletedTask;
-
-			/// <inheritdoc />
-			async Task ITrackedPeriodService.AddImageAsync(Image image) => await Task.CompletedTask;
 		}
 	}
 }

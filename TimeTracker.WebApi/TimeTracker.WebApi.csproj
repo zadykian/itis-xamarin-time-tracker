@@ -2,10 +2,11 @@
 
 	<PropertyGroup>
 		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<LangVersion>default</LangVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\TimeTracker.Services\TimeTracker.Services.csproj"/>
+		<ProjectReference Include="..\TimeTracker.Services\TimeTracker.Services.csproj" />
 	</ItemGroup>
 
 </Project>

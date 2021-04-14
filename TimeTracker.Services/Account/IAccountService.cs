@@ -16,7 +16,7 @@ namespace TimeTracker.Services.Account
 		/// <summary>
 		/// Log in as existing user with <paramref name="credentials"/>. 
 		/// </summary>
-		Task<bool> LoginAsync(UserCredentials credentials);
+		Task<bool> LogInAsync(UserCredentials credentials);
 
 		/// <summary>
 		/// Log out.

@@ -71,9 +71,9 @@ namespace TimeTracker.App.Core.PageModels
 		private async void OnLogin()
 		{
 			var userCredentials = new UserCredentials(UsernameEntryViewModel.Text, PasswordEntryViewModel.Text);
-			var loginAttempt = await accountService.LoginAsync(userCredentials);
+			var loggedInSuccessfully = await accountService.LogInAsync(userCredentials);
 
-			if (loginAttempt)
+			if (loggedInSuccessfully)
 			{
 				await navigationService.NavigateToAsync<MainPageModel>();
 			}
