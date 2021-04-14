@@ -3,15 +3,14 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TimeTracker.Services.Models;
 using TimeTracker.Services.TimeTracking;
+using TimeTracker.WebApi.Controllers.Base;
 
 namespace TimeTracker.WebApi.Controllers
 {
 	/// <summary>
 	/// Controller for <see cref="TrackedPeriod"/> entities management.
 	/// </summary>
-	[ApiController]
-	[Route("[controller]/[action]")]
-	public class TimeTrackingController : Controller
+	public class TimeTrackingController : ApiControllerBase
 	{
 		private readonly ITrackedPeriodService trackedPeriodService;
 
@@ -19,7 +18,7 @@ namespace TimeTracker.WebApi.Controllers
 			=> this.trackedPeriodService = trackedPeriodService;
 
 		/// <inheritdoc cref="ITrackedPeriodService.UpsertAsync"/>
-		[HttpPost]
+		[HttpPut]
 		public async Task<IActionResult> UpsertAsync([FromBody, Required] TrackedPeriod trackedPeriod)
 		{
 			await trackedPeriodService.UpsertAsync(trackedPeriod);

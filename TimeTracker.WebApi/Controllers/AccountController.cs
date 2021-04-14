@@ -4,15 +4,14 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TimeTracker.Services.Account;
 using TimeTracker.Services.Models;
+using TimeTracker.WebApi.Controllers.Base;
 
 namespace TimeTracker.WebApi.Controllers
 {
 	/// <summary>
 	/// Controller for users' accounts management.
 	/// </summary>
-	[ApiController]
-	[Route("[controller]/[action]")]
-	public class AccountController : Controller
+	public class AccountController : ApiControllerBase
 	{
 		private readonly IAccountService accountService;
 
@@ -42,7 +41,7 @@ namespace TimeTracker.WebApi.Controllers
 		}
 
 		/// <inheritdoc cref="IAccountService.UpdatePasswordAsync"/>
-		[HttpPost]
+		[HttpPut]
 		public async Task<IActionResult> UpdatePasswordAsync([FromBody, Required] User newUser)
 		{
 			var updatedSuccessfully = await accountService.UpdatePasswordAsync(newUser);
