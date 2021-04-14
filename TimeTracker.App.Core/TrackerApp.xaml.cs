@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
-using TimeTracker.PageModels;
-using TimeTracker.Services.Navigation;
+using TimeTracker.App.Core.PageModels;
+using TimeTracker.App.Core.Services.Navigation;
 
-namespace TimeTracker
+namespace TimeTracker.App.Core
 {
 	public partial class TrackerApp
 	{

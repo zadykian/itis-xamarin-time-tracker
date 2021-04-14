@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using TimeTracker.Models;
+using TimeTracker.App.Core.Models;
 
-namespace TimeTracker.Services.TimeTracking
+namespace TimeTracker.App.Core.Services.TimeTracking
 {
 	/// <summary>
 	/// Service for <see cref="TrackedPeriod"/> entities management.

@@ -1,11 +1,11 @@
 ﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using TimeTracker.Models;
-using TimeTracker.PageModels.Base;
-using TimeTracker.Services.Account;
-using TimeTracker.Services.TimeTracking;
+using TimeTracker.App.Core.Models;
+using TimeTracker.App.Core.PageModels.Base;
+using TimeTracker.App.Core.Services.Account;
+using TimeTracker.App.Core.Services.TimeTracking;
 
-namespace TimeTracker.PageModels
+namespace TimeTracker.App.Core.PageModels
 {
 	internal class ViewAllPageModel : PageModelBase
 	{

@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace TimeTracker.Services.Notifications
+namespace TimeTracker.App.Core.Services.Notifications
 {
 	/// <summary>
 	/// Notifications service.

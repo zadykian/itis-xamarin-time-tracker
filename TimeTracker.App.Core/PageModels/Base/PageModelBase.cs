@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace TimeTracker.PageModels.Base
+namespace TimeTracker.App.Core.PageModels.Base
 {
     internal class PageModelBase : ExtendedBindableObject
     {

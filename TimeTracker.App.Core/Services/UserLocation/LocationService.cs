@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 
-namespace TimeTracker.Services.UserLocation
+namespace TimeTracker.App.Core.Services.UserLocation
 {
 	/// <inheritdoc />
 	internal class LocationService : ILocationService

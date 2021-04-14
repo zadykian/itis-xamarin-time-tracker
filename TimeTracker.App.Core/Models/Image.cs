@@ -3,7 +3,7 @@ using System.Linq;
 using SQLite;
 // ReSharper disable AutoPropertyCanBeMadeGetOnly.Global
 
-namespace TimeTracker.Models
+namespace TimeTracker.App.Core.Models
 {
 	/// <summary>
 	/// Image taken during time tracking.

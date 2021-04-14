@@ -7,9 +7,9 @@
             mc:Ignorable="d"
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
             android:TabbedPage.ToolbarPlacement="Bottom"
-            xmlns:pages="clr-namespace:TimeTracker.Pages"
-            xmlns:pageModels="clr-namespace:TimeTracker.PageModels;assembly=TimeTracker.App.Core"
-            x:Class="TimeTracker.Pages.MainPage"
+            xmlns:pages="clr-namespace:TimeTracker.App.Core.Pages;assembly=TimeTracker.App.Core"
+            xmlns:pageModels="clr-namespace:TimeTracker.App.Core.PageModels;assembly=TimeTracker.App.Core"
+            x:Class="TimeTracker.App.Core.Pages.MainPage"
             x:DataType="pageModels:MainPageModel">
 	<TabbedPage.Children>
 		<NavigationPage Title="Time">

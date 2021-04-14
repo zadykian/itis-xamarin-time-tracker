@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using TimeTracker.PageModels;
-using TimeTracker.PageModels.Base;
-using TimeTracker.Pages;
-using TimeTracker.Services.Account;
-using TimeTracker.Services.Navigation;
-using TimeTracker.Services.Notifications;
-using TimeTracker.Services.Photo;
-using TimeTracker.Services.TimeTracking;
-using TimeTracker.Services.UserLocation;
+using TimeTracker.App.Core.PageModels;
+using TimeTracker.App.Core.PageModels.Base;
+using TimeTracker.App.Core.Pages;
+using TimeTracker.App.Core.Services.Account;
+using TimeTracker.App.Core.Services.Navigation;
+using TimeTracker.App.Core.Services.Notifications;
+using TimeTracker.App.Core.Services.Photo;
+using TimeTracker.App.Core.Services.TimeTracking;
+using TimeTracker.App.Core.Services.UserLocation;
 using TinyIoC;
 using Xamarin.Forms;
 
-namespace TimeTracker
+namespace TimeTracker.App.Core
 {
 	/// <summary>
 	/// Application global context.

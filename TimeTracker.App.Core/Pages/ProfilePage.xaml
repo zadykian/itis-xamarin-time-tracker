@@ -4,11 +4,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:pageModels="clr-namespace:TimeTracker.PageModels;assembly=TimeTracker.App.Core"
-             xmlns:views="clr-namespace:TimeTracker.Views"
-             xmlns:buttons="clr-namespace:TimeTracker.Views.Buttons;assembly=TimeTracker.App.Core"
+             xmlns:pageModels="clr-namespace:TimeTracker.App.Core.PageModels;assembly=TimeTracker.App.Core"
+             xmlns:views="clr-namespace:TimeTracker.App.Core.Views;assembly=TimeTracker.App.Core"
              mc:Ignorable="d"
-             x:Class="TimeTracker.Pages.ProfilePage"
+             x:Class="TimeTracker.App.Core.Pages.ProfilePage"
              x:DataType="pageModels:ProfilePageModel">
 	<ContentPage.Content>
 		<StackLayout WidthRequest="220" HorizontalOptions="Center" VerticalOptions="Center">
@@ -16,9 +15,9 @@
 			<views:LoginEntryView BindingContext="{Binding UsernameEntryViewModel}" IsEnabled="False" />
 			<views:LoginEntryView BindingContext="{Binding PasswordEntryViewModel}" />
 
-			<buttons:BindableButton BindingContext="{Binding UpdatePasswordButtonViewModel}" />
-			<buttons:BindableButton BindingContext="{Binding ClearUserDataButtonViewModel}" />
-			<buttons:BindableButton BindingContext="{Binding LogOutButtonViewModel}" />
+			<views:BindableButton BindingContext="{Binding UpdatePasswordButtonViewModel}" />
+			<views:BindableButton BindingContext="{Binding ClearUserDataButtonViewModel}" />
+			<views:BindableButton BindingContext="{Binding LogOutButtonViewModel}" />
 
 		</StackLayout>
 	</ContentPage.Content>

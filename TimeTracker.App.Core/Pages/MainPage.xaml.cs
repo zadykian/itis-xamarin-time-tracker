@@ -1,6 +1,6 @@
 ﻿using Xamarin.Forms.Xaml;
 
-namespace TimeTracker.Pages
+namespace TimeTracker.App.Core.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage

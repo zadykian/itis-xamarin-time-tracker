@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TimeTracker.Models;
-using TimeTracker.Services.ConnectionFactory;
+using TimeTracker.App.Core.Models;
+using TimeTracker.App.Core.Services.ConnectionFactory;
 
-namespace TimeTracker.Services.TimeTracking
+namespace TimeTracker.App.Core.Services.TimeTracking
 {
 	/// <inheritdoc />
 	internal class TrackedPeriodService :  ITrackedPeriodService

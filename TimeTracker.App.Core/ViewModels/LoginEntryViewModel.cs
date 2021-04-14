@@ -1,6 +1,6 @@
-﻿using TimeTracker.PageModels.Base;
+﻿using TimeTracker.App.Core.PageModels.Base;
 
-namespace TimeTracker.ViewModels
+namespace TimeTracker.App.Core.ViewModels
 {
 	internal class LoginEntryViewModel : ExtendedBindableObject
 	{

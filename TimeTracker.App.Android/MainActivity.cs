@@ -4,6 +4,7 @@ using Android.Runtime;
 using Android.OS;
 using Plugin.Fingerprint;
 using Plugin.LocalNotification;
+using TimeTracker.App.Core;
 
 namespace TimeTracker.App.Android
 {

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
-using TimeTracker.Models;
-using TimeTracker.Services.ConnectionFactory;
+using TimeTracker.App.Core.Models;
+using TimeTracker.App.Core.Services.ConnectionFactory;
 
-namespace TimeTracker.Services.Account
+namespace TimeTracker.App.Core.Services.Account
 {
 	/// <inheritdoc cref="IAccountService"/>
 	internal class AccountService : SqliteServiceBase, IAccountService

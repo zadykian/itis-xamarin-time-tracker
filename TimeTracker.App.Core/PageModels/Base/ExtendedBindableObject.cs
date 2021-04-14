@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using Xamarin.Forms;
 
-namespace TimeTracker.PageModels.Base
+namespace TimeTracker.App.Core.PageModels.Base
 {
 	internal class ExtendedBindableObject : BindableObject
 	{

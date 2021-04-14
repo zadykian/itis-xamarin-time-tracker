@@ -5,9 +5,9 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" NavigationPage.HasNavigationBar="False"
-             xmlns:buttons="clr-namespace:TimeTracker.Views.Buttons"
-             xmlns:pageModels="clr-namespace:TimeTracker.PageModels;assembly=TimeTracker.App.Core"
-             x:Class="TimeTracker.Pages.TimerPage"
+             xmlns:pageModels="clr-namespace:TimeTracker.App.Core.PageModels;assembly=TimeTracker.App.Core"
+             xmlns:views="clr-namespace:TimeTracker.App.Core.Views;assembly=TimeTracker.App.Core"
+             x:Class="TimeTracker.App.Core.Pages.TimerPage"
              x:DataType="pageModels:TimerPageModel">
 	<ContentPage.Content>
 		<StackLayout VerticalOptions="Center" HorizontalOptions="Center">
@@ -21,17 +21,17 @@
 			       TextColor="Black"
 			       IsVisible="{Binding TimerIsStarted}" />
 
-			<buttons:BindableButton BindingContext="{Binding TimerButtonViewModel}"
-			                        HorizontalOptions="Center"
-			                        BackgroundColor="LightGray"
-			                        TextColor="Black"
-			                        WidthRequest="200" />
+			<views:BindableButton BindingContext="{Binding TimerButtonViewModel}"
+			                      HorizontalOptions="Center"
+			                      BackgroundColor="LightGray"
+			                      TextColor="Black"
+			                      WidthRequest="200" />
 
-			<buttons:BindableButton BindingContext="{Binding AttachPhotoButtonViewModel}"
-			                        HorizontalOptions="Center"
-			                        BackgroundColor="LightGray"
-			                        TextColor="Black"
-			                        WidthRequest="200" />
+			<views:BindableButton BindingContext="{Binding AttachPhotoButtonViewModel}"
+			                      HorizontalOptions="Center"
+			                      BackgroundColor="LightGray"
+			                      TextColor="Black"
+			                      WidthRequest="200" />
 
 		</StackLayout>
 	</ContentPage.Content>

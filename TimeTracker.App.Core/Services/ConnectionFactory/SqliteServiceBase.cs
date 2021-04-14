@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using SQLite;
 
-namespace TimeTracker.Services.ConnectionFactory
+namespace TimeTracker.App.Core.Services.ConnectionFactory
 {
 	/// <summary>
 	/// Base class for services which communicate with SQLite database.

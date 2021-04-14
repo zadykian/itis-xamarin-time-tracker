@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using TimeTracker.PageModels.Base;
+using TimeTracker.App.Core.PageModels.Base;
 
-namespace TimeTracker.PageModels
+namespace TimeTracker.App.Core.PageModels
 {
 	internal class MainPageModel : PageModelBase
 	{

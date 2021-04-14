@@ -4,16 +4,16 @@ using System.Threading.Tasks;
 using System.Timers;
 using Plugin.Fingerprint;
 using Plugin.Fingerprint.Abstractions;
-using TimeTracker.Models;
-using TimeTracker.PageModels.Base;
-using TimeTracker.Services.Account;
-using TimeTracker.Services.Notifications;
-using TimeTracker.Services.Photo;
-using TimeTracker.Services.TimeTracking;
-using TimeTracker.Services.UserLocation;
-using TimeTracker.ViewModels;
+using TimeTracker.App.Core.Models;
+using TimeTracker.App.Core.PageModels.Base;
+using TimeTracker.App.Core.Services.Account;
+using TimeTracker.App.Core.Services.Notifications;
+using TimeTracker.App.Core.Services.Photo;
+using TimeTracker.App.Core.Services.TimeTracking;
+using TimeTracker.App.Core.Services.UserLocation;
+using TimeTracker.App.Core.ViewModels;
 
-namespace TimeTracker.PageModels
+namespace TimeTracker.App.Core.PageModels
 {
 	/// <summary>
 	/// Timer page model.

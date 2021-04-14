@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Plugin.LocalNotification;
 
-namespace TimeTracker.Services.Notifications
+namespace TimeTracker.App.Core.Services.Notifications
 {
 	/// <inheritdoc />
 	internal class NotificationService : INotificationService

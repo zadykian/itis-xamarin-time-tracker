@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using TimeTracker.Models;
+using TimeTracker.App.Core.Models;
 
-namespace TimeTracker.Services.Account
+namespace TimeTracker.App.Core.Services.Account
 {
 	/// <summary>
 	/// Service for users' accounts management.

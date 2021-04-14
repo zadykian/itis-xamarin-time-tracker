@@ -1,4 +1,4 @@
-﻿namespace TimeTracker.Views.Labels
+﻿namespace TimeTracker.App.Core.Views
 {
     public partial class TitleLabel
     {

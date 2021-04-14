@@ -4,7 +4,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 
-namespace TimeTracker.Services.Photo
+namespace TimeTracker.App.Core.Services.Photo
 {
 	/// <inheritdoc />
 	internal class PhotoService : IPhotoService

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace TimeTracker.Services.Photo
+namespace TimeTracker.App.Core.Services.Photo
 {
 	/// <summary>
 	/// Service for device's camera access.

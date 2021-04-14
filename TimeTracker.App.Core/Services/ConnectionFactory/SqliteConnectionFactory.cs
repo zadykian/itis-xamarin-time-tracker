@@ -1,9 +1,9 @@
 ﻿using System.IO;
 using System.Threading.Tasks;
 using SQLite;
-using TimeTracker.Models;
+using TimeTracker.App.Core.Models;
 
-namespace TimeTracker.Services.ConnectionFactory
+namespace TimeTracker.App.Core.Services.ConnectionFactory
 {
 	/// <summary>
 	/// SQLite database connection factory.

@@ -1,6 +1,6 @@
 using Xamarin.Forms.Xaml;
 
-namespace TimeTracker.Views
+namespace TimeTracker.App.Core.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class TrackedPeriodView

@@ -1,13 +1,13 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-using TimeTracker.Models;
-using TimeTracker.PageModels.Base;
-using TimeTracker.Services.Account;
-using TimeTracker.Services.Navigation;
-using TimeTracker.Services.TimeTracking;
-using TimeTracker.ViewModels;
+using TimeTracker.App.Core.Models;
+using TimeTracker.App.Core.PageModels.Base;
+using TimeTracker.App.Core.Services.Account;
+using TimeTracker.App.Core.Services.Navigation;
+using TimeTracker.App.Core.Services.TimeTracking;
+using TimeTracker.App.Core.ViewModels;
 
-namespace TimeTracker.PageModels
+namespace TimeTracker.App.Core.PageModels
 {
 	/// <summary>
 	/// Profile page model.
