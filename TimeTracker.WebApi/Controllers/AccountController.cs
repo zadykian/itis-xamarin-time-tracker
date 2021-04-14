@@ -18,17 +18,6 @@ namespace TimeTracker.WebApi.Controllers
 		public AccountController(IAccountService accountService)
 			=> this.accountService = accountService;
 
-		/// <inheritdoc cref="IAccountService.LogInAsync"/>
-		[HttpPost]
-		public async Task<IActionResult> LogInAsync([FromBody, Required] UserCredentials userCredentials)
-		{
-			var loggedInSuccessfully = await accountService.LogInAsync(userCredentials);
-			var responseStatusCode = loggedInSuccessfully
-				? StatusCodes.Status200OK
-				: StatusCodes.Status401Unauthorized;
-			return StatusCode(responseStatusCode);
-		}
-
 		/// <inheritdoc cref="IAccountService.CreateAccountAsync"/>
 		[HttpPost]
 		public async Task<IActionResult> CreateAccountAsync([FromBody, Required] User newUser)
@@ -37,6 +26,17 @@ namespace TimeTracker.WebApi.Controllers
 			var responseStatusCode = createdSuccessfully
 				? StatusCodes.Status200OK
 				: StatusCodes.Status400BadRequest;
+			return StatusCode(responseStatusCode);
+		}
+
+		/// <inheritdoc cref="IAccountService.LogInAsync"/>
+		[HttpPost]
+		public async Task<IActionResult> LogInAsync([FromBody, Required] UserCredentials userCredentials)
+		{
+			var loggedInSuccessfully = await accountService.LogInAsync(userCredentials);
+			var responseStatusCode = loggedInSuccessfully
+				? StatusCodes.Status200OK
+				: StatusCodes.Status401Unauthorized;
 			return StatusCode(responseStatusCode);
 		}
 

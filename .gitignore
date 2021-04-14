@@ -3,3 +3,4 @@ bin/
 obj/
 *.user
 Resource.designer.cs
+time-tracker.db

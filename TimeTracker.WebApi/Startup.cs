@@ -16,6 +16,9 @@ namespace TimeTracker.WebApi
 				.AddSingleton<IImageService>(_ => new SqliteImageService(Environment.CurrentDirectory))
 				.AddControllers();
 
-		public void Configure(IApplicationBuilder app) => app.UseRouting();
+		public void Configure(IApplicationBuilder app)
+			=> app
+				.UseRouting()
+				.UseEndpoints(builder => builder.MapControllers());
 	}
 }
