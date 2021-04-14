@@ -4,7 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using TimeTracker.Services.Models;
 using TimeTracker.Services.TimeTracking;
-using Xamarin.Essentials;
+
+// ReSharper disable SuggestBaseTypeForParameter
 
 namespace TimeTracker.App.Core.Services.TimeTracking
 {
@@ -14,9 +15,9 @@ namespace TimeTracker.App.Core.Services.TimeTracking
 		private readonly ITrackedPeriodService sqliteTrackedPeriodService;
 		private readonly ITrackedPeriodService webApiTrackedPeriodService;
 
-		public TrackedPeriodService()
+		public TrackedPeriodService(SqliteTrackedPeriodService sqliteTrackedPeriodService)
 		{
-			sqliteTrackedPeriodService = new SqliteTrackedPeriodService(FileSystem.AppDataDirectory);
+			this.sqliteTrackedPeriodService = sqliteTrackedPeriodService;
 			webApiTrackedPeriodService = new WebApiSubService();
 		}
 

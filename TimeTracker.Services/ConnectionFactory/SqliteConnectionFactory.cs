@@ -8,14 +8,19 @@ namespace TimeTracker.Services.ConnectionFactory
 	/// <summary>
 	/// SQLite database connection factory.
 	/// </summary>
-	internal static class SqliteConnectionFactory
+	public class SqliteConnectionFactory
 	{
+		private readonly IDatabaseConfiguration databaseConfiguration;
+
+		public SqliteConnectionFactory(IDatabaseConfiguration databaseConfiguration)
+			=> this.databaseConfiguration = databaseConfiguration;
+
 		/// <summary>
-		/// Create new connection to database located at <paramref name="directoryPath"/>.
+		/// Create new connection to database.
 		/// </summary>
-		public static async Task<SQLiteAsyncConnection> Create(string directoryPath)
+		public async Task<SQLiteAsyncConnection> Create()
 		{
-			var databaseFullPath = Path.Combine(directoryPath, "time-tracker.db");
+			var databaseFullPath = Path.Combine(databaseConfiguration.DirectoryPath, "time-tracker.db");
 			var dbConnection = new SQLiteAsyncConnection(databaseFullPath);
 			await Initialize(dbConnection);
 			return dbConnection;

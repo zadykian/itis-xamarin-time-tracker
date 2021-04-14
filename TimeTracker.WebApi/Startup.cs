@@ -2,6 +2,7 @@ using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using TimeTracker.Services.Account;
+using TimeTracker.Services.ConnectionFactory;
 using TimeTracker.Services.Images;
 using TimeTracker.Services.TimeTracking;
 
@@ -9,11 +10,20 @@ namespace TimeTracker.WebApi
 {
 	public class Startup
 	{
+		/// <inheritdoc />
+		private sealed class EnvironmentDatabaseConfiguration : IDatabaseConfiguration
+		{
+			/// <inheritdoc />
+			string IDatabaseConfiguration.DirectoryPath => Environment.CurrentDirectory;
+		}
+
 		public void ConfigureServices(IServiceCollection services)
 			=> services
-				.AddSingleton<IAccountService>(_ => new SqliteAccountService(Environment.CurrentDirectory))
-				.AddSingleton<ITrackedPeriodService>(_ => new SqliteTrackedPeriodService(Environment.CurrentDirectory))
-				.AddSingleton<IImageService>(_ => new SqliteImageService(Environment.CurrentDirectory))
+				.AddSingleton<IDatabaseConfiguration, EnvironmentDatabaseConfiguration>()
+				.AddSingleton<SqliteConnectionFactory>()
+				.AddSingleton<IAccountService, SqliteAccountService>()
+				.AddSingleton<ITrackedPeriodService, SqliteTrackedPeriodService>()
+				.AddSingleton<IImageService, SqliteImageService>()
 				.AddControllers();
 
 		public void Configure(IApplicationBuilder app)

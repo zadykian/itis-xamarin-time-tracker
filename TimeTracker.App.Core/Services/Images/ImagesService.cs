@@ -4,7 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using TimeTracker.Services.Images;
 using TimeTracker.Services.Models;
-using Xamarin.Essentials;
+
+// ReSharper disable SuggestBaseTypeForParameter
 
 namespace TimeTracker.App.Core.Services.Images
 {
@@ -14,9 +15,9 @@ namespace TimeTracker.App.Core.Services.Images
 		private readonly IImageService sqliteImageService;
 		private readonly IImageService webApiImageService;
 
-		public ImagesService()
+		public ImagesService(SqliteImageService sqliteImageService)
 		{
-			sqliteImageService = new SqliteImageService(FileSystem.AppDataDirectory);
+			this.sqliteImageService = sqliteImageService;
 			webApiImageService = new WebApiSubService();
 		}
 

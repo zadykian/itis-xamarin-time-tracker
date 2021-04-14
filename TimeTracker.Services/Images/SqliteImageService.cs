@@ -8,7 +8,8 @@ namespace TimeTracker.Services.Images
 	/// <inheritdoc cref="IImageService"/>
 	public class SqliteImageService : SqliteServiceBase, IImageService
 	{
-		public SqliteImageService(string databaseDirectoryPath) : base(databaseDirectoryPath)
+		public SqliteImageService(SqliteConnectionFactory sqliteConnectionFactory)
+			: base(sqliteConnectionFactory)
 		{
 		}
 

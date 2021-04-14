@@ -4,15 +4,21 @@ using TimeTracker.App.Core.PageModels;
 using TimeTracker.App.Core.PageModels.Base;
 using TimeTracker.App.Core.Pages;
 using TimeTracker.App.Core.Services.Account;
+using TimeTracker.App.Core.Services.Images;
 using TimeTracker.App.Core.Services.Navigation;
 using TimeTracker.App.Core.Services.Notifications;
 using TimeTracker.App.Core.Services.PhotoCapturing;
 using TimeTracker.App.Core.Services.TimeTracking;
 using TimeTracker.App.Core.Services.UserLocation;
 using TimeTracker.Services.Account;
+using TimeTracker.Services.ConnectionFactory;
+using TimeTracker.Services.Images;
 using TimeTracker.Services.TimeTracking;
 using TinyIoC;
+using Xamarin.Essentials;
 using Xamarin.Forms;
+
+// ReSharper disable ClassNeverInstantiated.Local
 
 namespace TimeTracker.App.Core
 {
@@ -35,13 +41,31 @@ namespace TimeTracker.App.Core
 			RegisterPageWithModel<ViewAllPageModel, ViewAllPage>();
 			RegisterPageWithModel<ProfilePageModel, ProfilePage>();
 
-			container.Register<IAccountService, AccountService>();
 			container.Register<INavigationService, NavigationService>();
 
-			container.Register<ITrackedPeriodService, TrackedPeriodService>();
+			RegisterSqliteServices();
+
 			container.Register<ILocationService, LocationService>();
 			container.Register<IPhotoCapturingService, PhotoCapturingService>();
 			container.Register<INotificationService, NotificationService>();
+		}
+
+		/// <summary>
+		/// Register SQLite services in container.
+		/// </summary>
+		private static void RegisterSqliteServices()
+		{
+			container.Register<IDatabaseConfiguration, XamarinDatabaseConfiguration>();
+			container.Register<SqliteConnectionFactory>();
+
+			container.Register<SqliteImageService>();
+			container.Register<IImageService, ImagesService>();
+
+			container.Register<SqliteAccountService>();
+			container.Register<IAccountService, AccountService>();
+
+			container.Register<SqliteTrackedPeriodService>();
+			container.Register<ITrackedPeriodService, TrackedPeriodService>();
 		}
 
 		private static void RegisterPageWithModel<TPageModel, TPage>()
@@ -60,6 +84,13 @@ namespace TimeTracker.App.Core
 			var page = (Page) Activator.CreateInstance(pageType);
 			page.BindingContext = Resolve<TPageModelType>();
 			return page;
+		}
+
+		/// <inheritdoc />
+		private sealed class XamarinDatabaseConfiguration : IDatabaseConfiguration
+		{
+			/// <inheritdoc />
+			string IDatabaseConfiguration.DirectoryPath => FileSystem.AppDataDirectory;
 		}
 	}
 }

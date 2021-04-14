@@ -10,9 +10,9 @@ namespace TimeTracker.Services.ConnectionFactory
 	/// </summary>
 	public abstract class SqliteServiceBase
 	{
-		protected SqliteServiceBase(string databaseDirectoryPath)
+		protected SqliteServiceBase(SqliteConnectionFactory sqliteConnectionFactory)
 			=> Connection = new Lazy<Task<SQLiteAsyncConnection>>(
-				() => SqliteConnectionFactory.Create(databaseDirectoryPath),
+				sqliteConnectionFactory.Create,
 				LazyThreadSafetyMode.PublicationOnly);
 
 		/// <summary>

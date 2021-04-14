@@ -7,7 +7,8 @@ namespace TimeTracker.Services.Account
 	/// <inheritdoc cref="IAccountService"/>
 	public class SqliteAccountService : SqliteServiceBase, IAccountService
 	{
-		public SqliteAccountService(string databaseDirectoryPath) : base(databaseDirectoryPath)
+		public SqliteAccountService(SqliteConnectionFactory sqliteConnectionFactory)
+			: base(sqliteConnectionFactory)
 		{
 		}
 

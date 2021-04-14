@@ -10,7 +10,8 @@ namespace TimeTracker.Services.TimeTracking
 	/// </summary>
 	public class SqliteTrackedPeriodService : SqliteServiceBase, ITrackedPeriodService
 	{
-		public SqliteTrackedPeriodService(string databaseDirectoryPath) : base(databaseDirectoryPath)
+		public SqliteTrackedPeriodService(SqliteConnectionFactory sqliteConnectionFactory)
+			: base(sqliteConnectionFactory)
 		{
 		}
 

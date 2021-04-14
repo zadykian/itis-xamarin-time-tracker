@@ -2,7 +2,8 @@
 using System.Threading.Tasks;
 using TimeTracker.Services.Account;
 using TimeTracker.Services.Models;
-using Xamarin.Essentials;
+
+// ReSharper disable SuggestBaseTypeForParameter
 
 namespace TimeTracker.App.Core.Services.Account
 {
@@ -12,9 +13,9 @@ namespace TimeTracker.App.Core.Services.Account
 		private readonly IAccountService sqliteAccountService;
 		private readonly IAccountService webApiAccountService;
 
-		public AccountService()
+		public AccountService(SqliteAccountService sqliteAccountService)
 		{
-			sqliteAccountService = new SqliteAccountService(FileSystem.AppDataDirectory);
+			this.sqliteAccountService = sqliteAccountService;
 			webApiAccountService = new WebApiSubService();
 		}
 
