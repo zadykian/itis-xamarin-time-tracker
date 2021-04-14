@@ -99,11 +99,11 @@ namespace TimeTracker.PageModels
 
 		private async void OnTimerButtonPressed()
 		{
-			if (TimerIsStarted) await OnTimerStopped();
-			else await OnTimerStarted();
+			if (TimerIsStarted) await OnTimerStopRequest();
+			else await OnTimerStartRequest();
 		}
 
-		private async Task OnTimerStarted()
+		private async Task OnTimerStartRequest()
 		{
 			if (TimerIsStarted)
 			{
@@ -133,7 +133,7 @@ namespace TimeTracker.PageModels
 			}
 		}
 
-		private async Task OnTimerStopped()
+		private async Task OnTimerStopRequest()
 		{
 			var isFingerprintAvailable = await CrossFingerprint.Current.IsAvailableAsync();
 
@@ -151,10 +151,6 @@ namespace TimeTracker.PageModels
 			if (authResult.Authenticated)
 			{
 				await StopTimer();
-			}
-			else
-			{
-				// todo
 			}
 		}
 
