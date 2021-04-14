@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using SQLite;
+// ReSharper disable AutoPropertyCanBeMadeGetOnly.Global
 
 namespace TimeTracker.Models
 {

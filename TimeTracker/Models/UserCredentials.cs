@@ -1,3 +1,5 @@
+// ReSharper disable AutoPropertyCanBeMadeGetOnly.Global
+
 namespace TimeTracker.Models
 {
 	/// <summary>
@@ -8,7 +10,7 @@ namespace TimeTracker.Models
 		protected UserCredentials()
 		{
 		}
-		
+
 		public UserCredentials(string username, string password)
 		{
 			Username = username;

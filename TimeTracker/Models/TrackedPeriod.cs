@@ -1,6 +1,7 @@
 using System;
 using SQLite;
 using Xamarin.Essentials;
+// ReSharper disable AutoPropertyCanBeMadeGetOnly.Global
 
 namespace TimeTracker.Models
 {
