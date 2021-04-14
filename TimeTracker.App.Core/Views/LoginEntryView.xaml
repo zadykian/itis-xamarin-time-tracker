@@ -2,7 +2,7 @@
 
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewModels="clr-namespace:TimeTracker.ViewModels;assembly=TimeTracker.Core.Xamarin"
+             xmlns:viewModels="clr-namespace:TimeTracker.ViewModels;assembly=TimeTracker.App.Core"
              x:Class="TimeTracker.Views.LoginEntryView">
     <ContentView.Content>
         <Grid RowDefinitions="40,2" RowSpacing="0">

@@ -2,7 +2,7 @@
 
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:models="clr-namespace:TimeTracker.Models;assembly=TimeTracker.Core.Xamarin"
+             xmlns:models="clr-namespace:TimeTracker.Models;assembly=TimeTracker.App.Core"
              x:Class="TimeTracker.Views.TrackedPeriodView"
              x:DataType="models:TrackedPeriod">
 	<ContentView.Content>

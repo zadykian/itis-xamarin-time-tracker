@@ -6,7 +6,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:views="clr-namespace:TimeTracker.Views" mc:Ignorable="d"
              xmlns:labels="clr-namespace:TimeTracker.Views.Labels"
-             xmlns:pageModels="clr-namespace:TimeTracker.PageModels;assembly=TimeTracker.Core.Xamarin"
+             xmlns:pageModels="clr-namespace:TimeTracker.PageModels;assembly=TimeTracker.App.Core"
              x:Class="TimeTracker.Pages.ViewAllPage"
              x:DataType="pageModels:ViewAllPageModel">
 	<ContentPage.Content>
