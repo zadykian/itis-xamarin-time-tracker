@@ -3,14 +3,17 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using TimeTracker.Services.Account;
+using TimeTracker.Services.TimeTracking;
 
 namespace TimeTracker.WebApi
 {
 	public class Startup
 	{
 		public void ConfigureServices(IServiceCollection services)
-		{
-		}
+			=> services
+				.AddSingleton<IAccountService, SqliteAccountService>()
+				.AddSingleton<ITrackedPeriodService, SqliteTrackedPeriodService>();
 
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 		{
