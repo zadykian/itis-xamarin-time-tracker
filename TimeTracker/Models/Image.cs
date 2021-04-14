@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using SQLite;
 
 namespace TimeTracker.Models
 {
@@ -26,6 +27,7 @@ namespace TimeTracker.Models
 		/// <summary>
 		/// Tracked period which this photo belongs to.
 		/// </summary>
+		[Indexed]
 		public int TrackedPeriodId { get; set; }
 	}
 }

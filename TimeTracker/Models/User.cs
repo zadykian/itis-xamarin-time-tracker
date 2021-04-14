@@ -20,6 +20,6 @@ namespace TimeTracker.Models
 		/// User's identifier.
 		/// </summary>
 		[PrimaryKey, AutoIncrement]
-		public int Id { get; set; }
+		public int? Id { get; set; }
 	}
 }

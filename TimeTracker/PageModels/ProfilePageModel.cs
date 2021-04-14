@@ -90,7 +90,7 @@ namespace TimeTracker.PageModels
 		/// </summary>
 		private async void OnClearDataButtonPressed()
 		{
-			await trackedPeriodService.ClearDataAsync(accountService.CurrentUser.Id);
+			await trackedPeriodService.ClearDataAsync(accountService.CurrentUser.Id!.Value);
 
 			if (!viewAllPageModel.AllForCurrentUser.Any())
 			{

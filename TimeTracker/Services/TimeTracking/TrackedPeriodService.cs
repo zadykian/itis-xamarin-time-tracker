@@ -85,8 +85,7 @@ namespace TimeTracker.Services.TimeTracking
 			async Task ITrackedPeriodService.UpsertAsync(TrackedPeriod trackedPeriod)
 			{
 				var dbConnection = await Connection.Value;
-				await dbConnection.DeleteAsync(trackedPeriod);
-				await dbConnection.InsertAsync(trackedPeriod);
+				await dbConnection.InsertOrReplaceAsync(trackedPeriod);
 			}
 
 			/// <inheritdoc />

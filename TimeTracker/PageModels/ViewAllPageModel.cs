@@ -37,7 +37,7 @@ namespace TimeTracker.PageModels
 		{
 			AllForCurrentUser.Clear();
 			var currentUser = accountService.CurrentUser;
-			var trackedPeriods = await trackedPeriodService.GetAllAsync(currentUser.Id);
+			var trackedPeriods = await trackedPeriodService.GetAllAsync(currentUser.Id!.Value);
 			foreach (var trackedPeriod in trackedPeriods) AllForCurrentUser.Add(trackedPeriod);
 		}
 	}

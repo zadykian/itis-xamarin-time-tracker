@@ -120,7 +120,7 @@ namespace TimeTracker.PageModels
 				TimerButtonViewModel.Text = "stop timer";
 
 				var currentLocation = await locationService.GetCurrentLocationAsync();
-				var newTrackedPeriod = new TrackedPeriod(accountService.CurrentUser.Id, CurrentStartTime, currentLocation);
+				var newTrackedPeriod = new TrackedPeriod(accountService.CurrentUser.Id!.Value, CurrentStartTime, currentLocation);
 				viewAllPageModel.AllForCurrentUser.Insert(0, newTrackedPeriod);
 				await trackedPeriodService.UpsertAsync(newTrackedPeriod);
 
@@ -175,7 +175,7 @@ namespace TimeTracker.PageModels
 				TimerButtonViewModel.Text = "start timer";
 				AttachPhotoButtonViewModel.IsEnabled = false;
 
-				var currentPeriod = await trackedPeriodService.GetCurrentAsync(accountService.CurrentUser.Id);
+				var currentPeriod = await trackedPeriodService.GetCurrentAsync(accountService.CurrentUser.Id!.Value);
 				currentPeriod.End = DateTime.Now;
 				await trackedPeriodService.UpsertAsync(currentPeriod);
 				viewAllPageModel.AllForCurrentUser.RemoveAt(0);
@@ -189,7 +189,7 @@ namespace TimeTracker.PageModels
 
 		private async Task OnNotificationTimerElapsed()
 		{
-			var currentPeriod = await trackedPeriodService.GetCurrentAsync(accountService.CurrentUser.Id);
+			var currentPeriod = await trackedPeriodService.GetCurrentAsync(accountService.CurrentUser.Id!.Value);
 			await notificationService.PushNotificationAsync(currentPeriod.Total);
 		}
 
@@ -202,8 +202,8 @@ namespace TimeTracker.PageModels
 				return;
 			}
 
-			var currentTrackedPeriod = await trackedPeriodService.GetCurrentAsync(accountService.CurrentUser.Id);
-			var image = new Image(imageContent, currentTrackedPeriod.Id);
+			var currentTrackedPeriod = await trackedPeriodService.GetCurrentAsync(accountService.CurrentUser.Id!.Value);
+			var image = new Image(imageContent, currentTrackedPeriod.Id!.Value);
 			await trackedPeriodService.AddImageAsync(image);
 		}
 	}
