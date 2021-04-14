@@ -1,8 +1,8 @@
-﻿using TimeTracker.App.Core.Models;
-using TimeTracker.App.Core.PageModels.Base;
-using TimeTracker.App.Core.Services.Account;
+﻿using TimeTracker.App.Core.PageModels.Base;
 using TimeTracker.App.Core.Services.Navigation;
 using TimeTracker.App.Core.ViewModels;
+using TimeTracker.Services.Account;
+using TimeTracker.Services.Models;
 
 namespace TimeTracker.App.Core.PageModels
 {

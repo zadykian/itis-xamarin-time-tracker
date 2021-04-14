@@ -1,13 +1,13 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using TimeTracker.App.Core.Models;
+using TimeTracker.Services.Models;
 
-namespace TimeTracker.App.Core.Services.TimeTracking
+namespace TimeTracker.Services.TimeTracking
 {
 	/// <summary>
 	/// Service for <see cref="TrackedPeriod"/> entities management.
 	/// </summary>
-	internal interface ITrackedPeriodService
+	public interface ITrackedPeriodService
 	{
 		/// <summary>
 		/// Add new or update existing tracked period.

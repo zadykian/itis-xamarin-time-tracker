@@ -3,16 +3,16 @@ using System.Threading;
 using System.Threading.Tasks;
 using SQLite;
 
-namespace TimeTracker.App.Core.Services.ConnectionFactory
+namespace TimeTracker.Services.ConnectionFactory
 {
 	/// <summary>
 	/// Base class for services which communicate with SQLite database.
 	/// </summary>
-	internal abstract class SqliteServiceBase
+	public abstract class SqliteServiceBase
 	{
-		protected SqliteServiceBase()
+		protected SqliteServiceBase(string databaseDirectoryPath)
 			=> Connection = new Lazy<Task<SQLiteAsyncConnection>>(
-				SqliteConnectionFactory.Create,
+				() => SqliteConnectionFactory.Create(databaseDirectoryPath),
 				LazyThreadSafetyMode.PublicationOnly);
 
 		/// <summary>

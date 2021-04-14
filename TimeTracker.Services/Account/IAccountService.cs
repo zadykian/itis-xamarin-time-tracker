@@ -1,12 +1,12 @@
 ﻿using System.Threading.Tasks;
-using TimeTracker.App.Core.Models;
+using TimeTracker.Services.Models;
 
-namespace TimeTracker.App.Core.Services.Account
+namespace TimeTracker.Services.Account
 {
 	/// <summary>
 	/// Service for users' accounts management.
 	/// </summary>
-	internal interface IAccountService
+	public interface IAccountService
 	{
 		/// <summary>
 		/// Current user.

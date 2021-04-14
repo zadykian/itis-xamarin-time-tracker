@@ -1,14 +1,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using SQLite;
+
 // ReSharper disable AutoPropertyCanBeMadeGetOnly.Global
 
-namespace TimeTracker.App.Core.Models
+namespace TimeTracker.Services.Models
 {
 	/// <summary>
 	/// Image taken during time tracking.
 	/// </summary>
-	internal class Image
+	public class Image
 	{
 		public Image()
 		{

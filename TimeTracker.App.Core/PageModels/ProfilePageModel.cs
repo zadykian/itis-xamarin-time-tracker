@@ -1,11 +1,11 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-using TimeTracker.App.Core.Models;
 using TimeTracker.App.Core.PageModels.Base;
-using TimeTracker.App.Core.Services.Account;
 using TimeTracker.App.Core.Services.Navigation;
-using TimeTracker.App.Core.Services.TimeTracking;
 using TimeTracker.App.Core.ViewModels;
+using TimeTracker.Services.Account;
+using TimeTracker.Services.Models;
+using TimeTracker.Services.TimeTracking;
 
 namespace TimeTracker.App.Core.PageModels
 {

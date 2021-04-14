@@ -1,12 +1,14 @@
 using SQLite;
-// ReSharper disable AutoPropertyCanBeMadeGetOnly.Global
 
-namespace TimeTracker.App.Core.Models
+// ReSharper disable AutoPropertyCanBeMadeGetOnly.Global
+// ReSharper disable UnusedMember.Global
+
+namespace TimeTracker.Services.Models
 {
 	/// <summary>
 	/// User.
 	/// </summary>
-	internal class User : UserCredentials
+	public class User : UserCredentials
 	{
 		public User()
 		{

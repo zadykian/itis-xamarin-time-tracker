@@ -4,14 +4,14 @@ using System.Threading.Tasks;
 using System.Timers;
 using Plugin.Fingerprint;
 using Plugin.Fingerprint.Abstractions;
-using TimeTracker.App.Core.Models;
 using TimeTracker.App.Core.PageModels.Base;
-using TimeTracker.App.Core.Services.Account;
 using TimeTracker.App.Core.Services.Notifications;
 using TimeTracker.App.Core.Services.Photo;
-using TimeTracker.App.Core.Services.TimeTracking;
 using TimeTracker.App.Core.Services.UserLocation;
 using TimeTracker.App.Core.ViewModels;
+using TimeTracker.Services.Account;
+using TimeTracker.Services.Models;
+using TimeTracker.Services.TimeTracking;
 
 namespace TimeTracker.App.Core.PageModels
 {
@@ -120,7 +120,9 @@ namespace TimeTracker.App.Core.PageModels
 				TimerButtonViewModel.Text = "stop timer";
 
 				var currentLocation = await locationService.GetCurrentLocationAsync();
-				var newTrackedPeriod = new TrackedPeriod(accountService.CurrentUser.Id!.Value, CurrentStartTime, currentLocation);
+				var periodLocation = new PeriodLocation(currentLocation.Latitude, currentLocation.Longitude);
+				var newTrackedPeriod = new TrackedPeriod(accountService.CurrentUser.Id!.Value, CurrentStartTime, periodLocation);
+
 				viewAllPageModel.AllForCurrentUser.Insert(0, newTrackedPeriod);
 				await trackedPeriodService.UpsertAsync(newTrackedPeriod);
 

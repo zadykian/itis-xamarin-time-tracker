@@ -13,15 +13,14 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Plugin.Fingerprint" Version="2.1.3"/>
-		<PackageReference Include="Plugin.LocalNotification" Version="5.2.0"/>
-		<PackageReference Include="sqlite-net-pcl" Version="1.7.335"/>
+		<PackageReference Include="Plugin.Fingerprint" Version="2.1.3" />
+		<PackageReference Include="Plugin.LocalNotification" Version="5.2.0" />
 		<PackageReference Include="TinyIoC" Version="1.3.0">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Xamarin.Forms" Version="4.8.0.1821"/>
-		<PackageReference Include="Xamarin.Essentials" Version="1.6.0"/>
+		<PackageReference Include="Xamarin.Forms" Version="4.8.0.1821" />
+		<PackageReference Include="Xamarin.Essentials" Version="1.6.0" />
 	</ItemGroup>
 	<ItemGroup>
 		<EmbeddedResource Update="Pages\MainPage.xaml">
@@ -41,20 +40,20 @@
 		</EmbeddedResource>
 	</ItemGroup>
 	<ItemGroup>
-		<None Remove="Fonts\Nunito-Black.ttf"/>
-		<None Remove="Fonts\Nunito-BlackItalic.ttf"/>
-		<None Remove="Fonts\Nunito-Bold.ttf"/>
-		<None Remove="Fonts\Nunito-BoldItalic.ttf"/>
-		<None Remove="Fonts\Nunito-ExtraBold.ttf"/>
-		<None Remove="Fonts\Nunito-ExtraBoldItalic.ttf"/>
-		<None Remove="Fonts\Nunito-ExtraLight.ttf"/>
-		<None Remove="Fonts\Nunito-ExtraLightItalic.ttf"/>
-		<None Remove="Fonts\Nunito-Italic.ttf"/>
-		<None Remove="Fonts\Nunito-Light.ttf"/>
-		<None Remove="Fonts\Nunito-LightItalic.ttf"/>
-		<None Remove="Fonts\Nunito-Regular.ttf"/>
-		<None Remove="Fonts\Nunito-SemiBold.ttf"/>
-		<None Remove="Fonts\Nunito-SemiBoldItalic.ttf"/>
+		<None Remove="Fonts\Nunito-Black.ttf" />
+		<None Remove="Fonts\Nunito-BlackItalic.ttf" />
+		<None Remove="Fonts\Nunito-Bold.ttf" />
+		<None Remove="Fonts\Nunito-BoldItalic.ttf" />
+		<None Remove="Fonts\Nunito-ExtraBold.ttf" />
+		<None Remove="Fonts\Nunito-ExtraBoldItalic.ttf" />
+		<None Remove="Fonts\Nunito-ExtraLight.ttf" />
+		<None Remove="Fonts\Nunito-ExtraLightItalic.ttf" />
+		<None Remove="Fonts\Nunito-Italic.ttf" />
+		<None Remove="Fonts\Nunito-Light.ttf" />
+		<None Remove="Fonts\Nunito-LightItalic.ttf" />
+		<None Remove="Fonts\Nunito-Regular.ttf" />
+		<None Remove="Fonts\Nunito-SemiBold.ttf" />
+		<None Remove="Fonts\Nunito-SemiBoldItalic.ttf" />
 	</ItemGroup>
 	<ItemGroup>
 		<Compile Update="Views\BindableButton.xaml.cs">
@@ -67,6 +66,6 @@
 		</Compile>
 	</ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\TimeTracker.Services\TimeTracker.Services.csproj"/>
+		<ProjectReference Include="..\TimeTracker.Services\TimeTracker.Services.csproj" />
 	</ItemGroup>
 </Project>

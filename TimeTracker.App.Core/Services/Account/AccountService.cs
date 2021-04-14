@@ -1,19 +1,20 @@
 ﻿using System;
 using System.Threading.Tasks;
-using TimeTracker.App.Core.Models;
-using TimeTracker.App.Core.Services.ConnectionFactory;
+using TimeTracker.Services.Account;
+using TimeTracker.Services.Models;
+using Xamarin.Essentials;
 
 namespace TimeTracker.App.Core.Services.Account
 {
 	/// <inheritdoc cref="IAccountService"/>
-	internal class AccountService : SqliteServiceBase, IAccountService
+	internal class AccountService : IAccountService
 	{
 		private readonly IAccountService sqliteSubService;
 		private readonly IAccountService webApiSubService;
 
 		public AccountService()
 		{
-			sqliteSubService = new SqliteSubService();
+			sqliteSubService = new SqliteAccountService(FileSystem.AppDataDirectory);
 			webApiSubService = new WebApiSubService();
 		}
 
@@ -52,73 +53,6 @@ namespace TimeTracker.App.Core.Services.Account
 			var succeededLocally = await sqliteSubService.UpdatePasswordAsync(credentials);
 			var succeededRemotely = await webApiSubService.UpdatePasswordAsync(credentials);
 			return succeededLocally && succeededRemotely;
-		}
-
-		/// <summary>
-		/// Account sub-service which is responsible for communication with SQLite database. 
-		/// </summary>
-		private class SqliteSubService : SqliteServiceBase, IAccountService
-		{
-			/// <inheritdoc />
-			public User CurrentUser { get; private set; }
-
-			/// <inheritdoc />
-			async Task<bool> IAccountService.LoginAsync(UserCredentials credentials)
-			{
-				var dbConnection = await Connection.Value;
-
-				var existingUser = await dbConnection
-					.Table<User>()
-					.FirstOrDefaultAsync(user => user.Username == credentials.Username && user.Password == credentials.Password);
-
-				if (existingUser is null)
-				{
-					return false;
-				}
-
-				CurrentUser = existingUser;
-				return true;
-			}
-
-			/// <inheritdoc />
-			async Task IAccountService.LogOutAsync()
-			{
-				await Task.CompletedTask;
-				CurrentUser = null;
-			}
-
-			/// <inheritdoc />
-			async Task<bool> IAccountService.CreateAccountAsync(User newUser)
-			{
-				var dbConnection = await Connection.Value;
-
-				var existingUser = await dbConnection
-					.Table<User>()
-					.FirstOrDefaultAsync(user => user.Username == newUser.Username);
-
-				if (existingUser != null)
-				{
-					return false;
-				}
-
-				await dbConnection.InsertAsync(newUser);
-				CurrentUser = newUser;
-				return true;
-			}
-
-			/// <inheritdoc />
-			async Task<bool> IAccountService.UpdatePasswordAsync(UserCredentials credentials)
-			{
-				if (credentials.Password == CurrentUser.Password)
-				{
-					return false;
-				}
-
-				CurrentUser.Password = credentials.Password;
-				var dbConnection = await Connection.Value;
-				await dbConnection.UpdateAsync(CurrentUser);
-				return true;
-			}
 		}
 
 		/// <summary>

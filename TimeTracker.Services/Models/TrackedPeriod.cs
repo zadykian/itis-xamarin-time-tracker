@@ -1,20 +1,33 @@
 using System;
 using SQLite;
-using Xamarin.Essentials;
+
 // ReSharper disable AutoPropertyCanBeMadeGetOnly.Global
 
-namespace TimeTracker.App.Core.Models
+namespace TimeTracker.Services.Models
 {
+	public readonly struct PeriodLocation
+	{
+		public PeriodLocation(double latitude, double longitude)
+		{
+			Latitude = latitude;
+			Longitude = longitude;
+		}
+
+		public double Latitude { get; }
+
+		public double Longitude { get; }
+	}
+
 	/// <summary>
 	/// Tracked time period.
 	/// </summary>
-	internal class TrackedPeriod
+	public class TrackedPeriod
 	{
 		public TrackedPeriod()
 		{
 		}
 
-		public TrackedPeriod(int userId, DateTime start, Location startLocation)
+		public TrackedPeriod(int userId, DateTime start, PeriodLocation startLocation)
 		{
 			UserId = userId;
 			Start = start;

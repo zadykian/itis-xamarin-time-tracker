@@ -9,6 +9,8 @@ using TimeTracker.App.Core.Services.Notifications;
 using TimeTracker.App.Core.Services.Photo;
 using TimeTracker.App.Core.Services.TimeTracking;
 using TimeTracker.App.Core.Services.UserLocation;
+using TimeTracker.Services.Account;
+using TimeTracker.Services.TimeTracking;
 using TinyIoC;
 using Xamarin.Forms;
 

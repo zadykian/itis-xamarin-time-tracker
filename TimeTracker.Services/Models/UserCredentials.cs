@@ -1,11 +1,11 @@
 // ReSharper disable AutoPropertyCanBeMadeGetOnly.Global
 
-namespace TimeTracker.App.Core.Models
+namespace TimeTracker.Services.Models
 {
 	/// <summary>
 	/// User's credentials.
 	/// </summary>
-	internal class UserCredentials
+	public class UserCredentials
 	{
 		protected UserCredentials()
 		{

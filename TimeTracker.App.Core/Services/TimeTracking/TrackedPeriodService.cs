@@ -2,8 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TimeTracker.App.Core.Models;
-using TimeTracker.App.Core.Services.ConnectionFactory;
+using TimeTracker.Services.Models;
+using TimeTracker.Services.TimeTracking;
+using Xamarin.Essentials;
 
 namespace TimeTracker.App.Core.Services.TimeTracking
 {
@@ -15,7 +16,7 @@ namespace TimeTracker.App.Core.Services.TimeTracking
 
 		public TrackedPeriodService()
 		{
-			sqliteSubService = new SqliteSubService();
+			sqliteSubService = new SqliteTrackedPeriodService(FileSystem.AppDataDirectory);
 			webApiSubService = new WebApiSubService();
 		}
 
@@ -74,59 +75,6 @@ namespace TimeTracker.App.Core.Services.TimeTracking
 		{
 			await sqliteSubService.AddImageAsync(image);
 			await webApiSubService.AddImageAsync(image);
-		}
-
-		/// <summary>
-		/// Tracked periods sub-service which is responsible for communication with SQLite database. 
-		/// </summary>
-		private class SqliteSubService : SqliteServiceBase, ITrackedPeriodService
-		{
-			/// <inheritdoc />
-			async Task ITrackedPeriodService.UpsertAsync(TrackedPeriod trackedPeriod)
-			{
-				var dbConnection = await Connection.Value;
-				await dbConnection.InsertOrReplaceAsync(trackedPeriod);
-			}
-
-			/// <inheritdoc />
-			async Task<TrackedPeriod> ITrackedPeriodService.GetCurrentAsync(int userId)
-				=> await (await Connection.Value)
-					.Table<TrackedPeriod>()
-					.FirstOrDefaultAsync(period => period.UserId == userId && period.End == null);
-
-			/// <inheritdoc />
-			async Task<IReadOnlyCollection<TrackedPeriod>> ITrackedPeriodService.GetAllAsync(int userId)
-				=> await (await Connection.Value)
-					.Table<TrackedPeriod>()
-					.Where(period => period.UserId == userId)
-					.OrderByDescending(period => period.Start)
-					.ToArrayAsync();
-
-			/// <inheritdoc />
-			async Task ITrackedPeriodService.ClearDataAsync(int userId)
-			{
-				var dbConnection = await Connection.Value;
-
-				var notFinishedPeriod = await dbConnection
-					.Table<TrackedPeriod>()
-					.Where(period => period.UserId == userId && period.End == null)
-					.OrderByDescending(period => period.Start)
-					.FirstOrDefaultAsync();
-
-				if (notFinishedPeriod is null)
-				{
-					await dbConnection.DeleteAllAsync<TrackedPeriod>();
-					return;
-				}
-
-				await dbConnection
-					.Table<TrackedPeriod>()
-					.DeleteAsync(period => period.Id != notFinishedPeriod.Id);
-			}
-
-			/// <inheritdoc />
-			async Task ITrackedPeriodService.AddImageAsync(Image image)
-				=> await (await Connection.Value).InsertAsync(image);
 		}
 
 		/// <summary>
