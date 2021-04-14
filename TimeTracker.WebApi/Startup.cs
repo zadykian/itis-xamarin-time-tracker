@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -12,8 +13,8 @@ namespace TimeTracker.WebApi
 	{
 		public void ConfigureServices(IServiceCollection services)
 			=> services
-				.AddSingleton<IAccountService, SqliteAccountService>()
-				.AddSingleton<ITrackedPeriodService, SqliteTrackedPeriodService>();
+				.AddSingleton<IAccountService>(_ => new SqliteAccountService(Environment.CurrentDirectory))
+				.AddSingleton<ITrackedPeriodService>(_ => new SqliteTrackedPeriodService(Environment.CurrentDirectory));
 
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 		{
