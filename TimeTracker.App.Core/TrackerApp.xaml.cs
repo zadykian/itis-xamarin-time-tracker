@@ -4,9 +4,9 @@ using TimeTracker.Services.Navigation;
 
 namespace TimeTracker
 {
-	public partial class App
+	public partial class TrackerApp
 	{
-		public App() => InitializeComponent();
+		public TrackerApp() => InitializeComponent();
 
 		protected override async void OnStart()
 		{

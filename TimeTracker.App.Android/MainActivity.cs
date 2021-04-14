@@ -5,7 +5,7 @@ using Android.OS;
 using Plugin.Fingerprint;
 using Plugin.LocalNotification;
 
-namespace TimeTracker.Android
+namespace TimeTracker.App.Android
 {
 	/// <inheritdoc />
 	[Activity(Label = "TimeTracker", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true,
@@ -29,7 +29,7 @@ namespace TimeTracker.Android
 
 			Xamarin.Essentials.Platform.Init(this, savedInstanceState);
 			Xamarin.Forms.Forms.Init(this, savedInstanceState);
-			LoadApplication(new App());
+			LoadApplication(new TrackerApp());
 		}
 
 		/// <inheritdoc />
