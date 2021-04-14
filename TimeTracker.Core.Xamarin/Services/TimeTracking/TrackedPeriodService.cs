@@ -104,9 +104,25 @@ namespace TimeTracker.Services.TimeTracking
 
 			/// <inheritdoc />
 			async Task ITrackedPeriodService.ClearDataAsync(int userId)
-				=> await (await Connection.Value)
+			{
+				var dbConnection = await Connection.Value;
+
+				var notFinishedPeriod = await dbConnection
 					.Table<TrackedPeriod>()
-					.DeleteAsync(period => period.UserId == userId && period.End != null);
+					.Where(period => period.UserId == userId && period.End == null)
+					.OrderByDescending(period => period.Start)
+					.FirstOrDefaultAsync();
+
+				if (notFinishedPeriod is null)
+				{
+					await dbConnection.DeleteAllAsync<TrackedPeriod>();
+					return;
+				}
+
+				await dbConnection
+					.Table<TrackedPeriod>()
+					.DeleteAsync(period => period.Id != notFinishedPeriod.Id);
+			}
 
 			/// <inheritdoc />
 			async Task ITrackedPeriodService.AddImageAsync(Image image)

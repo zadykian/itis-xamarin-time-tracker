@@ -109,9 +109,9 @@
     <Folder Include="Resources\drawable\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TimeTracker\TimeTracker.csproj">
+    <ProjectReference Include="..\TimeTracker.Core.Xamarin\TimeTracker.Core.Xamarin.csproj">
       <Project>{764c33a9-c9f3-4d94-b945-3f2168473335}</Project>
-      <Name>TimeTracker</Name>
+      <Name>TimeTracker.Core.Xamarin</Name>
     </ProjectReference>
   </ItemGroup>
  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

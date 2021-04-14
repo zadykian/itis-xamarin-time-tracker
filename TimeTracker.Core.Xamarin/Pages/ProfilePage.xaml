@@ -4,9 +4,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:pageModels="clr-namespace:TimeTracker.PageModels;assembly=TimeTracker"
+             xmlns:pageModels="clr-namespace:TimeTracker.PageModels;assembly=TimeTracker.Core.Xamarin"
              xmlns:views="clr-namespace:TimeTracker.Views"
-             xmlns:buttons="clr-namespace:TimeTracker.Views.Buttons;assembly=TimeTracker"
+             xmlns:buttons="clr-namespace:TimeTracker.Views.Buttons;assembly=TimeTracker.Core.Xamarin"
              mc:Ignorable="d"
              x:Class="TimeTracker.Pages.ProfilePage"
              x:DataType="pageModels:ProfilePageModel">

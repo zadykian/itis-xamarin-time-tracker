@@ -6,7 +6,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" NavigationPage.HasNavigationBar="False"
              xmlns:buttons="clr-namespace:TimeTracker.Views.Buttons"
-             xmlns:pageModels="clr-namespace:TimeTracker.PageModels;assembly=TimeTracker"
+             xmlns:pageModels="clr-namespace:TimeTracker.PageModels;assembly=TimeTracker.Core.Xamarin"
              x:Class="TimeTracker.Pages.TimerPage"
              x:DataType="pageModels:TimerPageModel">
 	<ContentPage.Content>
