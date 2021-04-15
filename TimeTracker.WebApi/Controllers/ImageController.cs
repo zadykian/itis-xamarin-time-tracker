@@ -26,7 +26,7 @@ namespace TimeTracker.WebApi.Controllers
 		}
 
 		/// <inheritdoc cref="IImageService.GetAllAsync"/>
-		[HttpPost]
+		[HttpGet]
 		public async Task<IActionResult> GetAllAsync([FromQuery, Required] int? trackedPeriodId)
 		{
 			var allImages = await imageService.GetAllAsync(trackedPeriodId!.Value);

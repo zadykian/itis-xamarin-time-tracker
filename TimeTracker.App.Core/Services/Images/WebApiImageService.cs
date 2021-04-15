@@ -20,7 +20,7 @@ namespace TimeTracker.App.Core.Services.Images
 
 		/// <inheritdoc />
 		async Task IImageService.AddImageAsync(Image image)
-			=> await CallAsync(HttpMethod.Put, "Image", "AddImage", image);
+			=> await CallAsync(HttpMethod.Post, "Image", "AddImage", image);
 
 		/// <inheritdoc />
 		async Task<IReadOnlyCollection<Image>> IImageService.GetAllAsync(int trackedPeriodId)

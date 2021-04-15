@@ -38,6 +38,6 @@ namespace TimeTracker.App.Core.Services.TimeTracking
 
 		/// <inheritdoc />
 		async Task ITrackedPeriodService.ClearDataAsync(int userId)
-			=> await CallAsync(HttpMethod.Post, "TimeTracking", "ClearData", $"{nameof(userId)}={userId}");
+			=> await CallAsync(HttpMethod.Delete, "TimeTracking", "ClearData", $"{nameof(userId)}={userId}");
 	}
 }
