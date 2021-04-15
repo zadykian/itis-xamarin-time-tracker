@@ -23,7 +23,7 @@ namespace TimeTracker.App.Core.Services.Account
 		/// <inheritdoc />
 		async Task<bool> IAccountService.LogInAsync(UserCredentials credentials)
 		{
-			var httpResponse = await CallAsync(HttpMethod.Put, "Account", "LogIn");
+			var httpResponse = await CallAsync(HttpMethod.Put, "Account", "LogIn", credentials);
 			return httpResponse.StatusCode == HttpStatusCode.OK;
 		}
 
@@ -33,14 +33,14 @@ namespace TimeTracker.App.Core.Services.Account
 		/// <inheritdoc />
 		async Task<bool> IAccountService.CreateAccountAsync(User user)
 		{
-			var httpResponse = await CallAsync(HttpMethod.Post, "Account", "CreateAccount");
+			var httpResponse = await CallAsync(HttpMethod.Post, "Account", "CreateAccount", user);
 			return httpResponse.StatusCode == HttpStatusCode.OK;
 		}
 
 		/// <inheritdoc />
 		async Task<bool> IAccountService.UpdatePasswordAsync(UserCredentials credentials)
 		{
-			var httpResponse = await CallAsync(HttpMethod.Put, "Account", "UpdatePassword");
+			var httpResponse = await CallAsync(HttpMethod.Put, "Account", "UpdatePassword", credentials);
 			return httpResponse.StatusCode == HttpStatusCode.OK;
 		}
 	}

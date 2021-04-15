@@ -30,7 +30,7 @@ namespace TimeTracker.WebApi.Controllers
 		}
 
 		/// <inheritdoc cref="IAccountService.LogInAsync"/>
-		[HttpPost]
+		[HttpPut]
 		public async Task<IActionResult> LogInAsync([FromBody, Required] UserCredentials userCredentials)
 		{
 			var loggedInSuccessfully = await accountService.LogInAsync(userCredentials);

@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0"
 		  package="TimeTracker.App.Android">
 	<uses-sdk android:minSdkVersion="30" android:targetSdkVersion="30"/>
-	<application android:label="TimeTracker"/>
+	<application android:label="TimeTracker" android:usesCleartextTraffic="true"/>
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 	<uses-permission android:name="android.permission.INTERNET"/>
 
