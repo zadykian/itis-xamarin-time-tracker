@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TimeTracker.Services.Images;
@@ -15,10 +14,12 @@ namespace TimeTracker.App.Core.Services.Images
 		private readonly IImageService sqliteImageService;
 		private readonly IImageService webApiImageService;
 
-		public ImagesService(SqliteImageService sqliteImageService)
+		public ImagesService(
+			SqliteImageService sqliteImageService,
+			WebApiImageService webApiImageService)
 		{
 			this.sqliteImageService = sqliteImageService;
-			webApiImageService = new WebApiSubService();
+			this.webApiImageService = webApiImageService;
 		}
 
 		/// <inheritdoc />
@@ -41,24 +42,6 @@ namespace TimeTracker.App.Core.Services.Images
 			var remoteImages = await webApiImageService.GetAllAsync(trackedPeriodId);
 			foreach (var image in remoteImages) await sqliteImageService.AddImageAsync(image);
 			return remoteImages;
-		}
-
-		/// <summary>
-		/// Image sub-service which is responsible for communication with remote Web API.
-		/// </summary>
-		private class WebApiSubService : IImageService
-		{
-			// todo: implement interaction with web api via http client
-
-			/// <inheritdoc />
-			async Task IImageService.AddImageAsync(Image image) => await Task.CompletedTask;
-
-			/// <inheritdoc />
-			async Task<IReadOnlyCollection<Image>> IImageService.GetAllAsync(int trackedPeriodId)
-			{
-				await Task.CompletedTask;
-				return ArraySegment<Image>.Empty;
-			}
 		}
 	}
 }

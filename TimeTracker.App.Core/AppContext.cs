@@ -76,6 +76,7 @@ namespace TimeTracker.App.Core
 			container.Register<ITrackedPeriodService, TrackedPeriodService>();
 
 			container.Register<SqliteImageService>();
+			container.Register<WebApiImageService>();
 			container.Register<IImageService, ImagesService>();
 		}
 
