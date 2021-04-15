@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
 using TimeTracker.App.Core.Services.Http;
 using TimeTracker.App.Core.Services.Http.Configuration;
@@ -18,13 +19,14 @@ namespace TimeTracker.App.Core.Services.Images
 		}
 
 		/// <inheritdoc />
-		async Task IImageService.AddImageAsync(Image image) => await Task.CompletedTask;
+		async Task IImageService.AddImageAsync(Image image)
+			=> await CallAsync(HttpMethod.Put, "Image", "AddImage", image);
 
 		/// <inheritdoc />
 		async Task<IReadOnlyCollection<Image>> IImageService.GetAllAsync(int trackedPeriodId)
 		{
-			await Task.CompletedTask;
-			return ArraySegment<Image>.Empty;
+			var httpResponse = await CallAsync(HttpMethod.Get, "Image", "GetAll", $"{nameof(trackedPeriodId)}={trackedPeriodId}");
+			return await httpResponse.FromBody<IReadOnlyCollection<Image>>() ?? ArraySegment<Image>.Empty;
 		}
 	}
 }
