@@ -32,7 +32,15 @@ namespace TimeTracker.App.Core.Services.Account
 		{
 			var succeededLocally = await sqliteAccountService.LogInAsync(credentials);
 			if (succeededLocally) return true;
-			return await webApiAccountService.LogInAsync(credentials);
+
+			var succeededRemotely = await webApiAccountService.LogInAsync(credentials);
+			if (!succeededRemotely) return false;
+
+			var updatedLocally = await sqliteAccountService.UpdatePasswordAsync(credentials);
+			if (updatedLocally) return await sqliteAccountService.LogInAsync(credentials);
+
+			var createdLocally = await sqliteAccountService.CreateAccountAsync(credentials);
+			return createdLocally && await sqliteAccountService.LogInAsync(credentials);
 		}
 
 		/// <inheritdoc />
@@ -43,10 +51,10 @@ namespace TimeTracker.App.Core.Services.Account
 		}
 
 		/// <inheritdoc />
-		async Task<bool> IAccountService.CreateAccountAsync(User newUser)
+		async Task<bool> IAccountService.CreateAccountAsync(UserCredentials credentials)
 		{
-			var succeededLocally = await sqliteAccountService.CreateAccountAsync(newUser);
-			var succeededRemotely = await webApiAccountService.CreateAccountAsync(newUser);
+			var succeededLocally = await sqliteAccountService.CreateAccountAsync(credentials);
+			var succeededRemotely = await webApiAccountService.CreateAccountAsync(credentials);
 			return succeededLocally && succeededRemotely;
 		}
 

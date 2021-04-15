@@ -31,9 +31,9 @@ namespace TimeTracker.App.Core.Services.Account
 		Task IAccountService.LogOutAsync() => Task.CompletedTask;
 
 		/// <inheritdoc />
-		async Task<bool> IAccountService.CreateAccountAsync(User user)
+		async Task<bool> IAccountService.CreateAccountAsync(UserCredentials credentials)
 		{
-			var httpResponse = await CallAsync(HttpMethod.Post, "Account", "CreateAccount", user);
+			var httpResponse = await CallAsync(HttpMethod.Post, "Account", "CreateAccount", credentials);
 			return httpResponse.StatusCode == HttpStatusCode.OK;
 		}
 
