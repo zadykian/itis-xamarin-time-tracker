@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using System.Net.Http;
 using System.Text;
@@ -37,10 +37,40 @@ namespace TimeTracker.App.Core.Services.Http
 			{
 				return await httpClient.SendAsync(httpRequest);
 			}
-			catch (Exception e)
+			catch
 			{
 				return new HttpResponseMessage(HttpStatusCode.InternalServerError);
 			}
+		}
+		
+		protected async Task<HttpResponseMessage> CallAsync(
+			HttpMethod httpMethod,
+			string controllerName,
+			string actionName,
+			string queryParameters)
+		{
+			var httpRequest = new HttpRequestMessage(httpMethod, $"{controllerName}/{actionName}?{queryParameters}");
+
+			try
+			{
+				return await httpClient.SendAsync(httpRequest);
+			}
+			catch
+			{
+				return new HttpResponseMessage(HttpStatusCode.InternalServerError);
+			}
+		}
+	}
+
+	internal static class HttpResponseMessageExtensions
+	{
+		[return: MaybeNull]
+		public static async Task<T> FromBody<T>(this HttpResponseMessage httpResponseMessage)
+			where T : class
+		{
+			if (httpResponseMessage.StatusCode != HttpStatusCode.OK) return null;
+			var bodyString = await httpResponseMessage.Content.ReadAsStringAsync();
+			return JsonConvert.DeserializeObject<T>(bodyString);
 		}
 	}
 }

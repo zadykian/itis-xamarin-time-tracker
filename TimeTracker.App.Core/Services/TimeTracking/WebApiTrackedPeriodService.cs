@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
 using TimeTracker.App.Core.Services.Http;
 using TimeTracker.App.Core.Services.Http.Configuration;
@@ -19,23 +20,24 @@ namespace TimeTracker.App.Core.Services.TimeTracking
 
 		/// <inheritdoc />
 		async Task ITrackedPeriodService.UpsertAsync(TrackedPeriod trackedPeriod)
-			=> await Task.CompletedTask;
+			=> await CallAsync(HttpMethod.Put, "TimeTracking", "Upsert", trackedPeriod);
 
 		/// <inheritdoc />
 		async Task<TrackedPeriod> ITrackedPeriodService.GetCurrentAsync(int userId)
 		{
-			await Task.CompletedTask;
-			return null;
+			var httpResponse = await CallAsync(HttpMethod.Get, "TimeTracking", "GetCurrent", $"{nameof(userId)}={userId}");
+			return await httpResponse.FromBody<TrackedPeriod>();
 		}
 
 		/// <inheritdoc />
 		async Task<IReadOnlyCollection<TrackedPeriod>> ITrackedPeriodService.GetAllAsync(int userId)
 		{
-			await Task.CompletedTask;
-			return ArraySegment<TrackedPeriod>.Empty;
+			var httpResponse = await CallAsync(HttpMethod.Get, "TimeTracking", "GetAll", $"{nameof(userId)}={userId}");
+			return await httpResponse.FromBody<IReadOnlyCollection<TrackedPeriod>>() ?? ArraySegment<TrackedPeriod>.Empty;
 		}
 
 		/// <inheritdoc />
-		async Task ITrackedPeriodService.ClearDataAsync(int userId) => await Task.CompletedTask;
+		async Task ITrackedPeriodService.ClearDataAsync(int userId)
+			=> await CallAsync(HttpMethod.Post, "TimeTracking", "ClearData", $"{nameof(userId)}={userId}");
 	}
 }

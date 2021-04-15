@@ -51,7 +51,7 @@ namespace TimeTracker.Services.Account
 
 			if (existingUser != null)
 			{
-				return false;
+				return existingUser.Password == credentials.Password;
 			}
 
 			var newUser = new User(credentials.Username, credentials.Password);
@@ -75,13 +75,17 @@ namespace TimeTracker.Services.Account
 				.Table<User>()
 				.FirstOrDefaultAsync(user => user.Username == credentials.Username);
 
-			if (existingUser is null || existingUser.Password == credentials.Password)
+			if (existingUser is null)
 			{
 				return false;
 			}
 
-			existingUser.Password = credentials.Password;
-			await dbConnection.UpdateAsync(existingUser);
+			if (existingUser.Password != credentials.Password)
+			{
+				existingUser.Password = credentials.Password;
+				await dbConnection.UpdateAsync(existingUser);
+			}
+
 			return true;
 		}
 	}
