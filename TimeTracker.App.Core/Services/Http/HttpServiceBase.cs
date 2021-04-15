@@ -1,5 +1,6 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
+using TimeTracker.App.Core.Services.Http.Configuration;
 
 namespace TimeTracker.App.Core.Services.Http
 {
@@ -10,7 +11,8 @@ namespace TimeTracker.App.Core.Services.Http
 	{
 		private readonly HttpClient httpClient;
 
-		protected HttpServiceBase(HttpClient httpClient) => this.httpClient = httpClient;
+		protected HttpServiceBase(IHttpConfiguration httpConfiguration)
+			=> httpClient = new HttpClient {BaseAddress = httpConfiguration.BaseAddress};
 
 		protected async Task<HttpResponseMessage> CallAsync(
 			HttpMethod httpMethod,

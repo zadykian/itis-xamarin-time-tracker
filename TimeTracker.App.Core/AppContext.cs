@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net.Http;
 using TimeTracker.App.Core.PageModels;
 using TimeTracker.App.Core.PageModels.Base;
 using TimeTracker.App.Core.Pages;
@@ -59,24 +58,18 @@ namespace TimeTracker.App.Core
 		{
 			container.Register<IDatabaseConfiguration, XamarinDatabaseConfiguration>();
 			container.Register<SqliteConnectionFactory>();
-
 			container.Register<IHttpConfiguration, LocalHttpConfiguration>().AsSingleton();
-			container.Register((iocContainer, _) =>
-			{
-				var configuration = iocContainer.Resolve<IHttpConfiguration>();
-				return new HttpClient {BaseAddress = configuration.BaseAddress};
-			}).AsSingleton();
 
 			container.Register<SqliteAccountService>();
-			container.Register<WebApiAccountService>();
+			container.Register<WebApiAccountService>().AsSingleton();
 			container.Register<IAccountService, AccountService>();
 
 			container.Register<SqliteTrackedPeriodService>();
-			container.Register<WebApiTrackedPeriodService>();
+			container.Register<WebApiTrackedPeriodService>().AsSingleton();
 			container.Register<ITrackedPeriodService, TrackedPeriodService>();
 
 			container.Register<SqliteImageService>();
-			container.Register<WebApiImageService>();
+			container.Register<WebApiImageService>().AsSingleton();
 			container.Register<IImageService, ImagesService>();
 		}
 

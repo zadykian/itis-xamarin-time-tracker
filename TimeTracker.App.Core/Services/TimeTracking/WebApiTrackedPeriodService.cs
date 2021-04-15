@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net.Http;
 using System.Threading.Tasks;
 using TimeTracker.App.Core.Services.Http;
+using TimeTracker.App.Core.Services.Http.Configuration;
 using TimeTracker.Services.Models;
 using TimeTracker.Services.TimeTracking;
 
@@ -13,7 +13,7 @@ namespace TimeTracker.App.Core.Services.TimeTracking
 	/// </summary>
 	internal class WebApiTrackedPeriodService : HttpServiceBase, ITrackedPeriodService
 	{
-		public WebApiTrackedPeriodService(HttpClient httpClient) : base(httpClient)
+		public WebApiTrackedPeriodService(IHttpConfiguration httpConfiguration) : base(httpConfiguration)
 		{
 		}
 

@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using TimeTracker.App.Core.Services.Http;
+using TimeTracker.App.Core.Services.Http.Configuration;
 using TimeTracker.Services.Account;
 using TimeTracker.Services.Models;
 
@@ -12,7 +13,7 @@ namespace TimeTracker.App.Core.Services.Account
 	/// </summary>
 	internal class WebApiAccountService : HttpServiceBase, IAccountService
 	{
-		public WebApiAccountService(HttpClient httpClient) : base(httpClient)
+		public WebApiAccountService(IHttpConfiguration httpConfiguration) : base(httpConfiguration)
 		{
 		}
 
