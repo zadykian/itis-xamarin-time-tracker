@@ -5,19 +5,6 @@ using SQLite;
 
 namespace TimeTracker.Services.Models
 {
-	public readonly struct PeriodLocation
-	{
-		public PeriodLocation(double latitude, double longitude)
-		{
-			Latitude = latitude;
-			Longitude = longitude;
-		}
-
-		public double Latitude { get; }
-
-		public double Longitude { get; }
-	}
-
 	/// <summary>
 	/// Tracked time period.
 	/// </summary>
@@ -27,7 +14,7 @@ namespace TimeTracker.Services.Models
 		{
 		}
 
-		public TrackedPeriod(int userId, DateTime start, PeriodLocation startLocation)
+		public TrackedPeriod(int userId, DateTime start, Geolocation startLocation)
 		{
 			UserId = userId;
 			Start = start;

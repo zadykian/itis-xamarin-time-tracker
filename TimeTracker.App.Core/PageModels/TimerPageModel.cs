@@ -126,7 +126,7 @@ namespace TimeTracker.App.Core.PageModels
 				TimerButtonViewModel.Text = "stop timer";
 
 				var currentLocation = await locationService.GetCurrentLocationAsync();
-				var periodLocation = new PeriodLocation(currentLocation.Latitude, currentLocation.Longitude);
+				var periodLocation = new Geolocation(currentLocation.Latitude, currentLocation.Longitude);
 				var newTrackedPeriod = new TrackedPeriod(accountService.CurrentUser.Id!.Value, CurrentStartTime, periodLocation);
 
 				viewAllPageModel.AllForCurrentUser.Insert(0, newTrackedPeriod);

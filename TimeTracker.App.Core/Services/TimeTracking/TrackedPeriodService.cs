@@ -15,10 +15,12 @@ namespace TimeTracker.App.Core.Services.TimeTracking
 		private readonly ITrackedPeriodService sqliteTrackedPeriodService;
 		private readonly ITrackedPeriodService webApiTrackedPeriodService;
 
-		public TrackedPeriodService(SqliteTrackedPeriodService sqliteTrackedPeriodService)
+		public TrackedPeriodService(
+			SqliteTrackedPeriodService sqliteTrackedPeriodService,
+			WebApiTrackedPeriodService webApiTrackedPeriodService)
 		{
 			this.sqliteTrackedPeriodService = sqliteTrackedPeriodService;
-			webApiTrackedPeriodService = new WebApiSubService();
+			this.webApiTrackedPeriodService = webApiTrackedPeriodService;
 		}
 
 		/// <inheritdoc />
@@ -69,35 +71,6 @@ namespace TimeTracker.App.Core.Services.TimeTracking
 		{
 			await sqliteTrackedPeriodService.ClearDataAsync(userId);
 			await webApiTrackedPeriodService.ClearDataAsync(userId);
-		}
-
-		/// <summary>
-		/// Tracked periods sub-service which is responsible for communication with remote Web API.
-		/// </summary>
-		private class WebApiSubService : ITrackedPeriodService
-		{
-			// todo: implement interaction with web api via http client
-
-			/// <inheritdoc />
-			async Task ITrackedPeriodService.UpsertAsync(TrackedPeriod trackedPeriod)
-				=> await Task.CompletedTask;
-
-			/// <inheritdoc />
-			async Task<TrackedPeriod> ITrackedPeriodService.GetCurrentAsync(int userId)
-			{
-				await Task.CompletedTask;
-				return null;
-			}
-
-			/// <inheritdoc />
-			async Task<IReadOnlyCollection<TrackedPeriod>> ITrackedPeriodService.GetAllAsync(int userId)
-			{
-				await Task.CompletedTask;
-				return ArraySegment<TrackedPeriod>.Empty;
-			}
-
-			/// <inheritdoc />
-			async Task ITrackedPeriodService.ClearDataAsync(int userId) => await Task.CompletedTask;
 		}
 	}
 }

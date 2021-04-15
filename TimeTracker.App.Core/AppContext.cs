@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using TimeTracker.App.Core.PageModels;
 using TimeTracker.App.Core.PageModels.Base;
 using TimeTracker.App.Core.Pages;
 using TimeTracker.App.Core.Services.Account;
+using TimeTracker.App.Core.Services.Http.Configuration;
 using TimeTracker.App.Core.Services.Images;
 using TimeTracker.App.Core.Services.Navigation;
 using TimeTracker.App.Core.Services.Notifications;
@@ -43,7 +45,7 @@ namespace TimeTracker.App.Core
 
 			container.Register<INavigationService, NavigationService>();
 
-			RegisterSqliteServices();
+			RegisterDataServices();
 
 			container.Register<ILocationService, LocationService>();
 			container.Register<IPhotoCapturingService, PhotoCapturingService>();
@@ -51,21 +53,30 @@ namespace TimeTracker.App.Core
 		}
 
 		/// <summary>
-		/// Register SQLite services in container.
+		/// Register data access services in container.
 		/// </summary>
-		private static void RegisterSqliteServices()
+		private static void RegisterDataServices()
 		{
 			container.Register<IDatabaseConfiguration, XamarinDatabaseConfiguration>();
 			container.Register<SqliteConnectionFactory>();
 
-			container.Register<SqliteImageService>();
-			container.Register<IImageService, ImagesService>();
+			container.Register<IHttpConfiguration, LocalHttpConfiguration>().AsSingleton();
+			container.Register((iocContainer, _) =>
+			{
+				var configuration = iocContainer.Resolve<IHttpConfiguration>();
+				return new HttpClient {BaseAddress = configuration.BaseAddress};
+			}).AsSingleton();
 
 			container.Register<SqliteAccountService>();
+			container.Register<WebApiAccountService>();
 			container.Register<IAccountService, AccountService>();
 
 			container.Register<SqliteTrackedPeriodService>();
+			container.Register<WebApiTrackedPeriodService>();
 			container.Register<ITrackedPeriodService, TrackedPeriodService>();
+
+			container.Register<SqliteImageService>();
+			container.Register<IImageService, ImagesService>();
 		}
 
 		private static void RegisterPageWithModel<TPageModel, TPage>()

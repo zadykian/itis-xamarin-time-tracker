@@ -13,10 +13,12 @@ namespace TimeTracker.App.Core.Services.Account
 		private readonly IAccountService sqliteAccountService;
 		private readonly IAccountService webApiAccountService;
 
-		public AccountService(SqliteAccountService sqliteAccountService)
+		public AccountService(
+			SqliteAccountService sqliteAccountService,
+			WebApiAccountService webApiAccountService)
 		{
 			this.sqliteAccountService = sqliteAccountService;
-			webApiAccountService = new WebApiSubService();
+			this.webApiAccountService = webApiAccountService;
 		}
 
 		/// <inheritdoc />
@@ -54,41 +56,6 @@ namespace TimeTracker.App.Core.Services.Account
 			var succeededLocally = await sqliteAccountService.UpdatePasswordAsync(credentials);
 			var succeededRemotely = await webApiAccountService.UpdatePasswordAsync(credentials);
 			return succeededLocally && succeededRemotely;
-		}
-
-		/// <summary>
-		/// Account sub-service which is responsible for communication with remote Web API.
-		/// </summary>
-		private class WebApiSubService : IAccountService
-		{
-			// todo: implement interaction with web api via http client
-
-			/// <inheritdoc />
-			User IAccountService.CurrentUser => null;
-
-			/// <inheritdoc />
-			async Task<bool> IAccountService.LogInAsync(UserCredentials credentials)
-			{
-				await Task.CompletedTask;
-				return false;
-			}
-
-			/// <inheritdoc />
-			async Task IAccountService.LogOutAsync() => await Task.CompletedTask;
-
-			/// <inheritdoc />
-			async Task<bool> IAccountService.CreateAccountAsync(User user)
-			{
-				await Task.CompletedTask;
-				return true;
-			}
-
-			/// <inheritdoc />
-			async Task<bool> IAccountService.UpdatePasswordAsync(UserCredentials credentials)
-			{
-				await Task.CompletedTask;
-				return false;
-			}
 		}
 	}
 }
